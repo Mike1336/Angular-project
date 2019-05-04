@@ -1,0 +1,86 @@
+<title>{{title}}</title>
+
+<div id="content-selector">
+    <ul class="select-list">
+      <li id="titleOfSelector">Вид:</li>
+      <li class="active"><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
+      <li><a routerLink="/staff" id="select-employee">Персонал</a></li>
+    </ul>
+</div>
+
+<div id="inventory">
+  <section class="filters inventory">
+    <form action="" class="filter-group">
+      <ul class="filter-list inventory">
+        <label for="all-categories">
+          <li><input type="radio" name="filter" value="all" id="all-categories" checked="checked" />Все категории
+          </li>
+        </label>
+        <label for="monitors">
+          <li><input type="radio" name="filter" value="all" id="monitors" />Мониторы</li>
+        </label>
+        <label for="monoblocks">
+          <li><input type="radio" name="filter" value="all" id="monoblocks" />Моноблоки</li>
+        </label>
+        <label for="laptops">
+          <li><input type="radio" name="filter" value="all" id="laptops" />Ноутбуки</li>
+        </label>
+        <label for="keyboards">
+          <li><input type="radio" name="filter" value="all" id="keyboards" />Клавиатуры</li>
+        </label>
+        <label for="mouses">
+          <li><input type="radio" name="filter" value="all" id="mouses" />Мыши</li>
+        </label>
+        <label for="tables">
+          <li><input type="radio" name="filter" value="all" id="tables" />Столы</li>
+        </label>
+        <label for="armchairs">
+          <li><input type="radio" name="filter" value="all" id="armchairs" />Кресла</li>
+        </label>
+      </ul>
+    </form>
+  </section>
+
+
+    <form class="search inventory">
+      <input type="search" placeholder="Поиск по модели (серийному номеру)">
+      <button type="submit">Найти</button>
+    </form>
+
+  <div class="content-table inventory">
+    <table>
+      <tr>
+        <th>Наименование единицы</th>
+        <th>Серийный номер</th>
+        <th>Тип</th>
+        <th>Сотрудник</th>
+        <th>Дата присвоения единицы</th>
+        <th>Сведения о состоянии</th>
+      </tr>
+      <tr>
+        <td><a href="#">Benq xl2411</a></td>
+        <td>123456789</td>
+        <td>Монитор</td>
+        <td><a href="#">Иванов Иван Иванович</a></td>
+        <td>22.11.2017</td>
+        <td>Недавно забирал из ремонта, пока все хорошо</td>
+      </tr>
+      <tr>
+        <td><a href="#">Benq GL2450</a></td>
+        <td>123456789</td>
+        <td>Монитор</td>
+        <td><a href="#">Петров Иван Петрович</a></td>
+        <td>25.12.2016</td>
+        <td>Все плохо, завтра в ремонт</td>
+      </tr>
+      <tr>
+        <td><a href="#">Apple iMac 21.5"</a></td>
+        <td>123456789</td>
+        <td>Моноблок</td>
+        <td><a href="#">Петров Петр Петрович</a></td>
+        <td>01.03.2018</td>
+        <td>Все чётко</td>
+      </tr>
+    </table>
+  </div>
+</div>

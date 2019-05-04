@@ -1,0 +1,212 @@
+$border-color:#578530;
+
+$th-color: #83c450;
+$tr-hover-bgcolor: #82c45091;
+$table-th-text-color: #025e0f;
+$table-text-color: #037b14;
+
+//------------------------------------------------------------TABLE CONTENT FILTERS-----------------------------------------------------
+.filters{
+  grid-column: 1;
+  width: 190px;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  }
+  .filter-list{
+  list-style-type: none;
+  padding: 0;
+    li:hover{
+        background: $border-color;
+    }
+}
+//--------------------------------------------------------------END TABLE CONTENT FILTERS---------------------------------------------------
+
+//--------------------------------------------------------------SEARCHFIELD-----------------------------------------------------------------
+.search{
+  position: relative;
+  grid-column: 2;
+  margin-right: auto;
+  
+    input{
+        width: 300px;
+        height: 42px;
+        padding-left: 10px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        outline: none;
+        color: #9E9C9C;
+        transition: .3s;
+    }
+    input:focus {
+        border: 2px solid $border-color;
+    }
+    button{
+        position: absolute;
+        right: -41px;
+        height: 42px;
+        border: none;
+        background: $border-color;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        
+    }
+    button:hover{
+        transition: .3s;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+    }
+  }
+//-----------------------------------------------------------END SEARCHFIELD--------------------------------------------------------------------
+
+//----------------------------------------------------------------TABLES------------------------------------------------------------------------
+.content-table{
+grid-row: 2;
+display: flex;
+justify-content: center;
+width: 100vw;
+}
+
+table {
+font-size: 14px;
+background: #fff;
+border-collapse: collapse;
+text-align: center;
+margin: 20px;
+  a{
+    text-decoration: none;
+    color: $table-text-color;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  
+}
+th {
+font-size: 15px;
+font-weight: normal;
+background: $th-color;
+border-bottom: 1px solid #fff;
+color: $table-th-text-color;
+padding: 8px;
+}
+
+td {
+background: #7ba7ab2b;
+border-bottom: 1px solid #fff;
+color: $table-text-color;
+border-top: 1px solid transparent;
+padding: 8px;
+}
+tr:hover td {
+transition: .2s;
+background: $tr-hover-bgcolor;
+}
+//----------------------------------------------------------------END TABLES----------------------------------------------------------------------
+
+#content-selector {
+  display: grid;
+  grid-template-columns: 39% max-content auto;
+    .select-list {
+      grid-column: 2;
+      list-style-type: none;
+      padding: 0;
+      min-width: 350px;
+      overflow: hidden;
+      background-color: #fff;
+      border: 1px solid $border-color;
+      li {
+          float: left;
+          a {
+          display: block;
+          color: black;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          }
+        
+      }
+        #select-employee{
+          padding-right: 17px;
+          padding-left: 20px;
+        }
+        #titleOfSelector{
+          padding: 14px;
+        }
+        a:hover:not(.active) {
+          background-color: #a9e77285;
+        }
+        
+        .active {
+          background-color: #578530;
+        }
+    }
+  }
+  @media screen and (max-width:590px){
+  
+    #content-selector {
+      grid-template-columns:max-content;
+      width: max-content;
+      .select-list {
+        grid-column: 1;
+        }
+      }
+  }
+  @media (min-width: 370px) and (max-width:590px){
+  
+    #content-selector {
+      margin-left: 50%;
+      transform: translateX(-50%);
+  
+    }
+  }
+
+  
+@media screen and (max-width:590px){
+  .search{
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 10px;
+  margin-left: 45vw;
+  transform: translateX(-52%);
+
+}
+  .filters{
+  grid-row: 2;
+  }
+  .content-table{
+  grid-row: 3;
+  justify-content: flex-start;
+  }
+}
+@media screen and (max-width:555px){
+   .inventory{
+    table{
+      margin: 10px 15px 0 0;
+    }
+
+    th{
+      font-size: 10px
+    }
+    td{
+      font-size: 10px;
+    }  
+  }
+  .employee{
+    table{
+      margin: 10px 15px 0 0;
+    }
+  
+    th{
+      font-size: 13px
+    }
+    td{
+      font-size: 12px;
+    }  
+  }
+}
+@media  (min-width:415px){
+  .filters{
+    margin-left: 18px;
+    }
+  
+}

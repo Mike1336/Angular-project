@@ -1,0 +1,74 @@
+<title>{{title}}</title>
+
+<div id="content-selector">
+    <ul class="select-list">
+      <li id="titleOfSelector">Вид:</li>
+      <li><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
+      <li class="active"><a routerLink="/staff" id="select-employee">Персонал</a></li>
+    </ul>
+</div>
+
+
+<div id="employee">
+  <section class="filters employee">
+    <form action="" class=" filter-group">
+    <ul class="filter-list employee">
+      <label for="all-depts">
+        <li><input type="radio" name="filter" value="all" id="all-depts" checked="checked" />Все отделы</li>
+      </label>
+      <label for="wfe">
+        <li><input type="radio" name="filter" value="all" id="wfe" />WEB Front-end</li>
+      </label>
+      <label for="wbe">
+        <li><input type="radio" name="filter" value="all" id="wbe" />WEB Back-end</li>
+      </label>
+      <label for="afe">
+        <li><input type="radio" name="filter" value="all" id="afe" />Android Front-end</li>
+      </label>
+      <label for="abe">
+        <li><input type="radio" name="filter" value="all" id="abe" />Android Back-end</li>
+      </label>
+      <label for="ife">
+        <li><input type="radio" name="filter" value="all" id="ife" />iOS Front-end</li>
+      </label>
+      <label for="ibe">
+        <li><input type="radio" name="filter" value="all" id="ibe" />iOS Back-end</li>
+      </label>
+    </ul>
+    </form>
+  </section>
+
+    <form class="search employee">
+      <input type="search" placeholder="Поиск ФИО сотрудника">
+      <button type="submit">Найти</button>
+    </form>
+
+  <div class="content-table employee">
+    <table>
+      <tr>
+        <th>ФИО сотрудника</th>
+        <th>Отдел</th>
+        <th>Дата поступления на работу</th>
+        <th>Ответственный(ая) за категорию на сайте</th>
+      </tr>
+      <tr>
+        <td><a href="#">Иванов Иван Иванович</a></td>
+        <td>WEB Front-end</td>
+        <td>11.11.2011</td>
+        <td><a href="#">Ноутбуки</a></td>
+      </tr>
+      <tr>
+        <td><a href="#">Петров Иван Петрович</a></td>
+        <td>WEB Back-end</td>
+        <td>12.12.2012</td>
+        <td><a href="#">Ноутбуки</a></td>
+      </tr>
+      <tr>
+        <td><a href="#">Петров Петр Петрович</a></td>
+        <td>Android Back-end</td>
+        <td>10.10.2010</td>
+        <td><a href="#">Клавиатуры</a></td>
+      </tr>
+    </table>
+  </div>
+</div>
