@@ -24,21 +24,24 @@ header{
         color: $userlink-color;
         transition: .2s;
       }
-      a:hover{
-        color: $userlink-hover-color;
-      }
   }
 }
 
 #username{
   padding-right: 5px;
 }
+#username:hover{
+  color: $userlink-hover-color;
+  text-decoration: underline;
+}
 
 #sign-out{
   padding-left: 5px;
   border-left: 1px solid black;
 }
-
+#sign-out:hover{
+  color: $userlink-hover-color;
+}
 #logo{
     height: 40px;
 }

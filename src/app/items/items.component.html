@@ -43,11 +43,12 @@
 
 
     <form class="search inventory">
-      <input type="search" placeholder="Поиск по модели (серийному номеру)">
+      <input type="text" placeholder="Поиск по модели (серийному номеру)">
       <button type="submit">Найти</button>
     </form>
+</div>
 
-  <div class="content-table inventory">
+<div class="items-table">
     <table>
       <tr>
         <th>Наименование единицы</th>
@@ -58,29 +59,28 @@
         <th>Сведения о состоянии</th>
       </tr>
       <tr>
-        <td><a href="#">Benq xl2411</a></td>
+        <td><a routerLink="/item">Benq xl2411</a></td>
         <td>123456789</td>
         <td>Монитор</td>
-        <td><a href="#">Иванов Иван Иванович</a></td>
+        <td><a routerLink="/employee">Иванов Иван Иванович</a></td>
         <td>22.11.2017</td>
         <td>Недавно забирал из ремонта, пока все хорошо</td>
       </tr>
       <tr>
-        <td><a href="#">Benq GL2450</a></td>
+        <td><a routerLink="/item">Benq GL2450</a></td>
         <td>123456789</td>
         <td>Монитор</td>
-        <td><a href="#">Петров Иван Петрович</a></td>
+        <td><a routerLink="/employee">Петров Иван Петрович</a></td>
         <td>25.12.2016</td>
         <td>Все плохо, завтра в ремонт</td>
       </tr>
       <tr>
-        <td><a href="#">Apple iMac 21.5"</a></td>
+        <td><a routerLink="/item">Apple iMac 21.5"</a></td>
         <td>123456789</td>
         <td>Моноблок</td>
-        <td><a href="#">Петров Петр Петрович</a></td>
+        <td><a routerLink="/employee">Петров Петр Петрович</a></td>
         <td>01.03.2018</td>
         <td>Все чётко</td>
       </tr>
     </table>
   </div>
-</div>

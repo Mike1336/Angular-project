@@ -5,6 +5,9 @@ $tr-hover-bgcolor: #82c45091;
 $table-th-text-color: #025e0f;
 $table-text-color: #037b14;
 
+*{
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
 //------------------------------------------------------------TABLE CONTENT FILTERS-----------------------------------------------------
 .filters{
   grid-column: 1;
@@ -39,16 +42,17 @@ $table-text-color: #037b14;
     }
     input:focus {
         border: 2px solid $border-color;
+        height: 40px;
+
     }
     button{
         position: absolute;
         right: -41px;
-        height: 42px;
+        height: 46px;
         border: none;
         background: $border-color;
         border-radius: 0 20px 20px 0;
         cursor: pointer;
-        
     }
     button:hover{
         transition: .3s;
@@ -59,11 +63,9 @@ $table-text-color: #037b14;
 //-----------------------------------------------------------END SEARCHFIELD--------------------------------------------------------------------
 
 //----------------------------------------------------------------TABLES------------------------------------------------------------------------
-.content-table{
-grid-row: 2;
+.employee-table, .items-table{
 display: flex;
 justify-content: center;
-width: 100vw;
 }
 
 table {
@@ -173,25 +175,25 @@ background: $tr-hover-bgcolor;
   .filters{
   grid-row: 2;
   }
-  .content-table{
-  grid-row: 3;
+
+  .items-table, .employee-table{
   justify-content: flex-start;
   }
 }
-@media screen and (max-width:555px){
-   .inventory{
+@media screen and (max-width:590px){
+   .items-table{
     table{
       margin: 10px 15px 0 0;
     }
 
     th{
-      font-size: 10px
+      font-size: 9px
     }
     td{
-      font-size: 10px;
+      font-size: 8px;
     }  
   }
-  .employee{
+  .employee-table{
     table{
       margin: 10px 15px 0 0;
     }
@@ -204,7 +206,7 @@ background: $tr-hover-bgcolor;
     }  
   }
 }
-@media  (min-width:415px){
+@media  (min-width:556px){
   .filters{
     margin-left: 18px;
     }

@@ -39,11 +39,12 @@
   </section>
 
     <form class="search employee">
-      <input type="search" placeholder="Поиск ФИО сотрудника">
+      <input type="text" placeholder="Поиск ФИО сотрудника">
       <button type="submit">Найти</button>
     </form>
+</div>
 
-  <div class="content-table employee">
+<div class="employee-table">
     <table>
       <tr>
         <th>ФИО сотрудника</th>
@@ -52,23 +53,22 @@
         <th>Ответственный(ая) за категорию на сайте</th>
       </tr>
       <tr>
-        <td><a href="#">Иванов Иван Иванович</a></td>
+        <td><a routerLink="/employee">Иванов Иван Иванович</a></td>
         <td>WEB Front-end</td>
         <td>11.11.2011</td>
-        <td><a href="#">Ноутбуки</a></td>
+        <td><a routerLink="/inventory">Ноутбуки</a></td>
       </tr>
       <tr>
-        <td><a href="#">Петров Иван Петрович</a></td>
+        <td><a routerLink="/staff">Петров Иван Петрович</a></td>
         <td>WEB Back-end</td>
         <td>12.12.2012</td>
-        <td><a href="#">Ноутбуки</a></td>
+        <td><a routerLink="/inventory">Ноутбуки</a></td>
       </tr>
       <tr>
-        <td><a href="#">Петров Петр Петрович</a></td>
+        <td><a routerLink="/staff">Петров Петр Петрович</a></td>
         <td>Android Back-end</td>
         <td>10.10.2010</td>
-        <td><a href="#">Клавиатуры</a></td>
+        <td><a routerLink="/inventory">Клавиатуры</a></td>
       </tr>
     </table>
   </div>
-</div>
