@@ -52,23 +52,11 @@
         <th>Дата поступления на работу</th>
         <th>Ответственный(ая) за категорию на сайте</th>
       </tr>
-      <tr>
-        <td><a routerLink="/employee">Иванов Иван Иванович</a></td>
-        <td>WEB Front-end</td>
-        <td>11.11.2011</td>
-        <td><a routerLink="/inventory">Ноутбуки</a></td>
-      </tr>
-      <tr>
-        <td><a routerLink="/staff">Петров Иван Петрович</a></td>
-        <td>WEB Back-end</td>
-        <td>12.12.2012</td>
-        <td><a routerLink="/inventory">Ноутбуки</a></td>
-      </tr>
-      <tr>
-        <td><a routerLink="/staff">Петров Петр Петрович</a></td>
-        <td>Android Back-end</td>
-        <td>10.10.2010</td>
-        <td><a routerLink="/inventory">Клавиатуры</a></td>
+      <tr *ngFor="let emp of stuff">
+        <td><a routerLink="/employee">{{emp.fio}}</a></td>
+        <td>{{emp.dep}}</td>
+        <td>{{emp.indate}}</td>
+        <td><a routerLink="/inventory">{{emp.cat}}</a></td>
       </tr>
     </table>
   </div>

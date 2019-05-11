@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
+  emp: { fio: string; pos: string; img: string; cat: string; items: {}[] } = {
+    fio: 'Иванов Иван Иванович',
+    pos: 'Junior Front-end developer',
+    img: 'assets/images/proger.jpg',
+    cat: 'Ноутбуки',
+    items: [
+      { type: 'Монитор', model: '-', date: '-' },
+      { type: 'Моноблок', model: '-', date: '-' },
+      { type: 'Ноутбук', model: '-', date: '-' },
+      { type: 'Клавиатура', model: '-', date: '-' },
+      { type: 'Мышь', model: '-', date: '-' },
+      { type: 'Кресло', model: '-', date: '-' },
+      { type: 'Стол', model: '-', date: '-' }
+    ]
+  };
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

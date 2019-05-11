@@ -58,29 +58,13 @@
         <th>Дата присвоения единицы</th>
         <th>Сведения о состоянии</th>
       </tr>
-      <tr>
-        <td><a routerLink="/item">Benq xl2411</a></td>
-        <td>123456789</td>
-        <td>Монитор</td>
-        <td><a routerLink="/employee">Иванов Иван Иванович</a></td>
-        <td>22.11.2017</td>
-        <td>Недавно забирал из ремонта, пока все хорошо</td>
-      </tr>
-      <tr>
-        <td><a routerLink="/item">Benq GL2450</a></td>
-        <td>123456789</td>
-        <td>Монитор</td>
-        <td><a routerLink="/employee">Петров Иван Петрович</a></td>
-        <td>25.12.2016</td>
-        <td>Все плохо, завтра в ремонт</td>
-      </tr>
-      <tr>
-        <td><a routerLink="/item">Apple iMac 21.5"</a></td>
-        <td>123456789</td>
-        <td>Моноблок</td>
-        <td><a routerLink="/employee">Петров Петр Петрович</a></td>
-        <td>01.03.2018</td>
-        <td>Все чётко</td>
+      <tr *ngFor="let item of items">
+        <td><a routerLink="/item">{{item.name}}</a></td>
+        <td>{{item.serNumber}}</td>
+        <td>{{item.type}}</td>
+        <td><a routerLink="/employee">{{item.emp}}</a></td>
+        <td>{{item.date}}</td>
+        <td>{{item.inf}}</td>
       </tr>
     </table>
   </div>

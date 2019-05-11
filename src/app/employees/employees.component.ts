@@ -8,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 export class EmployeesComponent implements OnInit {
   title = 'Сотрудники | Главная страница';
 
-  constructor() { }
+  stuff: { fio: string; dep: string; indate: string; cat: string }[] = [
+    {
+      fio: 'Иванов Иван Иванович',
+      dep: 'WEB Front-end',
+      indate: '11.11.2011',
+      cat: 'Ноутбуки'
+    },
+    {
+      fio: 'Петров Иван Петрович',
+      dep: 'WEB Back-end	',
+      indate: '12.12.2012',
+      cat: 'Моноблоки'
+    },
+    {
+      fio: 'Петров Петр Петрович',
+      dep: 'Android Back-end',
+      indate: '10.10.2010',
+      cat: 'Клавиатуры'
+    }
+  ];
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

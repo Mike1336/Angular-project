@@ -8,9 +8,40 @@ import { Component, OnInit } from '@angular/core';
 export class ItemsComponent implements OnInit {
   title = 'Инвентарные единицы | Главная страница';
 
-  constructor() { }
+  items: {
+    name: string;
+    serNumber: number;
+    type: string;
+    emp: string;
+    date: string;
+    inf: string;
+  }[] = [
+    {
+      name: 'Benq xl2411',
+      serNumber: 123456789,
+      type: 'Монитор',
+      emp: 'Иванов Иван Иванович',
+      date: '22.11.2017',
+      inf: 'Недавно забирал из ремонта, пока все хорошо'
+    },
+    {
+      name: 'Benq GL2450',
+      serNumber: 123456789,
+      type: 'Монитор',
+      emp: 'Петров Иван Петрович	',
+      date: '25.12.2016',
+      inf: 'Все плохо, завтра в ремонт'
+    },
+    {
+      name: 'Apple iMac 21.5"',
+      serNumber: 123456789,
+      type: 'Моноблок',
+      emp: 'Петров Петр Петрович',
+      date: '01.03.2018	',
+      inf: 'Все чётко'
+    }
+  ];
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

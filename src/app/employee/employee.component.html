@@ -1,10 +1,10 @@
 <div class="emp-inf">
-    <h1 id="emp-name">Иванов Иван Иванович</h1>
-    <h2 id="emp-position">Junior Front-end developer</h2>
-    <h2>Ответственный за категорию: <a href="" id="emp-category">Моноблоки</a></h2>
+    <h1 id="emp-name">{{emp.fio}}</h1>
+    <h2 id="emp-position">{{emp.pos}}</h2>
+    <h2>Ответственный за категорию: <a href="" id="emp-category">{{emp.cat}}</a></h2>
     <h3>Инвентарь:</h3>
 
-    <img src="assets/images/proger.jpg" alt="avatar" id="emp-avatar">
+    <img src="{{emp.img}}" alt="avatar" id="emp-avatar">
 
   <div class="employee-items">
     <table>
@@ -13,40 +13,10 @@
           <th>Название</th>
           <th>Дата закрепления</th>
         </tr>
-          <tr>
-            <td>Монитор</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Моноблок</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Ноутбук</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Клавиатура</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Мышь</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Кресло</td>
-            <td>-</td>
-            <td>-</td>
-          </tr>
-          <tr>
-            <td>Стол</td>
-            <td>-</td>
-            <td>-</td>
+          <tr *ngFor="let item of emp.items">
+            <td>{{item.type}}</td>
+            <td>{{item.model}}</td>
+            <td>{{item.date}}</td>
           </tr>
     </table>
   </div>

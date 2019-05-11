@@ -1,28 +1,22 @@
 <div class="item-inf">
-  <h1 id="item-name">Ноутбук Acer</h1>
-  <h3 id="item-number">***********</h3>
-  <h2>Закреплен(а) за <a href="" id="assigned-to">Иванов Иван Иванович</a></h2>
+  <h1 id="item-name">{{item.model}}</h1>
+  <h3 id="item-number">{{item.serNumber}}</h3>
+  <h2>Закреплен(а) за <a href="" id="assigned-to">{{item.emp}}</a></h2>
 </div>
 
 <div class="item-history">
-    <table>
-      <tr>
-        <th>Причина ремонта</th>
-        <th>Дата отвоза в ремонт</th>
-        <th>Дата привоза из ремонта</th>
-        <th>Сервисный центр</th>
-      </tr>
-      <tr>
-        <td>Поломка дисплея</td>
-        <td>11.11.2018</td>
-        <td>13.11.2018</td>
-        <td>Неофициальный</td>
-      </tr>
-      <tr>
-          <td>Поломка блока питания</td>
-          <td>01.03.2019</td>
-          <td>02.03.2019</td>
-          <td>Неофициальный</td>
-        </tr>
-    </table>
-  </div>
+  <table>
+    <tr>
+      <th>Причина ремонта</th>
+      <th>Дата отвоза в ремонт</th>
+      <th>Дата привоза из ремонта</th>
+      <th>Сервисный центр</th>
+    </tr>
+    <tr *ngFor="let visit of item.history">
+      <td>{{visit.reason}}</td>
+      <td>{{visit.indate}}</td>
+      <td>{{visit.outdate}}</td>
+      <td>{{visit.serviceCenter}}</td>
+    </tr>
+  </table>
+</div>

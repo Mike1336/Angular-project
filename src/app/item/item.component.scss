@@ -5,7 +5,15 @@
   h1,h2,h3{
     text-align: center;
   }
-
+  a{
+    color: #699741;
+    text-decoration: underline;
+    transition: .2s;
+  }
+  a:hover{
+    color: #3b5325;
+    text-decoration: none;
+  }
   h2{
     grid-row: 1;
     grid-column: 2;
