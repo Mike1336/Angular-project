@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
-  emp: { fio: string; pos: string; img: string; cat: string; items: {}[] } = {
+  emp = {
     fio: 'Иванов Иван Иванович',
     pos: 'Junior Front-end developer',
     img: 'assets/images/proger.jpg',

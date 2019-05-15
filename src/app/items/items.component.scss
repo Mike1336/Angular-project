@@ -1,11 +1,11 @@
 #inventory{
   display: grid;
-  grid-template-columns: 39% max-content auto;
+  grid-template-columns: 40% max-content auto;
   grid-template-rows: max-content max-content;  
 }
 
-@media screen and (max-width:590px){
-    #inventory{
-        grid-template-columns:max-content;
+@media screen and (max-width:645px){
+  #inventory{
+      grid-template-columns: auto;
   }
 }

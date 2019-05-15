@@ -1,7 +1,7 @@
 <div class="item-inf">
-  <h1 id="item-name">{{item.model}}</h1>
-  <h3 id="item-number">{{item.serNumber}}</h3>
-  <h2>Закреплен(а) за <a href="" id="assigned-to">{{item.emp}}</a></h2>
+  <h1>{{item.model}} ({{item.serNumber}})</h1>
+  <h3>Состояние: {{item.status}}</h3>
+  <h2>Закреплен(а) за <a routerLink="/employee">{{item.emp}}</a></h2>
 </div>
 
 <div class="item-history">

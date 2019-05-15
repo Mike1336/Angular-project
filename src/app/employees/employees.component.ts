@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class EmployeesComponent implements OnInit {
   title = 'Сотрудники | Главная страница';
 
-  stuff: { fio: string; dep: string; indate: string; cat: string }[] = [
+  stuff = [
     {
       fio: 'Иванов Иван Иванович',
       dep: 'WEB Front-end',

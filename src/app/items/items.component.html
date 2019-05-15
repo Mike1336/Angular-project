@@ -42,10 +42,9 @@
   </section>
 
 
-    <form class="search inventory">
+    <div class="search">
       <input type="text" placeholder="Поиск по модели (серийному номеру)">
-      <button type="submit">Найти</button>
-    </form>
+    </div>
 </div>
 
 <div class="items-table">
@@ -56,7 +55,7 @@
         <th>Тип</th>
         <th>Сотрудник</th>
         <th>Дата присвоения единицы</th>
-        <th>Сведения о состоянии</th>
+        <th>Состояние</th>
       </tr>
       <tr *ngFor="let item of items">
         <td><a routerLink="/item">{{item.name}}</a></td>

@@ -7,22 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsComponent implements OnInit {
   title = 'Инвентарные единицы | Главная страница';
-
-  items: {
-    name: string;
-    serNumber: number;
-    type: string;
-    emp: string;
-    date: string;
-    inf: string;
-  }[] = [
+  filters = {};
+  items = [
     {
       name: 'Benq xl2411',
       serNumber: 123456789,
       type: 'Монитор',
       emp: 'Иванов Иван Иванович',
       date: '22.11.2017',
-      inf: 'Недавно забирал из ремонта, пока все хорошо'
+      inf: 'Хорошее'
     },
     {
       name: 'Benq GL2450',
@@ -30,7 +23,7 @@ export class ItemsComponent implements OnInit {
       type: 'Монитор',
       emp: 'Петров Иван Петрович	',
       date: '25.12.2016',
-      inf: 'Все плохо, завтра в ремонт'
+      inf: 'Ремонтируется'
     },
     {
       name: 'Apple iMac 21.5"',
@@ -38,7 +31,7 @@ export class ItemsComponent implements OnInit {
       type: 'Моноблок',
       emp: 'Петров Петр Петрович',
       date: '01.03.2018	',
-      inf: 'Все чётко'
+      inf: 'Хорошее'
     }
   ];
   constructor() {}
