@@ -6,20 +6,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-  item = {
+  public item = {
     model: 'Ноутбук Acer',
     serNumber: 1234567890,
     emp: 'Иванов Иван Иванович',
     status: 'Хорошее',
     history: [
-      { reason: 'Поломка дисплея', indate: '11.11.2018', outdate: '13.11.2018', serviceCenter: 'Неофициальный' },
-      { reason: 'Поломка блока питания	', indate: '01.03.2019', outdate: '02.03.2019', serviceCenter: 'Неофициальный'},
+      {
+        reason: 'Поломка дисплея',
+        indate: '11.11.2018',
+        outdate: '13.11.2018',
+        serviceCenter: 'Неофициальный'
+      },
+      {
+        reason: 'Поломка блока питания',
+        indate: '01.03.2019',
+        outdate: '02.03.2019',
+        serviceCenter: 'Неофициальный'
+      }
     ]
   };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

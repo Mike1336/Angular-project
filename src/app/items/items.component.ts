@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
-  title = 'Инвентарные единицы | Главная страница';
-  filters = {};
-  items = [
+ public title = 'Инвентарные единицы | Главная страница';
+ public items = [
     {
       name: 'Benq xl2411',
       serNumber: 123456789,

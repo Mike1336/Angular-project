@@ -1,61 +1,63 @@
 <title>{{title}}</title>
 
 <div id="content-selector">
-    <ul class="select-list">
-      <li id="titleOfSelector">Вид:</li>
-      <li><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
-      <li class="active"><a routerLink="/staff" id="select-employee">Персонал</a></li>
-    </ul>
+  <ul class="select-list">
+    <li id="titleOfSelector">Вид:</li>
+    <li><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
+    <li class="active"><a routerLink="/staff" id="select-employee">Персонал</a></li>
+  </ul>
 </div>
 
 
 <div id="employee">
   <section class="filters employee">
     <form action="" class=" filter-group">
-    <ul class="filter-list employee">
-      <label for="all-depts">
-        <li><input type="radio" name="filter" value="all" id="all-depts" checked="checked" />Все отделы</li>
-      </label>
-      <label for="wfe">
-        <li><input type="radio" name="filter" value="all" id="wfe" />WEB Front-end</li>
-      </label>
-      <label for="wbe">
-        <li><input type="radio" name="filter" value="all" id="wbe" />WEB Back-end</li>
-      </label>
-      <label for="afe">
-        <li><input type="radio" name="filter" value="all" id="afe" />Android Front-end</li>
-      </label>
-      <label for="abe">
-        <li><input type="radio" name="filter" value="all" id="abe" />Android Back-end</li>
-      </label>
-      <label for="ife">
-        <li><input type="radio" name="filter" value="all" id="ife" />iOS Front-end</li>
-      </label>
-      <label for="ibe">
-        <li><input type="radio" name="filter" value="all" id="ibe" />iOS Back-end</li>
-      </label>
-    </ul>
+      <ul class="filter-list employee">
+
+        <li>
+          <label for="all-depts"><input type="radio" name="filter" value="all" id="all-depts" checked="checked" />Все отделы</label>
+        </li>
+
+        <label for="wfe">
+          <li><input type="radio" name="filter" value="all" id="wfe" />WEB Front-end</li>
+        </label>
+        <label for="wbe">
+          <li><input type="radio" name="filter" value="all" id="wbe" />WEB Back-end</li>
+        </label>
+        <label for="afe">
+          <li><input type="radio" name="filter" value="all" id="afe" />Android Front-end</li>
+        </label>
+        <label for="abe">
+          <li><input type="radio" name="filter" value="all" id="abe" />Android Back-end</li>
+        </label>
+        <label for="ife">
+          <li><input type="radio" name="filter" value="all" id="ife" />iOS Front-end</li>
+        </label>
+        <label for="ibe">
+          <li><input type="radio" name="filter" value="all" id="ibe" />iOS Back-end</li>
+        </label>
+      </ul>
     </form>
   </section>
 
-    <div class="search">
-      <input type="text" placeholder="Поиск ФИО сотрудника">
-    </div>
+  <div class="search">
+    <input type="text" placeholder="Поиск ФИО сотрудника">
+  </div>
 </div>
 
 <div class="employee-table">
-    <table>
-      <tr>
-        <th>ФИО сотрудника</th>
-        <th>Отдел</th>
-        <th>Дата поступления на работу</th>
-        <th>Ответственный(ая) за категорию на сайте</th>
-      </tr>
-      <tr *ngFor="let emp of stuff">
-        <td><a routerLink="/employee">{{emp.fio}}</a></td>
-        <td>{{emp.dep}}</td>
-        <td>{{emp.indate}}</td>
-        <td><a routerLink="/inventory">{{emp.cat}}</a></td>
-      </tr>
-    </table>
-  </div>
+  <table>
+    <tr>
+      <th>ФИО сотрудника</th>
+      <th>Отдел</th>
+      <th>Дата поступления на работу</th>
+      <th>Ответственный(ая) за категорию на сайте</th>
+    </tr>
+    <tr *ngFor="let emp of stuff">
+      <td><a routerLink="/employee">{{emp.fio}}</a></td>
+      <td>{{emp.dep}}</td>
+      <td>{{emp.indate}}</td>
+      <td><a routerLink="/inventory">{{emp.cat}}</a></td>
+    </tr>
+  </table>
+</div>

@@ -6,9 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employees.component.scss']
 })
 export class EmployeesComponent implements OnInit {
-  title = 'Сотрудники | Главная страница';
-
-  stuff = [
+ public title = 'Сотрудники | Главная страница';
+ public stuff = [
     {
       fio: 'Иванов Иван Иванович',
       dep: 'WEB Front-end',
