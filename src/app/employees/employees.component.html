@@ -1,63 +1,84 @@
 <title>{{title}}</title>
 
-<div id="content-selector">
-  <ul class="select-list">
-    <li id="titleOfSelector">Вид:</li>
-    <li><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
-    <li class="active"><a routerLink="/staff" id="select-employee">Персонал</a></li>
-  </ul>
+<div id="page-preloader" class="preloader" *ngIf="!contentReady">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <div class="spinner-center"></div>
+        <div class="loading-text">
+            <div class="cssload-preloader">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content-selector" *ngIf="contentReady">
+    <ul class="select-list">
+        <li id="titleOfSelector">Вид:</li>
+        <li><a routerLink="/inventory">Инвентарные единицы</a></li>
+        <li><a class="active" routerLink="/staff">Персонал</a></li>
+    </ul>
 </div>
 
 
-<div id="employee">
-  <section class="filters employee">
-    <form action="" class=" filter-group">
-      <ul class="filter-list employee">
+<div id="employee" *ngIf="contentReady">
+    <section class="filters employee">
+        <form action="" class=" filter-group">
+            <ul class="filter-list employee">
 
-        <li>
-          <label for="all-depts"><input type="radio" name="filter" value="all" id="all-depts" checked="checked" />Все отделы</label>
-        </li>
+                <li>
+                    <label for="all-depts"><input type="radio" name="filter" value="all" id="all-depts" checked="checked" />Все отделы</label>
+                </li>
 
-        <label for="wfe">
+                <label for="wfe">
           <li><input type="radio" name="filter" value="all" id="wfe" />WEB Front-end</li>
         </label>
-        <label for="wbe">
+                <label for="wbe">
           <li><input type="radio" name="filter" value="all" id="wbe" />WEB Back-end</li>
         </label>
-        <label for="afe">
+                <label for="afe">
           <li><input type="radio" name="filter" value="all" id="afe" />Android Front-end</li>
         </label>
-        <label for="abe">
+                <label for="abe">
           <li><input type="radio" name="filter" value="all" id="abe" />Android Back-end</li>
         </label>
-        <label for="ife">
+                <label for="ife">
           <li><input type="radio" name="filter" value="all" id="ife" />iOS Front-end</li>
         </label>
-        <label for="ibe">
+                <label for="ibe">
           <li><input type="radio" name="filter" value="all" id="ibe" />iOS Back-end</li>
         </label>
-      </ul>
-    </form>
-  </section>
+            </ul>
+        </form>
+    </section>
 
-  <div class="search">
-    <input type="text" placeholder="Поиск ФИО сотрудника">
-  </div>
+    <div class="search" *ngIf="contentReady">
+        <input type="text" placeholder="Поиск ФИО сотрудника">
+    </div>
 </div>
 
-<div class="employee-table">
-  <table>
-    <tr>
-      <th>ФИО сотрудника</th>
-      <th>Отдел</th>
-      <th>Дата поступления на работу</th>
-      <th>Ответственный(ая) за категорию на сайте</th>
-    </tr>
-    <tr *ngFor="let emp of stuff">
-      <td><a routerLink="/employee">{{emp.fio}}</a></td>
-      <td>{{emp.dep}}</td>
-      <td>{{emp.indate}}</td>
-      <td><a routerLink="/inventory">{{emp.cat}}</a></td>
-    </tr>
-  </table>
+<div class="employee-table" *ngIf="contentReady">
+    <table>
+        <tr>
+            <th>ФИО сотрудника</th>
+            <th>Отдел</th>
+            <th>Дата поступления на работу</th>
+            <th>Ответственный(ая) за категорию на сайте</th>
+        </tr>
+        <tr *ngFor="let emp of staff">
+            <td><a routerLink="/employee/{{emp.id}}">{{emp.fio}}</a></td>
+            <td>{{emp.dep}}</td>
+            <td>{{emp.indate}}</td>
+            <td><a routerLink="/inventory">{{emp.cat}}</a></td>
+        </tr>
+    </table>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EmpService } from '../emp.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -6,22 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
-  public emp = {
-    fio: 'Иванов Иван Иванович',
-    pos: 'Junior Front-end developer',
-    img: 'assets/images/proger.jpg',
-    cat: 'Ноутбуки',
-    items: [
-      { type: 'Монитор', model: '-', date: '-' },
-      { type: 'Моноблок', model: '-', date: '-' },
-      { type: 'Ноутбук', model: '-', date: '-' },
-      { type: 'Клавиатура', model: '-', date: '-' },
-      { type: 'Мышь', model: '-', date: '-' },
-      { type: 'Кресло', model: '-', date: '-' },
-      { type: 'Стол', model: '-', date: '-' }
-    ]
-  };
-  constructor() {}
+  public title = 'Сотрудник';
+  public emp: any[];
+  public contentReady = false;
+  constructor(private empservice: EmpService, private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getItem();
+  }
+  getItem() {
+    this.empservice.getEmpById(this.route.params.value.id).subscribe(data => {
+      this.title = `${data.fio} (${data.dep})`;
+      this.emp = data;
+      this.contentReady = true;
+    });
+  }
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemService } from '../item.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-item',
@@ -6,28 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-  public item = {
-    model: 'Ноутбук Acer',
-    serNumber: 1234567890,
-    emp: 'Иванов Иван Иванович',
-    status: 'Хорошее',
-    history: [
-      {
-        reason: 'Поломка дисплея',
-        indate: '11.11.2018',
-        outdate: '13.11.2018',
-        serviceCenter: 'Неофициальный'
-      },
-      {
-        reason: 'Поломка блока питания',
-        indate: '01.03.2019',
-        outdate: '02.03.2019',
-        serviceCenter: 'Неофициальный'
-      }
-    ]
-  };
+  public title = 'Инвентарная единица';
+  public item: any[];
+  public contentReady = false;
 
-  constructor() {}
+  constructor(private itemservice: ItemService, private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getItem();
+  }
+  getItem() {
+    this.itemservice.getItemById(this.route.params.value.id).subscribe(data => {
+      this.title = `${data.type} ${data.name}`;
+      this.item = data;
+      this.contentReady = true;
+    });
+  }
 }

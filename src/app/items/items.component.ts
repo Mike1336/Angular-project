@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-items',
@@ -7,33 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsComponent implements OnInit {
  public title = 'Инвентарные единицы | Главная страница';
- public items = [
-    {
-      name: 'Benq xl2411',
-      serNumber: 123456789,
-      type: 'Монитор',
-      emp: 'Иванов Иван Иванович',
-      date: '22.11.2017',
-      inf: 'Хорошее'
-    },
-    {
-      name: 'Benq GL2450',
-      serNumber: 123456789,
-      type: 'Монитор',
-      emp: 'Петров Иван Петрович	',
-      date: '25.12.2016',
-      inf: 'Ремонтируется'
-    },
-    {
-      name: 'Apple iMac 21.5"',
-      serNumber: 123456789,
-      type: 'Моноблок',
-      emp: 'Петров Петр Петрович',
-      date: '01.03.2018	',
-      inf: 'Хорошее'
-    }
-  ];
-  constructor() {}
+ public items: any[];
+ public contentReady = false;
+  constructor(private itemservice: ItemService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllItems();
+  }
+  public getAllItems() {
+    this.itemservice.getItems().subscribe(data => {
+      this.items = data;
+      this.contentReady = true;
+    });
+  }
 }

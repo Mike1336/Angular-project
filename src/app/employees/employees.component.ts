@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmpService } from '../emp.service';
 
 @Component({
   selector: 'app-employees',
@@ -7,27 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeesComponent implements OnInit {
  public title = 'Сотрудники | Главная страница';
- public stuff = [
-    {
-      fio: 'Иванов Иван Иванович',
-      dep: 'WEB Front-end',
-      indate: '11.11.2011',
-      cat: 'Ноутбуки'
-    },
-    {
-      fio: 'Петров Иван Петрович',
-      dep: 'WEB Back-end	',
-      indate: '12.12.2012',
-      cat: 'Моноблоки'
-    },
-    {
-      fio: 'Петров Петр Петрович',
-      dep: 'Android Back-end',
-      indate: '10.10.2010',
-      cat: 'Клавиатуры'
-    }
-  ];
-  constructor() {}
-
-  ngOnInit() {}
+ public staff: any[];
+ public contentReady = false;
+  constructor(private empservice: EmpService) {}
+  ngOnInit() {
+    this.getAllEmps();
+  }
+  getAllEmps() {
+    this.empservice.getStaff().subscribe(data => {
+      this.staff = data;
+      this.contentReady = true;
+  });
+}
 }

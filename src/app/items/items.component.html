@@ -1,69 +1,90 @@
 <title>{{title}}</title>
 
-<div id="content-selector">
-    <ul class="select-list">
-      <li id="titleOfSelector">Вид:</li>
-      <li class="active"><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
-      <li><a routerLink="/staff" id="select-employee">Персонал</a></li>
-    </ul>
-</div>
-
-<div id="inventory">
-  <section class="filters inventory">
-    <form action="" class="filter-group">
-      <ul class="filter-list inventory">
-        <label for="all-categories">
-          <li><input type="radio" name="filter" value="all" id="all-categories" checked="checked" />Все категории
-          </li>
-        </label>
-        <label for="monitors">
-          <li><input type="radio" name="filter" value="all" id="monitors" />Мониторы</li>
-        </label>
-        <label for="monoblocks">
-          <li><input type="radio" name="filter" value="all" id="monoblocks" />Моноблоки</li>
-        </label>
-        <label for="laptops">
-          <li><input type="radio" name="filter" value="all" id="laptops" />Ноутбуки</li>
-        </label>
-        <label for="keyboards">
-          <li><input type="radio" name="filter" value="all" id="keyboards" />Клавиатуры</li>
-        </label>
-        <label for="mouses">
-          <li><input type="radio" name="filter" value="all" id="mouses" />Мыши</li>
-        </label>
-        <label for="tables">
-          <li><input type="radio" name="filter" value="all" id="tables" />Столы</li>
-        </label>
-        <label for="armchairs">
-          <li><input type="radio" name="filter" value="all" id="armchairs" />Кресла</li>
-        </label>
-      </ul>
-    </form>
-  </section>
-
-
-    <div class="search">
-      <input type="text" placeholder="Поиск по модели (серийному номеру)">
+<div id="page-preloader" class="preloader" *ngIf="!contentReady">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <div class="spinner-center"></div>
+        <div class="loading-text">
+            <div class="cssload-preloader">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="items-table">
+<div id="content-selector" *ngIf="contentReady">
+    <ul class="select-list">
+        <li id="titleOfSelector">Вид:</li>
+        <li class="active"><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
+        <li><a routerLink="/staff" id="select-employee">Персонал</a></li>
+    </ul>
+</div>
+
+<div id="inventory" *ngIf="contentReady">
+    <section class="filters inventory">
+        <form action="" class="filter-group">
+            <ul class="filter-list inventory">
+                <label for="all-categories">
+          <li><input type="radio" name="filter" value="all" id="all-categories" checked="checked" />Все категории
+          </li>
+        </label>
+                <label for="monitors">
+          <li><input type="radio" name="filter" value="all" id="monitors" />Мониторы</li>
+        </label>
+                <label for="monoblocks">
+          <li><input type="radio" name="filter" value="all" id="monoblocks" />Моноблоки</li>
+        </label>
+                <label for="laptops">
+          <li><input type="radio" name="filter" value="all" id="laptops" />Ноутбуки</li>
+        </label>
+                <label for="keyboards">
+          <li><input type="radio" name="filter" value="all" id="keyboards" />Клавиатуры</li>
+        </label>
+                <label for="mouses">
+          <li><input type="radio" name="filter" value="all" id="mouses" />Мыши</li>
+        </label>
+                <label for="tables">
+          <li><input type="radio" name="filter" value="all" id="tables" />Столы</li>
+        </label>
+                <label for="armchairs">
+          <li><input type="radio" name="filter" value="all" id="armchairs" />Кресла</li>
+        </label>
+            </ul>
+        </form>
+    </section>
+
+
+    <div class="search" *ngIf="contentReady">
+        <input type="text" placeholder="Поиск по модели (серийному номеру)">
+    </div>
+</div>
+
+<div class="items-table" *ngIf="contentReady">
     <table>
-      <tr>
-        <th>Наименование единицы</th>
-        <th>Серийный номер</th>
-        <th>Тип</th>
-        <th>Сотрудник</th>
-        <th>Дата присвоения единицы</th>
-        <th>Состояние</th>
-      </tr>
-      <tr *ngFor="let item of items | slice : 0 : 2">
-        <td><a routerLink="/item">{{item.name}}</a></td>
-        <td>{{item.serNumber}}</td>
-        <td>{{item.type}}</td>
-        <td><a routerLink="/employee">{{item.emp}}</a></td>
-        <td>{{item.date}}</td>
-        <td>{{item.inf}}</td>
-      </tr>
+        <tr>
+            <th>Наименование единицы</th>
+            <th>Серийный номер</th>
+            <th>Тип</th>
+            <th>Сотрудник</th>
+            <th>Дата присвоения единицы</th>
+            <th>Состояние</th>
+        </tr>
+        <tr *ngFor="let item of items">
+            <td><a routerLink="/item/{{item.id}}">{{item.name}}</a></td>
+            <td>{{item.serNumber}}</td>
+            <td>{{item.type}}</td>
+            <td><a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></td>
+            <td>{{item.date}}</td>
+            <td>{{item.status}}</td>
+        </tr>
     </table>
-  </div>
+</div>

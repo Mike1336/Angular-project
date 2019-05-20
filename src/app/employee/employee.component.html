@@ -1,4 +1,27 @@
-<div class="emp-inf">
+<title>{{title}}</title>
+
+<div id="page-preloader" class="preloader" *ngIf="!contentReady">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <div class="spinner-center"></div>
+        <div class="loading-text">
+            <div class="cssload-preloader">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="emp-inf" *ngIf="contentReady">
     <h1 id="emp-name">{{emp.fio}}</h1>
     <h2 id="emp-position">{{emp.pos}}</h2>
     <h2>Ответственный за категорию: <a href="" id="emp-category">{{emp.cat}}</a></h2>
@@ -6,18 +29,18 @@
 
     <img src="{{emp.img}}" alt="avatar" id="emp-avatar">
 
-  <div class="employee-items">
-    <table>
-        <tr>
-          <th>Тип</th>
-          <th>Название</th>
-          <th>Дата закрепления</th>
-        </tr>
-          <tr *ngFor="let item of emp.items">
-            <td>{{item.type}}</td>
-            <td>{{item.model}}</td>
-            <td>{{item.date}}</td>
-          </tr>
-    </table>
-  </div>
+    <div class="employee-items">
+        <table>
+            <tr>
+                <th>Тип</th>
+                <th>Название</th>
+                <th>Дата закрепления</th>
+            </tr>
+            <tr *ngFor="let item of emp.items">
+                <td>{{item.type}}</td>
+                <td>{{item.model}}</td>
+                <td>{{item.date}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

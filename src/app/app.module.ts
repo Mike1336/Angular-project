@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,9 @@ import { EmployeesComponent } from './employees/employees.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ItemComponent } from './item/item.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FakeBackendService } from './fake-backend.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(FakeBackendService)
   ],
   providers: [],
   bootstrap: [AppComponent]

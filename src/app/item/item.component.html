@@ -1,22 +1,45 @@
-<div class="item-inf">
-  <h1>{{item.model}} ({{item.serNumber}})</h1>
-  <h3>Состояние: {{item.status}}</h3>
-  <h2>Закреплен(а) за <a routerLink="/employee">{{item.emp}}</a></h2>
+<title>{{title}}</title>
+
+<div id="page-preloader" class="preloader" *ngIf="!contentReady">
+    <div class="loading-container">
+        <div class="spinner"></div>
+        <div class="spinner-center"></div>
+        <div class="loading-text">
+            <div class="cssload-preloader">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="item-history">
-  <table>
-    <tr>
-      <th>Причина ремонта</th>
-      <th>Дата отвоза в ремонт</th>
-      <th>Дата привоза из ремонта</th>
-      <th>Сервисный центр</th>
-    </tr>
-    <tr *ngFor="let visit of item.history">
-      <td>{{visit.reason}}</td>
-      <td>{{visit.indate}}</td>
-      <td>{{visit.outdate}}</td>
-      <td>{{visit.serviceCenter}}</td>
-    </tr>
-  </table>
+<div class="item-inf" *ngIf="contentReady">
+    <h1>{{item.type}} {{item.name}} ({{item.serNumber}})</h1>
+    <h3>Состояние: {{item.status}}</h3>
+    <h2>Закреплен(а) за <a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></h2>
+</div>
+
+<div class="item-history" *ngIf="contentReady">
+    <table>
+        <tr>
+            <th>Причина ремонта</th>
+            <th>Дата отвоза в ремонт</th>
+            <th>Дата привоза из ремонта</th>
+            <th>Сервисный центр</th>
+        </tr>
+        <tr *ngFor="let visit of item.history">
+            <td>{{visit.reason}}</td>
+            <td>{{visit.indate}}</td>
+            <td>{{visit.outdate}}</td>
+            <td>{{visit.serviceCenter}}</td>
+        </tr>
+    </table>
 </div>
