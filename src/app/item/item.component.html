@@ -22,7 +22,7 @@
 </div>
 
 <div class="item-inf" *ngIf="contentReady">
-    <h1>{{item.type}} {{item.name}} ({{item.serNumber}})</h1>
+    <h1>{{item["type"]}} {{item["name"]}} ({{item["serNumber"]}})</h1>
     <h3>Состояние: {{item.status}}</h3>
     <h2>Закреплен(а) за <a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></h2>
 </div>

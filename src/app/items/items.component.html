@@ -30,38 +30,18 @@
 </div>
 
 <div id="inventory" *ngIf="contentReady">
-    <section class="filters inventory">
-        <form action="" class="filter-group">
-            <ul class="filter-list inventory">
-                <label for="all-categories">
-          <li><input type="radio" name="filter" value="all" id="all-categories" checked="checked" />Все категории
-          </li>
-        </label>
-                <label for="monitors">
-          <li><input type="radio" name="filter" value="all" id="monitors" />Мониторы</li>
-        </label>
-                <label for="monoblocks">
-          <li><input type="radio" name="filter" value="all" id="monoblocks" />Моноблоки</li>
-        </label>
-                <label for="laptops">
-          <li><input type="radio" name="filter" value="all" id="laptops" />Ноутбуки</li>
-        </label>
-                <label for="keyboards">
-          <li><input type="radio" name="filter" value="all" id="keyboards" />Клавиатуры</li>
-        </label>
-                <label for="mouses">
-          <li><input type="radio" name="filter" value="all" id="mouses" />Мыши</li>
-        </label>
-                <label for="tables">
-          <li><input type="radio" name="filter" value="all" id="tables" />Столы</li>
-        </label>
-                <label for="armchairs">
-          <li><input type="radio" name="filter" value="all" id="armchairs" />Кресла</li>
-        </label>
-            </ul>
-        </form>
+    <section class="filters">
+        <ul class="filter-list filter-group">
+            <li [ngClass]="{'active': filterBy === 'all'}">
+                <a routerLink="/inventory/all">Все категории</a>
+            </li>
+            <li *ngFor="let cat of categories" [ngClass]="{'active': cat.label === filterBy}">
+                <a routerLink="/inventory/{{cat.label}}">
+                    {{cat.name}}
+                  </a>
+            </li>
+        </ul>
     </section>
-
 
     <div class="search" *ngIf="contentReady">
         <input type="text" placeholder="Поиск по модели (серийному номеру)">
@@ -69,7 +49,8 @@
 </div>
 
 <div class="items-table" *ngIf="contentReady">
-    <table>
+    <h2 *ngIf="emptyContent">Контента пока нет!</h2>
+    <table *ngIf="!emptyContent">
         <tr>
             <th>Наименование единицы</th>
             <th>Серийный номер</th>

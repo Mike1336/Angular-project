@@ -9,15 +9,19 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EmployeeComponent implements OnInit {
   public title = 'Сотрудник';
-  public emp: any[];
+  public empId: number;
+  public emp: {};
   public contentReady = false;
-  constructor(private empservice: EmpService, private route: ActivatedRoute) {}
+  constructor(private empService: EmpService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getItem();
+    this.route.params.subscribe(params => {
+      this.empId = params.id;
+    });
+    this.getItem(this.empId);
   }
-  getItem() {
-    this.empservice.getEmpById(this.route.params.value.id).subscribe(data => {
+  getItem(id: number) {
+    this.empService.getEmpById(id).subscribe(data => {
       this.title = `${data.fio} (${data.dep})`;
       this.emp = data;
       this.contentReady = true;

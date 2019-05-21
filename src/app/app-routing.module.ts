@@ -8,11 +8,13 @@ import { ItemComponent } from './item/item.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  { path: 'inventory', component: ItemsComponent },
-  { path: 'staff', component: EmployeesComponent },
-  { path: '', redirectTo: 'inventory', pathMatch: 'full' },
+  { path: 'inventory/:cat', component: ItemsComponent },
+  { path: 'staff/:dep', component: EmployeesComponent },
+  { path: 'staff', redirectTo: 'staff/all', pathMatch: 'full' },
+  { path: 'inventory', redirectTo: 'inventory/all', pathMatch: 'full' },
   { path: 'item/:id', component: ItemComponent },
   { path: 'employee/:id', component: EmployeeComponent },
+  { path: '', redirectTo: 'inventory/all', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -7,6 +7,63 @@ import { Injectable } from '@angular/core';
 
 export class FakeBackendService implements InMemoryDbService {
   createDb() {
+    const itemCategories = [
+      {
+        name: 'Мониторы',
+        label: 'monitors',
+      },
+      {
+        name: 'Моноблоки',
+        label: 'monoblocks',
+      },
+      {
+        name: 'Ноутбуки',
+        label: 'laptops',
+      },
+      {
+        name: 'Клавиатуры',
+        label: 'keyboards',
+      },
+      {
+        name: 'Мыши',
+        label: 'mouses',
+      },
+      {
+        name: 'Столы',
+        label: 'tables',
+      },
+      {
+        name: 'Кресла',
+        label: 'armchairs',
+      }
+    ];
+
+    const departments = [
+      {
+        name: 'WEB Front-end',
+        label: 'web-front-end',
+      },
+      {
+        name: 'WEB Back-end',
+        label: 'web-back-end',
+      },
+      {
+        name: 'Android Front-end',
+        label: 'android-front-end',
+      },
+      {
+        name: 'Android Back-end',
+        label: 'android-back-end',
+      },
+      {
+        name: 'iOS Front-end',
+        label: 'ios-front-end',
+      },
+      {
+        name: 'iOS Back-end',
+        label: 'ios-back-end',
+      },
+    ];
 
     const items = [
       {
@@ -14,6 +71,7 @@ export class FakeBackendService implements InMemoryDbService {
         name: 'Benq xl2411',
         serNumber: 123456789,
         type: 'Монитор',
+        categoryLabel: 'monitors',
         emp: {
           id: '1',
           fio : 'Иванов Иван Иванович'
@@ -40,6 +98,7 @@ export class FakeBackendService implements InMemoryDbService {
         name: 'Benq GL2450',
         serNumber: 123456789,
         type: 'Монитор',
+        categoryLabel: 'monitors',
         emp: {
           id: '2',
           fio : 'Петров Иван Петрович'
@@ -66,6 +125,7 @@ export class FakeBackendService implements InMemoryDbService {
         name: 'Apple iMac 21.5"',
         serNumber: 123456789,
         type: 'Моноблок',
+        categoryLabel: 'monoblocks',
         emp: {
           id: '3',
           fio : 'Петров Петр Петрович'
@@ -92,6 +152,7 @@ export class FakeBackendService implements InMemoryDbService {
         name: 'Apple MacBook Air 2018',
         serNumber: 123456789,
         type: 'Ноутбук',
+        categoryLabel: 'laptops',
         emp: {
           id: '4',
           fio : 'Иванов Иван Сидорович'
@@ -118,6 +179,7 @@ export class FakeBackendService implements InMemoryDbService {
         name: 'Lenovo ThinkPad',
         serNumber: 123456789,
         type: 'Ноутбук',
+        categoryLabel: 'laptops',
         emp: {
           id: '5',
           fio : 'Петров Иван Петрович'
@@ -146,8 +208,10 @@ export class FakeBackendService implements InMemoryDbService {
         fio: 'Иванов Иван Иванович',
         pos: 'Junior Front-end developer',
         dep: 'WEB Front-end',
-        indate: '11.11.2011',
+        depLabel: 'web-front-end',
+        startWorking: '11.11.2011',
         cat: 'Ноутбуки',
+        catLabel: 'laptops',
         img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', model: '-', date: '-' },
@@ -163,9 +227,11 @@ export class FakeBackendService implements InMemoryDbService {
         id: '2',
         fio: 'Петров Иван Петрович',
         pos: 'Junior Front-end developer',
-        dep: 'WEB Back-end	',
-        indate: '12.12.2012',
+        dep: 'WEB Back-end',
+        depLabel: 'web-back-end',
+        startWorking: '12.12.2012',
         cat: 'Моноблоки',
+        catLabel: 'monoblocks',
         img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', model: '-', date: '-' },
@@ -180,10 +246,12 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: '3',
         fio: 'Петров Петр Петрович',
-        pos: 'Junior Front-end developer',
-        dep: 'Android Back-end',
-        indate: '10.10.2010',
+        pos: 'Junior Android developer',
+        dep: 'Android Front-end',
+        depLabel: 'android-front-end',
+        startWorking: '10.10.2010',
         cat: 'Клавиатуры',
+        catLabel: 'keyboards',
         img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', model: '-', date: '-' },
@@ -198,10 +266,12 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: '4',
         fio : 'Иванов Иван Сидорович',
-        pos: 'Junior Front-end developer',
+        pos: 'Middle Android developer',
         dep: 'Android Back-end',
-        indate: '10.10.2010',
-        cat: 'Клавиатуры',
+        depLabel: 'android-back-end',
+        startWorking: '10.10.2010',
+        cat: 'Столы',
+        catLabel: 'tables',
         img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', model: '-', date: '-' },
@@ -216,10 +286,32 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: '5',
         fio : 'Петров Иван Петрович',
-        pos: 'Junior Front-end developer',
-        dep: 'Android Back-end',
-        indate: '10.10.2010',
-        cat: 'Клавиатуры',
+        pos: 'Senior IOS developer',
+        dep: 'IOS Back-end',
+        depLabel: 'ios-back-end',
+        startWorking: '10.10.2010',
+        cat: 'Мыши',
+        catLabel: 'mouses',
+        img: 'assets/images/proger.jpg',
+        items: [
+          { type: 'Монитор', model: '-', date: '-' },
+          { type: 'Моноблок', model: '-', date: '-' },
+          { type: 'Ноутбук', model: '-', date: '-' },
+          { type: 'Клавиатура', model: '-', date: '-' },
+          { type: 'Мышь', model: '-', date: '-' },
+          { type: 'Кресло', model: '-', date: '-' },
+          { type: 'Стол', model: '-', date: '-' }
+        ]
+      },
+      {
+        id: '6',
+        fio : 'Петров Сидор Петрович',
+        pos: 'Middle IOS developer',
+        dep: 'IOS Front-end',
+        depLabel: 'ios-front-end',
+        startWorking: '10.10.2010',
+        cat: 'Кресла',
+        catLabel: 'armchairs',
         img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', model: '-', date: '-' },
@@ -232,6 +324,6 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
     ];
-    return {items, emps};
+    return {items, emps, itemCategories, departments};
   }
 }

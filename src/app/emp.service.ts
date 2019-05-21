@@ -11,6 +11,7 @@ export class EmpService {
 
   private apiUrl = 'api/';
   private empsEndpoint = 'emps';
+  private depEndpoint = 'departments';
 
   public getStaff(): Observable<any> {
     return this.http.get(this.apiUrl + this.empsEndpoint);
@@ -19,4 +20,12 @@ export class EmpService {
     const url = `${this.apiUrl + this.empsEndpoint}/${id}`;
     return this.http.get(url);
   }
+  public getDepartments() {
+    return this.http.get(this.apiUrl + this.depEndpoint);
+  }
+  public getEmpsByDep(department: string): Observable<any> {
+    const url = `${this.apiUrl + this.empsEndpoint}/?depLabel=${department}`;
+    return this.http.get(url);
+  }
+
 }

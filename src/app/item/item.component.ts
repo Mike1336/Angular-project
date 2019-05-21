@@ -9,18 +9,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ItemComponent implements OnInit {
   public title = 'Инвентарная единица';
-  public item: any[];
+  public itemId: number;
+  public item: {};
   public contentReady = false;
 
-  constructor(private itemservice: ItemService, private route: ActivatedRoute) {}
+  constructor(private itemService: ItemService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.getItem();
+    this.route.params.subscribe(params => {
+      this.itemId = params.id;
+    });
+    this.getItem(this.itemId);
   }
-  getItem() {
-    this.itemservice.getItemById(this.route.params.value.id).subscribe(data => {
-      this.title = `${data.type} ${data.name}`;
+  getItem(id: number) {
+    this.itemService.getItemById(id).subscribe(data => {
+      this.title = `${data.category} ${data.name}`;
       this.item = data;
+      console.log(this.item);
       this.contentReady = true;
     });
   }
