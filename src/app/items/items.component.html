@@ -44,7 +44,7 @@
     </section>
 
     <div class="search" *ngIf="contentReady">
-        <input type="text" placeholder="Поиск по модели (серийному номеру)">
+        <input [(ngModel)]="searchField" type="text" (keyup)="search()" placeholder="Поиск по модели (серийному номеру)">
     </div>
 </div>
 

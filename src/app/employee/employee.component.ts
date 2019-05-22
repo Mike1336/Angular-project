@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EmployeeComponent implements OnInit {
   public title = 'Сотрудник';
   public empId: number;
-  public emp: {};
+  public emp: IEmp;
   public contentReady = false;
   constructor(private empService: EmpService, private route: ActivatedRoute) {}
 
@@ -27,4 +27,22 @@ export class EmployeeComponent implements OnInit {
       this.contentReady = true;
     });
   }
+}
+
+interface IEmp {
+  id: number;
+  fio: string;
+  pos: string;
+  dep: string;
+  depLabel: string;
+  startWorking: string;
+  cat: string;
+  catLabel: string;
+  img: string;
+  items: [
+    { type: string,
+      model: string,
+      date: string
+    }
+  ];
 }

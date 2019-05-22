@@ -7,26 +7,46 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss']
 })
+
 export class ItemComponent implements OnInit {
   public title = 'Инвентарная единица';
   public itemId: number;
-  public item: {};
+  public item: IItem;
   public contentReady = false;
-
-  constructor(private itemService: ItemService, private route: ActivatedRoute) {}
-
-  ngOnInit() {
+constructor(private itemService: ItemService, private route: ActivatedRoute) {}
+ngOnInit() {
     this.route.params.subscribe(params => {
       this.itemId = params.id;
     });
     this.getItem(this.itemId);
   }
-  getItem(id: number) {
+getItem(id: number) {
     this.itemService.getItemById(id).subscribe(data => {
-      this.title = `${data.category} ${data.name}`;
+      this.title = `${data.type} ${data.name}`;
       this.item = data;
-      console.log(this.item);
       this.contentReady = true;
     });
   }
+}
+
+interface IItem {
+  id: number;
+  name: string;
+  serNumber: number;
+  type: string;
+  categoryLabel: string;
+  emp: {
+    id: number,
+    fio: string,
+  };
+  date: string;
+  status: string;
+  history: [
+    {
+      reason: string,
+      indate: string,
+      outdate: string,
+      serviceCenter: string,
+    }
+  ];
 }

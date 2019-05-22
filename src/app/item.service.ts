@@ -24,7 +24,23 @@ export class ItemService {
     return this.http.get(this.apiUrl + this.categoryEndpoint);
   }
   public getItemsByCategory(category: string): Observable<any> {
-    const url = `${this.apiUrl + this.itemsEndpoint}/?categoryLabel=${category}`;
+    const url = `${this.apiUrl + this.itemsEndpoint}?categoryLabel=${category}`;
+    return this.http.get(url);
+  }
+  public getItemsBySearchWord(word: any, category: string) {
+    let url: string;
+    let categoryName: string;
+    const regexp = new RegExp('^[0-9]+'); // регулярка для проверки является ли первый символ числом
+    if (typeof category !== 'undefined' && category !== 'all') {
+      categoryName = `&categoryLabel=${category}`;
+    } else {
+      categoryName = '';
+    }
+    if (regexp.test(word)) {
+      url = `${this.apiUrl + this.itemsEndpoint}?serNumber=${word}${categoryName}`;
+    } else {
+      url = `${this.apiUrl + this.itemsEndpoint}?name=${word}${categoryName}`;
+    }
     return this.http.get(url);
   }
 }
