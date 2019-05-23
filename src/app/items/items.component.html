@@ -47,10 +47,11 @@
         <input [(ngModel)]="searchField" type="text" (keyup)="search()" placeholder="Поиск по модели (серийному номеру)">
     </div>
 </div>
-
 <div class="items-table" *ngIf="contentReady">
-    <h2 *ngIf="emptyContent">Контента пока нет!</h2>
-    <table *ngIf="!emptyContent">
+    <h2 *ngIf="emptyCategoryContent">Контента пока нет!</h2>
+    <h3 *ngIf="emptySearchResult && !emptyCategoryContent">По запросу "{{searchField}}" ничего не найдено. Проверьте запрос или <a routerLink="/inventory/all">поищите среди всего инвентаря</a>.
+    </h3>
+    <table *ngIf="!emptySearchResult && !emptyCategoryContent">
         <tr>
             <th>Наименование единицы</th>
             <th>Серийный номер</th>

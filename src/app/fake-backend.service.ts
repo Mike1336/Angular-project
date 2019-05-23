@@ -62,14 +62,14 @@ export class FakeBackendService implements InMemoryDbService {
       {
         name: 'iOS Back-end',
         label: 'ios-back-end',
-      },
+      }
     ];
 
     const items = [
       {
         id: '1',
         name: 'Benq xl2411',
-        serNumber: 123456789,
+        serNumber: 291156836,
         type: 'Монитор',
         categoryLabel: 'monitors',
         emp: {
@@ -96,7 +96,7 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: '2',
         name: 'Benq GL2450',
-        serNumber: 123456789,
+        serNumber: 439554597,
         type: 'Монитор',
         categoryLabel: 'monitors',
         emp: {
@@ -123,7 +123,7 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: '3',
         name: 'Apple iMac 21.5"',
-        serNumber: 123456789,
+        serNumber: 557160155,
         type: 'Моноблок',
         categoryLabel: 'monoblocks',
         emp: {
@@ -150,7 +150,7 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: '4',
         name: 'Apple MacBook Air 2018',
-        serNumber: 123456789,
+        serNumber: 784640288,
         type: 'Ноутбук',
         categoryLabel: 'laptops',
         emp: {
@@ -177,7 +177,7 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: '5',
         name: 'Lenovo ThinkPad',
-        serNumber: 123456789,
+        serNumber: 409813163,
         type: 'Ноутбук',
         categoryLabel: 'laptops',
         emp: {

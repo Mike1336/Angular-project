@@ -27,5 +27,15 @@ export class EmpService {
     const url = `${this.apiUrl + this.empsEndpoint}/?depLabel=${department}`;
     return this.http.get(url);
   }
-
+  public getEmpsBySearchWord(word: string, dep: string) {
+    let url: string;
+    let depName: string;
+    if (dep !== 'all') {
+      depName = `&depLabel=${dep}`;
+    } else {
+      depName = '';
+    }
+    url = `${this.apiUrl + this.empsEndpoint}?fio=${word}${depName}`;
+    return this.http.get(url);
+  }
 }

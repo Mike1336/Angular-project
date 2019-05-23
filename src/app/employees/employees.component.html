@@ -34,7 +34,7 @@
     <section class="filters">
         <ul class="filter-list filter-group">
             <li [ngClass]="{'active': filterBy === 'all'}">
-                <a routerLink="/staff/all">Все категории</a>
+                <a routerLink="/staff/all">Все отделы</a>
             </li>
             <li *ngFor="let dep of departments" [ngClass]="{'active': dep.label === filterBy}">
                 <a routerLink="/staff/{{dep.label}}">
@@ -45,12 +45,14 @@
     </section>
 
     <div class="search" *ngIf="contentReady">
-        <input type="text" placeholder="Поиск ФИО сотрудника">
+        <input type="text" [(ngModel)]="searchField" (keyup)="search()" placeholder="Поиск ФИО сотрудника">
     </div>
 </div>
 
 <div class="employee-table" *ngIf="contentReady">
-    <table>
+    <h2 *ngIf="emptyDepContent">Контента пока нет!</h2>
+    <h3 *ngIf="emptySearchResult && !emptyDepContent">По запросу "{{searchField}}" ничего не найдено в этом отделе. Проверьте запрос или <a routerLink="/staff/all">поищите среди всего персонала</a></h3>
+    <table *ngIf="!emptySearchResult && !emptyDepContent">
         <tr>
             <th>ФИО сотрудника</th>
             <th>Отдел</th>

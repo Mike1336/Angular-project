@@ -1,50 +1,48 @@
-$select-list-color : #578530;
-
+$select-list-color: #578530;
 $userlink-color: #3b5325;
 $userlink-hover-color: #699741;
 $headerline-color:#82c34f;
 $border-color:#578530;
-
-
 // -----------------------------------------------------------HEADER------------------------------------------------------------
-header{
-  display: grid;
-  grid-template-columns: max-content auto max-content;
-  border-bottom: 1px solid $headerline-color;
-.logo{
-  grid-column: 1;
+header {
+    display: grid;
+    grid-template-columns: max-content auto max-content;
+    border-bottom: 1px solid $headerline-color;
+    .logo {
+        grid-column: 1;
+    }
+    .user {
+        grid-column: 3;
+        align-self: center;
+        padding-right: 10px;
+        a {
+            text-decoration: none;
+            color: $userlink-color;
+            transition: .2s;
+        }
+    }
 }
 
-.user{
-  grid-column: 3;
-  align-self: center;
-  padding-right: 10px;
-      a{
-        text-decoration: none;
-        color: $userlink-color;
-        transition: .2s;
-      }
-  }
+#username {
+    padding-right: 5px;
 }
 
-#username{
-  padding-right: 5px;
-}
-#username:hover{
-  color: $userlink-hover-color;
-  text-decoration: underline;
+#username:hover {
+    color: $userlink-hover-color;
+    text-decoration: underline;
 }
 
-#sign-out{
-  padding-left: 5px;
-  border-left: 1px solid black;
+#sign-out {
+    padding-left: 5px;
+    border-left: 1px solid black;
 }
-#sign-out:hover{
-  color: $userlink-hover-color;
+
+#sign-out:hover {
+    color: $userlink-hover-color;
 }
-#logo{
+
+#logo {
     height: 40px;
 }
+
 // -----------------------------------------------------------END HEADER------------------------------------------------------------
-
-

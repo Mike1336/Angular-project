@@ -12,16 +12,17 @@ export class ItemsComponent implements OnInit {
  public items: any;
  public categories: any;
  public filterBy: string;
- public contentReady = false;
- public emptyContent = false;
  public searchField = '';
-//  public searchResult = true;
+ public contentReady = false;
+ public emptyCategoryContent: boolean;
+ public emptySearchResult: boolean;
   constructor(private itemSevice: ItemService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.getAllCategories();
     this.route.params.subscribe(params => {
       this.filterBy = params.cat;
+      // сохранение гет-параметра при смене категории
       if (this.searchField !== '') {
         this.appendParam();
       }
@@ -30,18 +31,24 @@ export class ItemsComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params.keyword) {
         this.searchField = params.keyword;
-        this.searchItems(params.keyword, this.filterBy);
+        this.searchItems(this.searchField, this.filterBy);
      } else {
-      // this.searchResult = true;
+       // если гет-параметр отсутствует - выводим содержимое категории
       this.getItemsOfCurrentCategory();
      }
     });
   }
   public search() {
-    setTimeout(() => {
-      this.appendParam();
-    }, 500);
+    if (this.searchField === '') {
+      this.removeParam();
+      this.getItemsOfCurrentCategory();
+    } else {
+      setTimeout(() => {
+        this.appendParam();
+      }, 500);
+    }
   }
+  // занесение в гет-параметр данные из поля
   public appendParam() {
       this.router.navigate([], {
         relativeTo: this.route,
@@ -53,14 +60,26 @@ export class ItemsComponent implements OnInit {
         replaceUrl: false
       });
   }
+  public removeParam() {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        keyword: undefined,
+      },
+      queryParamsHandling: 'merge',
+      skipLocationChange: false,
+      replaceUrl: false
+    });
+  }
   public getItemsOfCurrentCategory() {
     this.filterBy !== 'all' ? this.getItemsOfCategory(this.filterBy) : this.getAllItems();
   }
   public getAllItems() {
     this.itemSevice.getItems().subscribe(data => {
       this.items = data;
+      data.length !== 0 ? this.emptyCategoryContent = false : this.emptyCategoryContent = true;
+      this.emptySearchResult = false;
       this.contentReady = true;
-      data.length !== 0 ? this.emptyContent = false : this.emptyContent = true;
     });
   }
   public getAllCategories() {
@@ -72,15 +91,16 @@ export class ItemsComponent implements OnInit {
   public getItemsOfCategory(category: string) {
     this.itemSevice.getItemsByCategory(category).subscribe(data => {
       this.items = data;
-      data.length !== 0 ? this.emptyContent = false : this.emptyContent = true;
+      data.length !== 0 ? this.emptyCategoryContent = false : this.emptyCategoryContent = true;
+      this.emptySearchResult = false;
       this.contentReady = true;
     });
   }
-  public searchItems(queryString: any, category?: string) {
+  public searchItems(queryString: string, category: string) {
     this.itemSevice.getItemsBySearchWord(queryString, category).subscribe(data => {
-      this.items = data;
-      this.contentReady = true;
-      // this.items.length !== 0 ? this.searchResult = false : this.searchResult = true;
+        Object.keys(data).length !== 0 ? this.emptySearchResult = false : this.emptySearchResult = true;
+        this.items = data;
+        this.contentReady = true;
     });
   }
 }
