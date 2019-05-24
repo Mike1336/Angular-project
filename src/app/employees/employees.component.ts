@@ -14,8 +14,6 @@ export class EmployeesComponent implements OnInit {
  public filterBy: string;
  public searchField = '';
  public contentReady = false;
- public emptyDepContent: boolean;
- public emptySearchResult: boolean;
   constructor(private empservice: EmpService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.getAllDeps();
@@ -73,9 +71,7 @@ export class EmployeesComponent implements OnInit {
 
   public getAllEmps() {
     this.empservice.getStaff().subscribe(data => {
-      data.length !== 0 ? this.emptyDepContent = false : this.emptyDepContent = true;
       this.staff = data;
-      this.emptySearchResult = false;
       this.contentReady = true;
     });
   }
@@ -87,15 +83,12 @@ export class EmployeesComponent implements OnInit {
   }
   public getEmpsOfDep(dep: string) {
     this.empservice.getEmpsByDep(dep).subscribe(data => {
-      data.length !== 0 ? this.emptyDepContent = false : this.emptyDepContent = true;
       this.staff = data;
-      this.emptySearchResult = false;
       this.contentReady = true;
     });
   }
   public searchEmps(queryString: string, department: string) {
     this.empservice.getEmpsBySearchWord(queryString, department).subscribe(data => {
-      Object.keys(data).length !== 0 ? this.emptySearchResult = false : this.emptySearchResult = true;
       this.staff = data;
       this.contentReady = true;
     });

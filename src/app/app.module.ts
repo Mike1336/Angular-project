@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ClarityModule } from '@clr/angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeBackendService } from './fake-backend.service';
+import { SearchFieldComponent } from './search-field/search-field.component';
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import { FakeBackendService } from './fake-backend.service';
     EmployeesComponent,
     EmployeeComponent,
     ItemComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SearchFieldComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,8 @@ import { FakeBackendService } from './fake-backend.service';
     AppRoutingModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(FakeBackendService),
+    ClarityModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,8 +2,8 @@
 
 <div id="page-preloader" class="preloader" *ngIf="!contentReady">
     <div class="loading-container">
-        <div class="spinner"></div>
-        <div class="spinner-center"></div>
+        <div class="my-spinner"></div>
+        <div class="my-spinner-center"></div>
         <div class="loading-text">
             <div class="cssload-preloader">
                 <span>L</span>
@@ -28,19 +28,30 @@
     <h3>Инвентарь:</h3>
 
     <img src="{{emp.img}}" alt="avatar" id="emp-avatar">
-
-    <div class="employee-items">
-        <table>
-            <tr>
-                <th>Тип</th>
-                <th>Название</th>
-                <th>Дата закрепления</th>
-            </tr>
-            <tr *ngFor="let item of emp.items">
-                <td>{{item.type}}</td>
-                <td>{{item.model}}</td>
-                <td>{{item.date}}</td>
-            </tr>
-        </table>
-    </div>
+    <clr-datagrid class="clr-col">
+        <clr-dg-placeholder>Инвентарь пуст</clr-dg-placeholder>
+        <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">Тип</ng-container>
+        </clr-dg-column>
+        <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">Название</ng-container>
+        </clr-dg-column>
+        <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">Дата закрепления</ng-container>
+        </clr-dg-column>
+        <clr-dg-row *clrDgItems="let item of emp.items">
+            <clr-dg-action-overflow>
+                <button class="action-item" (click)="onEdit(user)">Изменить</button>
+            </clr-dg-action-overflow>
+            <clr-dg-cell>{{item.type}}</clr-dg-cell>
+            <clr-dg-cell>{{item.model}}</clr-dg-cell>
+            <clr-dg-cell>{{item.date}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-footer>
+            <clr-dg-column-toggle>
+                <clr-dg-column-toggle-title>Столбцы</clr-dg-column-toggle-title>
+                <clr-dg-column-toggle-button>Показать все</clr-dg-column-toggle-button>
+            </clr-dg-column-toggle>
+        </clr-dg-footer>
+    </clr-datagrid>
 </div>

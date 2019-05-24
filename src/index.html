@@ -1,117 +1,119 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
-  <meta charset="utf-8">
-  <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="assets/images/logo.ico">
-  <style>
-    .preloader{
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      z-index: 2;
-      transition: 1s all;
-      opacity:1;
-      visibility: visible;
-      pointer-events: none;
-    }
-  
-    .preloader .loading-container {
-        margin: 0 auto;
-        text-align: center;
-        position: relative;
-        top: 50vh;
-        transform: translateY(-50%);
-      }
-      
-      .preloader .spinner {
-        height: 20em;
-        background: url("assets/images/spiner.png") center center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        transform-origin: 50% 50%;
-        animation: spinner 3s infinite alternate ease-in-out;
-      }
-      .preloader .spinner-center {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width: 27%;
-        height: 27%;
-        background: url(   "assets/images/middle-of-spiner.png") center center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        content: '';
-      }
-  
-  @keyframes spinner {
-    100% {
-      transform: rotate(2200deg);
-    }
-  }
-
-    .cssload-preloader {
-      position: absolute;
-      left: 0;
-      right: 0;
-      z-index: 10;
-      display: flex;
-      box-pack: center;
-      justify-content: center;
-      box-align: center;
-      align-items: center;
-      transform-style: preserve-3d;
-      animation: wobble 3.25s ease-in-out infinite;
-    }
-      
-    .cssload-preloader span {
-          font-size: 3em;
-          font-family: "Comic Sans MS", cursive, sans-serif;
-          animation: 3.25s ease-in-out infinite;
-          color: transparent;
-          text-shadow: 0 0 0px rgb(85,229,28);
-      }
-      
-    @keyframes wobble {
-      from, to {
-        transform: rotateY(-45deg);
-      }
-      50% {
-        transform: rotateY(45deg);
-      }
-    }
-</style>
+    <meta charset="utf-8">
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico">
+    <style>
+        .preloader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 2;
+            transition: 1s all;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: none;
+        }
+        
+        .preloader .loading-container {
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            top: 50vh;
+            transform: translateY(-50%);
+        }
+        
+        .preloader .my-spinner {
+            height: 20em;
+            background: url("assets/images/spiner.png") center center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform-origin: 50% 50%;
+            animation: my-spinner 3s infinite alternate ease-in-out;
+        }
+        
+        .preloader .my-spinner-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 27%;
+            height: 27%;
+            background: url("assets/images/middle-of-spiner.png") center center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            content: '';
+        }
+        
+        @keyframes my-spinner {
+            100% {
+                transform: rotate(2200deg);
+            }
+        }
+        
+        .cssload-preloader {
+            position: absolute;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            display: flex;
+            box-pack: center;
+            justify-content: center;
+            box-align: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            animation: wobble 3.25s ease-in-out infinite;
+        }
+        
+        .cssload-preloader span {
+            font-size: 3em;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            animation: 3.25s ease-in-out infinite;
+            color: transparent;
+            text-shadow: 0 0 0px rgb(85, 229, 28);
+        }
+        
+        @keyframes wobble {
+            from,
+            to {
+                transform: rotateY(-45deg);
+            }
+            50% {
+                transform: rotateY(45deg);
+            }
+        }
+    </style>
 </head>
+
 <body>
-
-
-  <app-root>
-      <div id="page-preloader" class="preloader">
-          <div class="loading-container">
-            <div class="spinner"></div>
-            <div class="spinner-center"></div>
-            <div class="loading-text">
-              <div class="cssload-preloader">
-                <span>L</span>
-                <span>o</span>
-                <span>a</span>
-                <span>d</span>
-                <span>i</span>
-                <span>n</span>
-                <span>g</span>
-                <span>.</span>
-                <span>.</span>
-                <span>.</span>
-              </div>
+    <app-root>
+        <div id="page-preloader" class="preloader">
+            <div class="loading-container">
+                <div class="my-spinner"></div>
+                <div class="my-spinner-center"></div>
+                <div class="loading-text">
+                    <div class="cssload-preloader">
+                        <span>L</span>
+                        <span>o</span>
+                        <span>a</span>
+                        <span>d</span>
+                        <span>i</span>
+                        <span>n</span>
+                        <span>g</span>
+                        <span>.</span>
+                        <span>.</span>
+                        <span>.</span>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-  </app-root>
+    </app-root>
 </body>
+
 </html>

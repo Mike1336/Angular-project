@@ -2,8 +2,8 @@
 
 <div id="page-preloader" class="preloader" *ngIf="!contentReady">
     <div class="loading-container">
-        <div class="spinner"></div>
-        <div class="spinner-center"></div>
+        <div class="my-spinner"></div>
+        <div class="my-spinner-center"></div>
         <div class="loading-text">
             <div class="cssload-preloader">
                 <span>L</span>
@@ -27,19 +27,34 @@
     <h2>Закреплен(а) за <a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></h2>
 </div>
 
-<div class="item-history" *ngIf="contentReady">
-    <table>
-        <tr>
-            <th>Причина ремонта</th>
-            <th>Дата отвоза в ремонт</th>
-            <th>Дата привоза из ремонта</th>
-            <th>Сервисный центр</th>
-        </tr>
-        <tr *ngFor="let visit of item.history">
-            <td>{{visit.reason}}</td>
-            <td>{{visit.indate}}</td>
-            <td>{{visit.outdate}}</td>
-            <td>{{visit.serviceCenter}}</td>
-        </tr>
-    </table>
-</div>
+<clr-datagrid class="clr-col">
+    <clr-dg-placeholder>История пуста</clr-dg-placeholder>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Причина ремонта</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Дата отвоза в ремонт</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Дата привоза из ремонта</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Сервисный центр</ng-container>
+    </clr-dg-column>
+    <clr-dg-row *clrDgItems="let visit of item.history">
+        <clr-dg-action-overflow>
+            <button class="action-item" (click)="onEdit(user)">Изменить</button>
+            <button class="action-item" (click)="onDelete(user)">Удалить</button>
+        </clr-dg-action-overflow>
+        <clr-dg-cell>{{visit.reason}}</clr-dg-cell>
+        <clr-dg-cell>{{visit.indate}}</clr-dg-cell>
+        <clr-dg-cell>{{visit.outdate}}</clr-dg-cell>
+        <clr-dg-cell>{{visit.serviceCenter}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>
+        <clr-dg-column-toggle>
+            <clr-dg-column-toggle-title>Столбцы</clr-dg-column-toggle-title>
+            <clr-dg-column-toggle-button>Показать все</clr-dg-column-toggle-button>
+        </clr-dg-column-toggle>
+    </clr-dg-footer>
+</clr-datagrid>

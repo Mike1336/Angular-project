@@ -14,8 +14,6 @@ export class ItemsComponent implements OnInit {
  public filterBy: string;
  public searchField = '';
  public contentReady = false;
- public emptyCategoryContent: boolean;
- public emptySearchResult: boolean;
   constructor(private itemSevice: ItemService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
@@ -39,6 +37,7 @@ export class ItemsComponent implements OnInit {
     });
   }
   public search() {
+    console.log('object');
     if (this.searchField === '') {
       this.removeParam();
       this.getItemsOfCurrentCategory();
@@ -77,8 +76,6 @@ export class ItemsComponent implements OnInit {
   public getAllItems() {
     this.itemSevice.getItems().subscribe(data => {
       this.items = data;
-      data.length !== 0 ? this.emptyCategoryContent = false : this.emptyCategoryContent = true;
-      this.emptySearchResult = false;
       this.contentReady = true;
     });
   }
@@ -91,14 +88,11 @@ export class ItemsComponent implements OnInit {
   public getItemsOfCategory(category: string) {
     this.itemSevice.getItemsByCategory(category).subscribe(data => {
       this.items = data;
-      data.length !== 0 ? this.emptyCategoryContent = false : this.emptyCategoryContent = true;
-      this.emptySearchResult = false;
       this.contentReady = true;
     });
   }
   public searchItems(queryString: string, category: string) {
     this.itemSevice.getItemsBySearchWord(queryString, category).subscribe(data => {
-        Object.keys(data).length !== 0 ? this.emptySearchResult = false : this.emptySearchResult = true;
         this.items = data;
         this.contentReady = true;
     });

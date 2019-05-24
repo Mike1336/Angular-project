@@ -2,8 +2,8 @@
 
 <div id="page-preloader" class="preloader" *ngIf="!contentReady">
     <div class="loading-container">
-        <div class="spinner"></div>
-        <div class="spinner-center"></div>
+        <div class="my-spinner"></div>
+        <div class="my-spinner-center"></div>
         <div class="loading-text">
             <div class="cssload-preloader">
                 <span>L</span>
@@ -21,52 +21,56 @@
     </div>
 </div>
 
-<div id="content-selector" *ngIf="contentReady">
-    <ul class="select-list">
-        <li id="titleOfSelector">Вид:</li>
-        <li class="active"><a routerLink="/inventory" id="select-inventory">Инвентарные единицы</a></li>
-        <li><a routerLink="/staff" id="select-employee">Персонал</a></li>
-    </ul>
-</div>
+<clr-vertical-nav class="clr-offset-md-5 clr-offset-sm-4 clr-offset-3" *ngIf="contentReady">
+    <a class="text-center" clrVerticalNavLink routerLink="../all" routerLinkActive="active">Все категории</a>
+    <a class="text-center" clrVerticalNavLink *ngFor="let cat of categories" routerLink="../{{cat.label}}" routerLinkActive="active">{{cat.name}}</a>
+</clr-vertical-nav>
 
-<div id="inventory" *ngIf="contentReady">
-    <section class="filters">
-        <ul class="filter-list filter-group">
-            <li [ngClass]="{'active': filterBy === 'all'}">
-                <a routerLink="/inventory/all">Все категории</a>
-            </li>
-            <li *ngFor="let cat of categories" [ngClass]="{'active': cat.label === filterBy}">
-                <a routerLink="/inventory/{{cat.label}}">
-                    {{cat.name}}
-                  </a>
-            </li>
-        </ul>
-    </section>
-
-    <div class="search" *ngIf="contentReady">
-        <input [(ngModel)]="searchField" type="text" (keyup)="search()" placeholder="Поиск по модели (серийному номеру)">
-    </div>
-</div>
-<div class="items-table" *ngIf="contentReady">
-    <h2 *ngIf="emptyCategoryContent">Контента пока нет!</h2>
-    <h3 *ngIf="emptySearchResult && !emptyCategoryContent">По запросу "{{searchField}}" ничего не найдено. Проверьте запрос или <a routerLink="/inventory/all">поищите среди всего инвентаря</a>.
-    </h3>
-    <table *ngIf="!emptySearchResult && !emptyCategoryContent">
-        <tr>
-            <th>Наименование единицы</th>
-            <th>Серийный номер</th>
-            <th>Тип</th>
-            <th>Сотрудник</th>
-            <th>Дата присвоения единицы</th>
-            <th>Состояние</th>
-        </tr>
-        <tr *ngFor="let item of items">
-            <td><a routerLink="/item/{{item.id}}">{{item.name}}</a></td>
-            <td>{{item.serNumber}}</td>
-            <td>{{item.type}}</td>
-            <td><a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></td>
-            <td>{{item.date}}</td>
-            <td>{{item.status}}</td>
-        </tr>
-    </table>
-</div>
+<form class="search clr-col" *ngIf="contentReady">
+    <label for="search_input">
+      <app-search-field [(searchQuery)]="searchField" (keyup)="search()"></app-search-field>
+    </label>
+</form>
+<clr-datagrid class="clr-col" *ngIf="contentReady">
+    <clr-dg-placeholder>Увы! Запрашиваемый контент не найден :(</clr-dg-placeholder>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Название</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Номер</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Тип</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Сотрудник</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Дата присвоения единицы</ng-container>
+    </clr-dg-column>
+    <clr-dg-column>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Состояние</ng-container>
+    </clr-dg-column>
+    <clr-dg-row *clrDgItems="let item of items">
+        <clr-dg-action-overflow>
+            <button class="action-item" (click)="onEdit(user)">Изменить</button>
+            <button class="action-item" (click)="onDelete(user)">Удалить</button>
+        </clr-dg-action-overflow>
+        <clr-dg-cell><a routerLink="/item/{{item.id}}">{{item.name}}</a></clr-dg-cell>
+        <clr-dg-cell>{{item.serNumber}}</clr-dg-cell>
+        <clr-dg-cell>{{item.type}}</clr-dg-cell>
+        <clr-dg-cell><a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></clr-dg-cell>
+        <clr-dg-cell>{{item.date}}</clr-dg-cell>
+        <clr-dg-cell>{{item.status}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer>
+        <clr-dg-column-toggle>
+            <clr-dg-column-toggle-title>Столбцы</clr-dg-column-toggle-title>
+            <clr-dg-column-toggle-button>Показать все</clr-dg-column-toggle-button>
+        </clr-dg-column-toggle>
+        <clr-dg-pagination #pagination [clrDgPageSize]="5">
+            <clr-dg-page-size [clrPageSizeOptions]="[1,2,5,10]">Единиц на странице</clr-dg-page-size>
+            с {{pagination.firstItem + 1}} по {{pagination.lastItem + 1}} из {{pagination.totalItems}} всего
+        </clr-dg-pagination>
+    </clr-dg-footer>
+</clr-datagrid>

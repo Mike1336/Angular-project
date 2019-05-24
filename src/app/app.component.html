@@ -1,13 +1,27 @@
-<header>
-  <div class="logo">
-    <a routerLink="/">
-      <img id="logo" src="assets/images/logo.png" alt="Logo" />
-    </a>
-  </div>
-  <div class="user">
-    <a href="javascript:void(0)" id="username">Admin Вася</a>
-    <a href="javascript:void(0)" id="sign-out">Выйти</a>
-  </div>
+<header class="header-6">
+    <div class="branding">
+        <a routerLink="/" class="nav-link">
+            <clr-icon shape="vm-bug"></clr-icon>
+            <span class="title">WIS Software</span>
+        </a>
+    </div>
+    <div class="header-nav clr-offset-md-3">
+        <a routerLink="/inventory" routerLinkActive="active" class="nav-link"><span class="nav-text">Инвентарные единицы</span></a>
+        <a routerLink="/staff" routerLinkActive="active" class="nav-link"><span class="nav-text">Персонал</span></a>
+    </div>
+
+    <div class="header-actions">
+        <clr-dropdown>
+            <button class="nav-icon" clrDropdownTrigger>
+              <clr-icon shape="user"></clr-icon>
+              <clr-icon shape="caret down"></clr-icon>
+          </button>
+            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                <a href="..." clrDropdownItem>About</a>
+                <a href="..." clrDropdownItem>Preferences</a>
+                <a href="..." clrDropdownItem>Log out</a>
+            </clr-dropdown-menu>
+        </clr-dropdown>
+    </div>
 </header>
 <router-outlet></router-outlet>
-
