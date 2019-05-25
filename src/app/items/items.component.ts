@@ -10,16 +10,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ItemsComponent implements OnInit {
  public title = 'Инвентарные единицы | Главная страница';
  public items: any;
- public categories: any;
  public filterBy: string;
+ public currentCategory: string;
  public searchField = '';
  public contentReady = false;
   constructor(private itemSevice: ItemService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
-    this.getAllCategories();
     this.route.params.subscribe(params => {
       this.filterBy = params.cat;
+      params.cat === 'all' ? this.currentCategory = 'Всё оборудование' : this.getCurrentCategory(params.cat);
       // сохранение гет-параметра при смене категории
       if (this.searchField !== '') {
         this.appendParam();
@@ -79,16 +79,15 @@ export class ItemsComponent implements OnInit {
       this.contentReady = true;
     });
   }
-  public getAllCategories() {
-    this.itemSevice.getCategories().subscribe(data => {
-      this.categories = data;
-      this.contentReady = true;
-    });
-  }
   public getItemsOfCategory(category: string) {
     this.itemSevice.getItemsByCategory(category).subscribe(data => {
       this.items = data;
       this.contentReady = true;
+    });
+  }
+  public getCurrentCategory(categoryLabel: string) {
+    this.itemSevice.getCategoryByLabel(categoryLabel).subscribe(data => {
+      this.currentCategory = `Категория: ${data[0].name}`;
     });
   }
   public searchItems(queryString: string, category: string) {

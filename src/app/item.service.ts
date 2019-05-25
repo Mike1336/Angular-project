@@ -23,6 +23,10 @@ export class ItemService {
   public getCategories() {
     return this.http.get(this.apiUrl + this.categoryEndpoint);
   }
+  public getCategoryByLabel(label: string) {
+    const url = `${this.apiUrl + this.categoryEndpoint}?label=${label}`;
+    return this.http.get(url);
+  }
   public getItemsByCategory(category: string): Observable<any> {
     const url = `${this.apiUrl + this.itemsEndpoint}?categoryLabel=${category}`;
     return this.http.get(url);
@@ -31,11 +35,7 @@ export class ItemService {
     let url: string;
     let categoryName: string;
     const regexp = new RegExp('^[0-9]+'); // регулярка для проверки является ли первый символ числом
-    if (category !== 'all') {
-      categoryName = `&categoryLabel=${category}`;
-    } else {
-      categoryName = '';
-    }
+    category !== 'all' ? categoryName = `&categoryLabel=${category}` : categoryName = '';
     if (regexp.test(word)) {
       url = `${this.apiUrl + this.itemsEndpoint}?serNumber=${word}${categoryName}`;
     } else {

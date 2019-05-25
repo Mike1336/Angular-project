@@ -30,7 +30,7 @@
     justify-content: center;
 }
 
-@media (max-width:900px) {
+@media (max-width:1175px) {
     .item-inf {
         grid-template-columns: 100%;
         h2 {
@@ -41,14 +41,5 @@
             margin-top: 0;
             grid-column: 1;
         }
-    }
-}
-
-@media (max-width:350px) {
-    th {
-        font-size: 13px;
-    }
-    td {
-        font-size: 12px;
     }
 }

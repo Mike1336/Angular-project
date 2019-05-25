@@ -12,13 +12,15 @@ export class EmployeesComponent implements OnInit {
  public staff: any;
  public departments: any;
  public filterBy: string;
+ public currentDep: string;
  public searchField = '';
  public contentReady = false;
   constructor(private empservice: EmpService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
-    this.getAllDeps();
     this.route.params.subscribe(params => {
       this.filterBy = params.dep;
+      params.dep === 'all' ? this.currentDep = 'Все отделы' : this.getCurrentDepartment(params.dep);
+
       if (this.searchField !== '') {
         this.appendParam();
       }
@@ -75,16 +77,16 @@ export class EmployeesComponent implements OnInit {
       this.contentReady = true;
     });
   }
-  public getAllDeps() {
-    this.empservice.getDepartments().subscribe(data => {
-      this.departments = data;
-      this.contentReady = true;
-    });
-  }
+
   public getEmpsOfDep(dep: string) {
     this.empservice.getEmpsByDep(dep).subscribe(data => {
       this.staff = data;
       this.contentReady = true;
+    });
+  }
+  public getCurrentDepartment(depLabel: string) {
+    this.empservice.getDepByLabel(depLabel).subscribe(data => {
+      this.currentDep = `Отдел: ${data[0].name}`;
     });
   }
   public searchEmps(queryString: string, department: string) {

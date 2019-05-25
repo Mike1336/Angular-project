@@ -23,6 +23,10 @@ export class EmpService {
   public getDepartments() {
     return this.http.get(this.apiUrl + this.depEndpoint);
   }
+  public getDepByLabel(label: string) {
+    const url = `${this.apiUrl + this.depEndpoint}?label=${label}`;
+    return this.http.get(url);
+  }
   public getEmpsByDep(department: string): Observable<any> {
     const url = `${this.apiUrl + this.empsEndpoint}/?depLabel=${department}`;
     return this.http.get(url);
@@ -30,11 +34,7 @@ export class EmpService {
   public getEmpsBySearchWord(word: string, dep: string) {
     let url: string;
     let depName: string;
-    if (dep !== 'all') {
-      depName = `&depLabel=${dep}`;
-    } else {
-      depName = '';
-    }
+    dep !== 'all' ? depName = `&depLabel=${dep}` : depName = '';
     url = `${this.apiUrl + this.empsEndpoint}?fio=${word}${depName}`;
     return this.http.get(url);
   }

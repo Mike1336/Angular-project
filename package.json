@@ -7,7 +7,7 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "cr": "ng g c search-field"
+        "cr": "ng g c navbar-left"
     },
     "private": true,
     "dependencies": {

@@ -21,13 +21,15 @@
     </div>
 </div>
 
-<div class="item-inf" *ngIf="contentReady">
+<app-navbar-left *ngIf="contentReady"></app-navbar-left>
+
+<div class="item-inf clr-col-md-9  clr-col-sm-12 clr-offset-md-3" *ngIf="contentReady">
     <h1>{{item.type}} {{item.name}} ({{item.serNumber}})</h1>
     <h3>Состояние: {{item.status}}</h3>
     <h2>Закреплен(а) за <a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></h2>
 </div>
 
-<clr-datagrid class="clr-col">
+<clr-datagrid class="clr-col-md-10 clr-offset-md-2" *ngIf="contentReady">
     <clr-dg-placeholder>История пуста</clr-dg-placeholder>
     <clr-dg-column>
         <ng-container *clrDgHideableColumn="{hidden: false}">Причина ремонта</ng-container>

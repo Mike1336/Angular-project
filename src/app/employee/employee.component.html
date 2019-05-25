@@ -21,7 +21,9 @@
     </div>
 </div>
 
-<div class="emp-inf" *ngIf="contentReady">
+<app-navbar-left *ngIf="contentReady"></app-navbar-left>
+
+<div class="emp-inf clr-col-10 clr-offset-2" *ngIf="contentReady">
     <h1 id="emp-name">{{emp.fio}}</h1>
     <h2 id="emp-position">{{emp.pos}}</h2>
     <h2>Ответственный за категорию: <a routerLink="/inventory/{{emp.catLabel}}" id="emp-category">{{emp.cat}}</a></h2>

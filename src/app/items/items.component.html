@@ -21,17 +21,17 @@
     </div>
 </div>
 
-<clr-vertical-nav class="clr-offset-md-5 clr-offset-sm-4 clr-offset-3" *ngIf="contentReady">
-    <a class="text-center" clrVerticalNavLink routerLink="../all" routerLinkActive="active">Все категории</a>
-    <a class="text-center" clrVerticalNavLink *ngFor="let cat of categories" routerLink="../{{cat.label}}" routerLinkActive="active">{{cat.name}}</a>
-</clr-vertical-nav>
-
-<form class="search clr-col" *ngIf="contentReady">
-    <label for="search_input">
-      <app-search-field [(searchQuery)]="searchField" (keyup)="search()"></app-search-field>
+<app-navbar-left></app-navbar-left>
+<div class="clr-row" style="margin-right: auto">
+    <h3 class="clr-col clr-offset-2 text-center">{{currentCategory}}</h3>
+    <form class="search clr-col-2 clr-offset-9" *ngIf="contentReady">
+        <label for="search_input">
+        <app-search-field [(searchQuery)]="searchField" (keyup)="search()"></app-search-field>
     </label>
-</form>
-<clr-datagrid class="clr-col" *ngIf="contentReady">
+    </form>
+    <button class="btn">Добавить</button>
+</div>
+<clr-datagrid class="clr-col-10 clr-offset-2" *ngIf="contentReady">
     <clr-dg-placeholder>Увы! Запрашиваемый контент не найден :(</clr-dg-placeholder>
     <clr-dg-column>
         <ng-container *clrDgHideableColumn="{hidden: false}">Название</ng-container>
