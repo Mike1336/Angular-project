@@ -67,13 +67,13 @@ export class FakeBackendService implements InMemoryDbService {
 
     const items = [
       {
-        id: '1',
+        id: 1,
         name: 'Benq xl2411',
         serNumber: 291156836,
         type: 'Монитор',
         categoryLabel: 'monitors',
         emp: {
-          id: '1',
+          id: 1,
           fio : 'Иванов Иван Иванович'
         },
         date: '22.11.2017',
@@ -94,13 +94,13 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '2',
+        id: 2,
         name: 'Benq GL2450',
         serNumber: 439554597,
         type: 'Монитор',
         categoryLabel: 'monitors',
         emp: {
-          id: '2',
+          id: 2,
           fio : 'Петров Иван Петрович'
         },
         date: '25.12.2016',
@@ -121,13 +121,13 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '3',
+        id: 3,
         name: 'Apple iMac 21.5"',
         serNumber: 557160155,
         type: 'Моноблок',
         categoryLabel: 'monoblocks',
         emp: {
-          id: '3',
+          id: 3,
           fio : 'Петров Петр Петрович'
         },
         date: '01.03.2018	',
@@ -148,13 +148,13 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '4',
+        id: 4,
         name: 'Apple MacBook Air 2018',
         serNumber: 784640288,
         type: 'Ноутбук',
         categoryLabel: 'laptops',
         emp: {
-          id: '4',
+          id: 4,
           fio : 'Иванов Иван Сидорович'
         },
         date: '22.11.2017',
@@ -175,13 +175,13 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '5',
+        id: 5,
         name: 'Lenovo ThinkPad',
         serNumber: 409813163,
         type: 'Ноутбук',
         categoryLabel: 'laptops',
         emp: {
-          id: '5',
+          id: 5,
           fio : 'Петров Иван Петрович'
         },
         date: '25.12.2016',
@@ -204,7 +204,7 @@ export class FakeBackendService implements InMemoryDbService {
     ];
     const emps = [
       {
-        id: '1',
+        id: 1,
         fio: 'Иванов Иван Иванович',
         pos: 'Junior Front-end developer',
         dep: 'WEB Front-end',
@@ -224,7 +224,7 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '2',
+        id: 2,
         fio: 'Петров Иван Петрович',
         pos: 'Junior Front-end developer',
         dep: 'WEB Back-end',
@@ -244,7 +244,7 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '3',
+        id: 3,
         fio: 'Петров Петр Петрович',
         pos: 'Junior Android developer',
         dep: 'Android Front-end',
@@ -264,7 +264,7 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '4',
+        id: 4,
         fio : 'Иванов Иван Сидорович',
         pos: 'Middle Android developer',
         dep: 'Android Back-end',
@@ -284,7 +284,7 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '5',
+        id: 5,
         fio : 'Петров Иван Петрович',
         pos: 'Senior IOS developer',
         dep: 'IOS Back-end',
@@ -304,7 +304,7 @@ export class FakeBackendService implements InMemoryDbService {
         ]
       },
       {
-        id: '6',
+        id: 6,
         fio : 'Петров Сидор Петрович',
         pos: 'Middle IOS developer',
         dep: 'IOS Front-end',

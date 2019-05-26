@@ -46,7 +46,7 @@
     <clr-dg-row *clrDgItems="let emp of staff">
         <clr-dg-action-overflow>
             <button class="action-item" (click)="onEdit(user)">Изменить</button>
-            <button class="action-item" (click)="onDelete(user)">Удалить</button>
+            <button class="action-item" (click)="deleteEmp(emp.id)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/employee/{{emp.id}}">{{emp.fio}}</a></clr-dg-cell>
         <clr-dg-cell>{{emp.dep}}</clr-dg-cell>

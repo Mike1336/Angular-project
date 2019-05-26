@@ -96,4 +96,9 @@ export class ItemsComponent implements OnInit {
         this.contentReady = true;
     });
   }
+  public deleteItem(id: number) {
+    this.itemSevice.removeItem(id).subscribe(data => {
+      this.getItemsOfCurrentCategory();
+    });
+  }
 }

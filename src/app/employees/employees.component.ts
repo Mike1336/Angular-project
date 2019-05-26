@@ -84,15 +84,23 @@ export class EmployeesComponent implements OnInit {
       this.contentReady = true;
     });
   }
+
   public getCurrentDepartment(depLabel: string) {
     this.empservice.getDepByLabel(depLabel).subscribe(data => {
       this.currentDep = `Отдел: ${data[0].name}`;
     });
   }
+
   public searchEmps(queryString: string, department: string) {
     this.empservice.getEmpsBySearchWord(queryString, department).subscribe(data => {
       this.staff = data;
       this.contentReady = true;
+    });
+  }
+
+  public deleteEmp(id: number) {
+    this.empservice.removeEmp(id).subscribe(data => {
+      this.getEmpsOfCurrentDep();
     });
   }
 }

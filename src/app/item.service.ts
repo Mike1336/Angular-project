@@ -6,13 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ItemService {
-
   constructor( private http: HttpClient) { }
-
   private apiUrl = 'api/';
   private itemsEndpoint = 'items';
   private categoryEndpoint = 'itemCategories';
-
   public getItems(): Observable<any> {
     return this.http.get(this.apiUrl + this.itemsEndpoint);
   }
@@ -42,5 +39,9 @@ export class ItemService {
       url = `${this.apiUrl + this.itemsEndpoint}?name=${word}${categoryName}`;
     }
     return this.http.get(url);
+  }
+  public removeItem(id: number) {
+    const url = `${this.apiUrl + this.itemsEndpoint}/${id}`;
+    return this.http.delete(url);
   }
 }
