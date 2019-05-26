@@ -1,14 +1,14 @@
-<clr-vertical-nav style="position: absolute;">
+<clr-vertical-nav style="padding-top: 0; width: 100%">
     <clr-vertical-nav-group routerLinkActive="active">
         <clr-icon shape="users" clrVerticalNavIcon></clr-icon>
         Персонал
         <clr-vertical-nav-group-children>
             <a clrVerticalNavLink routerLink="/staff/all" routerLinkActive="active">
-              Все отделы
-            </a>
+                  Все отделы
+                </a>
             <a clrVerticalNavLink *ngFor="let dep of departments" routerLink="/staff/{{dep.label}}" routerLinkActive="active">
-              {{dep.name}}
-            </a>
+                  {{dep.name}}
+                </a>
         </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
     <clr-vertical-nav-group routerLinkActive="active">
@@ -16,11 +16,11 @@
         Оборудование
         <clr-vertical-nav-group-children>
             <a clrVerticalNavLink routerLink="/inventory/all" routerLinkActive="active">
-            Всё оборудование
-          </a>
+                Всё оборудование
+              </a>
             <a clrVerticalNavLink *ngFor="let cat of categories" routerLink="/inventory/{{cat.label}}" routerLinkActive="active">
-            {{cat.name}}
-          </a>
+                {{cat.name}}
+              </a>
         </clr-vertical-nav-group-children>
     </clr-vertical-nav-group>
 </clr-vertical-nav>
