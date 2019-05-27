@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../item.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ClrWizard } from '@clr/angular';
 
 @Component({
   selector: 'app-items',
@@ -14,8 +15,23 @@ export class ItemsComponent implements OnInit {
  public currentCategory: string;
  public searchField = '';
  public contentReady = false;
-  constructor(private itemSevice: ItemService, private route: ActivatedRoute, private router: Router) {}
+ public showWizard = false;
+ @ViewChild('wizard') wizard: ClrWizard;
 
+  newItem: IItem = {
+    id: null,
+    name: '',
+    serNumber: null,
+    category: '',
+    categoryLabel: '',
+    emp: {
+      id: null,
+      fio: '',
+    },
+    date: '',
+    status: '',
+  };
+  constructor(private itemSevice: ItemService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.filterBy = params.cat;
@@ -36,8 +52,40 @@ export class ItemsComponent implements OnInit {
      }
     });
   }
+  public resetWizardData() {
+      this.wizard.reset();
+      this.newItem.name = '';
+      this.newItem.serNumber = null;
+      this.newItem.category = '';
+      this.newItem.categoryLabel = '';
+      this.newItem.emp.fio = '';
+      this.newItem.date = '';
+      this.newItem.status = '';
+  }
+  public checkFields() {
+    if (this.newItem.emp.fio === '') {
+      this.newItem.date = '-';
+    } else {
+      const now = new Date();
+      // двузначный формат, добавление 0 к однозначным
+      const dd = String(now.getDate()).padStart(2, '0');
+      // январь - нулевой месяц
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const yyyy = now.getFullYear();
+      const today = `${dd}.${mm}.${yyyy}`;
+      this.newItem.date = today;
+    }
+    this.itemSevice.getCategoryByName(this.newItem.category).subscribe(data => {
+      this.newItem.categoryLabel = data[0].label;
+      if (data) {
+        this.itemSevice.addItem(this.newItem).subscribe(item => {
+          this.getItemsOfCurrentCategory();
+        });
+        this.resetWizardData();
+      }
+    });
+  }
   public search() {
-    console.log('object');
     if (this.searchField === '') {
       this.removeParam();
       this.getItemsOfCurrentCategory();
@@ -101,4 +149,18 @@ export class ItemsComponent implements OnInit {
       this.getItemsOfCurrentCategory();
     });
   }
+}
+
+interface IItem {
+  id: number;
+  name: string;
+  serNumber: number;
+  category: string;
+  categoryLabel: string;
+  emp: {
+    id: number,
+    fio: string,
+  };
+  date: string;
+  status: string;
 }

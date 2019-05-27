@@ -21,14 +21,108 @@
     </div>
 </div>
 
+<clr-wizard #wizard clrWizardSize="lg" [(clrWizardOpen)]="showWizard" (clrWizardOnFinish)="checkFields()" (clrWizardOnCancel)="resetWizardData()">
+    <clr-wizard-title>Добавление инвентарной единицы</clr-wizard-title>
+
+    <clr-wizard-button [type]="'cancel'">Отмена</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Назад</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Далее</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'">Добавить единицу</clr-wizard-button>
+
+    <clr-wizard-page [clrWizardPageNextDisabled]="name.pristine || !formPageOne.valid">
+        <ng-template clrPageTitle>Данные единицы</ng-template>
+        <form #formPageOne="ngForm">
+            <section class="form-block">
+                <label>Заполните поля ниже и нажмите "Далее"</label>
+                <div class="form-group">
+                    <label>Название (модель):</label>
+                    <label for="nameInput" aria-haspopup="true" role="tooltip" [class.invalid]="name.touched && !name.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                    <input type="text" id="nameInput" required [(ngModel)]="newItem.name" name="name" #name="ngModel">
+                    <span class="tooltip-content">Обязательное поле!</span>
+                  </label>
+                </div>
+                <div class="form-group">
+                    <label>Серийный номер:</label>
+                    <label for="numberInput" aria-haspopup="true" role="tooltip" [class.invalid]="number.touched && !number.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                    <input type="number" id="numberInput" required [(ngModel)]="newItem.serNumber" name="number" #number="ngModel">
+                      <span class="tooltip-content">Обязательное поле!</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Категория:</label>
+                    <label for="typeSelector" aria-haspopup="true" role="tooltip" [class.invalid]="select.touched && !select.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                      <div class="select">
+                        <select  name="typeSelector" #select="ngModel" required [(ngModel)]="newItem.category">
+                          <option value="Мониторы" class="ng-star-inserted"> Мониторы </option>
+                          <option value="Моноблоки" class="ng-star-inserted"> Моноблоки </option>
+                          <option value="Ноутбуки" class="ng-star-inserted"> Ноутбуки </option>
+                          <option value="Клавиатуры" class="ng-star-inserted"> Клавиатуры </option>
+                          <option value="Мыши" class="ng-star-inserted"> Мыши </option>
+                          <option value="Столы" class="ng-star-inserted"> Столы </option>
+                          <option value="Кресла" class="ng-star-inserted"> Кресла </option>
+                        </select>
+                        <span class="tooltip-content"></span>
+                      </div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Текущее состояние:</label>
+                    <label for="statusInput" aria-haspopup="true" role="tooltip" [class.invalid]="status.touched && !status.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                    <input type="text" id="statusInput" required [(ngModel)]="newItem.status" name="status" #status="ngModel">
+                    <span class="tooltip-content">Обязательное поле!</span>
+                  </label>
+                </div>
+                <div class="form-group">
+                    <label for="empInput">Сотрудник для закрепления:</label>
+                    <input type="text" id="empInput" [(ngModel)]="newItem.emp.fio" name="emp">
+                </div>
+            </section>
+        </form>
+    </clr-wizard-page>
+    <clr-wizard-page [clrWizardPageNextDisabled]="!formPageOne.valid">
+        <ng-template clrPageTitle>Подтверждение данных</ng-template>
+        <ng-template clrPageNavTitle>
+            <span>Подтверждение</span>
+        </ng-template>
+        <div *ngIf="formPageOne.valid">
+            <p>Проверьте введенные данные.</p>
+            <form class="compact">
+                <label>Создаваемая единица:</label>
+                <section class="form-block">
+                    <div class="form-group">
+                        <label>Название (модель):</label>
+                        <span>{{ this.newItem.name }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Серийный номер:</label>
+                        <span>{{ this.newItem.serNumber }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Тип единицы:</label>
+                        <span>{{ this.newItem.category }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Состояние:</label>
+                        <span>{{ this.newItem.status }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Сотрудник для закрепления:</label>
+                        <span>{{ this.newItem.emp.fio }}</span>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </clr-wizard-page>
+</clr-wizard>
+
 <h3 class="text-center">{{currentCategory}}</h3>
-<div class="clr-row clr-justify-content-end">
-    <form class="search" *ngIf="contentReady">
+<div class="clr-row clr-justify-content-end" *ngIf="contentReady">
+    <form class="search">
         <label for="search_input">
-          <app-search-field [(searchQuery)]="searchField" (keyup)="search()"></app-search-field>
-      </label>
+      <app-search-field [(searchQuery)]="searchField" (keyup)="search()"></app-search-field>
+    </label>
     </form>
-    <button class="btn clr-offset-1">Добавить</button>
+    <button class="btn clr-offset-1" (click)="showWizard = true">Добавить</button>
 </div>
 <clr-datagrid *ngIf="contentReady">
     <clr-dg-placeholder>Увы! Запрашиваемый контент не найден :(</clr-dg-placeholder>
@@ -39,7 +133,7 @@
         <ng-container *clrDgHideableColumn="{hidden: false}">Номер</ng-container>
     </clr-dg-column>
     <clr-dg-column>
-        <ng-container *clrDgHideableColumn="{hidden: false}">Тип</ng-container>
+        <ng-container *clrDgHideableColumn="{hidden: false}">Категория</ng-container>
     </clr-dg-column>
     <clr-dg-column>
         <ng-container *clrDgHideableColumn="{hidden: false}">Сотрудник</ng-container>
@@ -57,8 +151,11 @@
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/item/{{item.id}}">{{item.name}}</a></clr-dg-cell>
         <clr-dg-cell>{{item.serNumber}}</clr-dg-cell>
-        <clr-dg-cell>{{item.type}}</clr-dg-cell>
-        <clr-dg-cell><a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></clr-dg-cell>
+        <clr-dg-cell>{{item.category}}</clr-dg-cell>
+        <clr-dg-cell *ngIf="item.emp.fio !== ''; else noEmp"><a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></clr-dg-cell>
+        <ng-template #noEmp>
+            <clr-dg-cell>Не назначен</clr-dg-cell>
+        </ng-template>
         <clr-dg-cell>{{item.date}}</clr-dg-cell>
         <clr-dg-cell>{{item.status}}</clr-dg-cell>
     </clr-dg-row>

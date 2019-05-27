@@ -24,6 +24,10 @@ export class ItemService {
     const url = `${this.apiUrl + this.categoryEndpoint}?label=${label}`;
     return this.http.get(url);
   }
+  public getCategoryByName(name: string) {
+    const url = `${this.apiUrl + this.categoryEndpoint}?name=${name}`;
+    return this.http.get(url);
+  }
   public getItemsByCategory(category: string): Observable<any> {
     const url = `${this.apiUrl + this.itemsEndpoint}?categoryLabel=${category}`;
     return this.http.get(url);
@@ -43,5 +47,10 @@ export class ItemService {
   public removeItem(id: number) {
     const url = `${this.apiUrl + this.itemsEndpoint}/${id}`;
     return this.http.delete(url);
+  }
+  public addItem(item: object) {
+    const url = `${this.apiUrl + this.itemsEndpoint}`;
+    return this.http.post(url, item);
+
   }
 }

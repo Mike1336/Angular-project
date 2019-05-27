@@ -25,6 +25,7 @@ getItem(id: number) {
       this.title = `${data.type} ${data.name}`;
       this.item = data;
       this.contentReady = true;
+      console.log(data);
     });
   }
 }

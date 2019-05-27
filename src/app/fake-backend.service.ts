@@ -70,7 +70,7 @@ export class FakeBackendService implements InMemoryDbService {
         id: 1,
         name: 'Benq xl2411',
         serNumber: 291156836,
-        type: 'Монитор',
+        category: 'Мониторы',
         categoryLabel: 'monitors',
         emp: {
           id: 1,
@@ -97,7 +97,7 @@ export class FakeBackendService implements InMemoryDbService {
         id: 2,
         name: 'Benq GL2450',
         serNumber: 439554597,
-        type: 'Монитор',
+        category: 'Мониторы',
         categoryLabel: 'monitors',
         emp: {
           id: 2,
@@ -124,7 +124,7 @@ export class FakeBackendService implements InMemoryDbService {
         id: 3,
         name: 'Apple iMac 21.5"',
         serNumber: 557160155,
-        type: 'Моноблок',
+        category: 'Мониторы',
         categoryLabel: 'monoblocks',
         emp: {
           id: 3,
@@ -151,7 +151,7 @@ export class FakeBackendService implements InMemoryDbService {
         id: 4,
         name: 'Apple MacBook Air 2018',
         serNumber: 784640288,
-        type: 'Ноутбук',
+        category: 'Ноутбуки',
         categoryLabel: 'laptops',
         emp: {
           id: 4,
@@ -178,7 +178,7 @@ export class FakeBackendService implements InMemoryDbService {
         id: 5,
         name: 'Lenovo ThinkPad',
         serNumber: 409813163,
-        type: 'Ноутбук',
+        category: 'Ноутбуки',
         categoryLabel: 'laptops',
         emp: {
           id: 5,
