@@ -7,7 +7,7 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "cr": "ng g c navbar-left"
+        "cr": "ng g c item-wizard"
     },
     "private": true,
     "dependencies": {

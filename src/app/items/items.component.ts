@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../item.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ClrWizard } from '@clr/angular';
+import { ItemWizardComponent } from '../item-wizard/item-wizard.component';
 
 @Component({
   selector: 'app-items',
@@ -15,23 +15,8 @@ export class ItemsComponent implements OnInit {
  public currentCategory: string;
  public searchField = '';
  public contentReady = false;
- public showWizard = false;
- @ViewChild('wizard') wizard: ClrWizard;
-
-  newItem: IItem = {
-    id: null,
-    name: '',
-    serNumber: null,
-    category: '',
-    categoryLabel: '',
-    emp: {
-      id: null,
-      fio: '',
-    },
-    date: '',
-    status: '',
-  };
-  constructor(private itemSevice: ItemService, private route: ActivatedRoute, private router: Router) {}
+ @ViewChild('itemWizard') itemWizard: ItemWizardComponent;
+  constructor(private itemService: ItemService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.filterBy = params.cat;
@@ -50,39 +35,6 @@ export class ItemsComponent implements OnInit {
        // если гет-параметр отсутствует - выводим содержимое категории
       this.getItemsOfCurrentCategory();
      }
-    });
-  }
-  public resetWizardData() {
-      this.wizard.reset();
-      this.newItem.name = '';
-      this.newItem.serNumber = null;
-      this.newItem.category = '';
-      this.newItem.categoryLabel = '';
-      this.newItem.emp.fio = '';
-      this.newItem.date = '';
-      this.newItem.status = '';
-  }
-  public checkFields() {
-    if (this.newItem.emp.fio === '') {
-      this.newItem.date = '-';
-    } else {
-      const now = new Date();
-      // двузначный формат, добавление 0 к однозначным
-      const dd = String(now.getDate()).padStart(2, '0');
-      // январь - нулевой месяц
-      const mm = String(now.getMonth() + 1).padStart(2, '0');
-      const yyyy = now.getFullYear();
-      const today = `${dd}.${mm}.${yyyy}`;
-      this.newItem.date = today;
-    }
-    this.itemSevice.getCategoryByName(this.newItem.category).subscribe(data => {
-      this.newItem.categoryLabel = data[0].label;
-      if (data) {
-        this.itemSevice.addItem(this.newItem).subscribe(item => {
-          this.getItemsOfCurrentCategory();
-        });
-        this.resetWizardData();
-      }
     });
   }
   public search() {
@@ -122,45 +74,31 @@ export class ItemsComponent implements OnInit {
     this.filterBy !== 'all' ? this.getItemsOfCategory(this.filterBy) : this.getAllItems();
   }
   public getAllItems() {
-    this.itemSevice.getItems().subscribe(data => {
+    this.itemService.getItems().subscribe(data => {
       this.items = data;
       this.contentReady = true;
     });
   }
   public getItemsOfCategory(category: string) {
-    this.itemSevice.getItemsByCategory(category).subscribe(data => {
+    this.itemService.getItemsByCategory(category).subscribe(data => {
       this.items = data;
       this.contentReady = true;
     });
   }
   public getCurrentCategory(categoryLabel: string) {
-    this.itemSevice.getCategoryByLabel(categoryLabel).subscribe(data => {
+    this.itemService.getCategoryByLabel(categoryLabel).subscribe(data => {
       this.currentCategory = `Категория: ${data[0].name}`;
     });
   }
   public searchItems(queryString: string, category: string) {
-    this.itemSevice.getItemsBySearchWord(queryString, category).subscribe(data => {
+    this.itemService.getItemsBySearchWord(queryString, category).subscribe(data => {
         this.items = data;
         this.contentReady = true;
     });
   }
   public deleteItem(id: number) {
-    this.itemSevice.removeItem(id).subscribe(data => {
+    this.itemService.removeItem(id).subscribe(data => {
       this.getItemsOfCurrentCategory();
     });
   }
-}
-
-interface IItem {
-  id: number;
-  name: string;
-  serNumber: number;
-  category: string;
-  categoryLabel: string;
-  emp: {
-    id: number,
-    fio: string,
-  };
-  date: string;
-  status: string;
 }

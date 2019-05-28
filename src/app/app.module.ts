@@ -17,6 +17,7 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeBackendService } from './fake-backend.service';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
+import { ItemWizardComponent } from './item-wizard/item-wizard.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
     ItemComponent,
     NotFoundComponent,
     SearchFieldComponent,
-    NavbarLeftComponent
+    NavbarLeftComponent,
+    ItemWizardComponent
   ],
   imports: [
     BrowserModule,

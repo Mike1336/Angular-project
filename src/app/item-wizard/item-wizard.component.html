@@ -1,0 +1,92 @@
+<clr-wizard #wizard clrWizardSize="lg" [(clrWizardOpen)]="show" (clrWizardOnFinish)="checkFields()" (clrWizardOnCancel)="resetWizardData()">
+    <clr-wizard-title>Добавление инвентарной единицы</clr-wizard-title>
+
+    <clr-wizard-button [type]="'cancel'">Отмена</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Назад</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Далее</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'">Добавить единицу</clr-wizard-button>
+
+    <clr-wizard-page [clrWizardPageNextDisabled]="name.pristine || !formPageOne.valid">
+        <ng-template clrPageTitle>Данные единицы</ng-template>
+        <form #formPageOne="ngForm">
+            <section class="form-block">
+                <label>Заполните поля ниже и нажмите "Далее"</label>
+                <div class="form-group">
+                    <label>Название (модель):</label>
+                    <label for="nameInput" aria-haspopup="true" role="tooltip" [class.invalid]="name.touched && !name.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                  <input type="text" id="nameInput" required [(ngModel)]="newItem.name" name="name" #name="ngModel">
+                  <span class="tooltip-content">Обязательное поле!</span>
+                </label>
+                </div>
+                <div class="form-group">
+                    <label>Серийный номер:</label>
+                    <label for="numberInput" aria-haspopup="true" role="tooltip" [class.invalid]="number.touched && !number.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                  <input type="number" id="numberInput" required [(ngModel)]="newItem.serNumber" name="number" #number="ngModel">
+                    <span class="tooltip-content">Обязательное поле!</span>
+                  </label>
+                </div>
+                <div class="form-group">
+                    <label>Категория:</label>
+                    <label for="typeSelector" aria-haspopup="true" role="tooltip" [class.invalid]="select.touched && !select.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                    <div class="select">
+                      <select  name="typeSelector" #select="ngModel" required [(ngModel)]="newItem.category">
+                        <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
+                      </select>
+                      <span class="tooltip-content"></span>
+                    </div>
+                  </label>
+                </div>
+                <div class="form-group">
+                    <label>Текущее состояние:</label>
+                    <label for="statusInput" aria-haspopup="true" role="tooltip" [class.invalid]="status.touched && !status.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                  <input type="text" id="statusInput" required [(ngModel)]="newItem.status" name="status" #status="ngModel">
+                  <span class="tooltip-content">Обязательное поле!</span>
+                </label>
+                </div>
+                <div class="form-group">
+                    <label for="empSelector">Сотрудник для закрепления:</label>
+                    <div class="select">
+                        <select name="empSelector" #select="ngModel" required [(ngModel)]="newItem.emp.fio">
+                        <option value="{{emp.fio}}" *ngFor="let emp of emps" class="ng-star-inserted"> {{emp.fio}} </option>
+                      </select>
+                        <span class="tooltip-content"></span>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </clr-wizard-page>
+    <clr-wizard-page [clrWizardPageNextDisabled]="!formPageOne.valid">
+        <ng-template clrPageTitle>Подтверждение данных</ng-template>
+        <ng-template clrPageNavTitle>
+            <span>Подтверждение</span>
+        </ng-template>
+        <div *ngIf="formPageOne.valid">
+            <p>Проверьте введенные данные.</p>
+            <form class="compact">
+                <label>Создаваемая единица:</label>
+                <section class="form-block">
+                    <div class="form-group">
+                        <label>Название (модель):</label>
+                        <span>{{ this.newItem.name }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Серийный номер:</label>
+                        <span>{{ this.newItem.serNumber }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Тип единицы:</label>
+                        <span>{{ this.newItem.category }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Состояние:</label>
+                        <span>{{ this.newItem.status }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Сотрудник для закрепления:</label>
+                        <span>{{ this.newItem.emp.fio }}</span>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </clr-wizard-page>
+</clr-wizard>

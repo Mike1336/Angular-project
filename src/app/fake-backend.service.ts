@@ -225,7 +225,7 @@ export class FakeBackendService implements InMemoryDbService {
       },
       {
         id: 2,
-        fio: 'Петров Иван Петрович',
+        fio: 'Иванов Иван Петрович',
         pos: 'Junior Front-end developer',
         dep: 'WEB Back-end',
         depLabel: 'web-back-end',
@@ -265,7 +265,7 @@ export class FakeBackendService implements InMemoryDbService {
       },
       {
         id: 4,
-        fio : 'Иванов Иван Сидорович',
+        fio : 'Иванов Пётр Петрович',
         pos: 'Middle Android developer',
         dep: 'Android Back-end',
         depLabel: 'android-back-end',
