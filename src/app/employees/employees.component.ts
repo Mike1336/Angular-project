@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmpService } from '../emp.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EmpWizardComponent } from '../emp-wizard/emp-wizard.component';
 
 @Component({
   selector: 'app-employees',
@@ -15,6 +16,7 @@ export class EmployeesComponent implements OnInit {
  public currentDep: string;
  public searchField = '';
  public contentReady = false;
+ @ViewChild('empWizard') empWizard: EmpWizardComponent;
   constructor(private empservice: EmpService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.route.params.subscribe(params => {

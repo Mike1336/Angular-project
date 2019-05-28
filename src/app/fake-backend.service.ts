@@ -11,30 +11,37 @@ export class FakeBackendService implements InMemoryDbService {
       {
         name: 'Мониторы',
         label: 'monitors',
+        itemLabel: 'Монитор'
       },
       {
         name: 'Моноблоки',
         label: 'monoblocks',
+        itemLabel: 'Моноблок'
       },
       {
         name: 'Ноутбуки',
         label: 'laptops',
+        itemLabel: 'Ноутбук'
       },
       {
         name: 'Клавиатуры',
         label: 'keyboards',
+        itemLabel: 'Клавиатура'
       },
       {
         name: 'Мыши',
         label: 'mouses',
+        itemLabel: 'Мышь'
       },
       {
         name: 'Столы',
         label: 'tables',
+        itemLabel: 'Стол'
       },
       {
         name: 'Кресла',
         label: 'armchairs',
+        itemLabel: 'Кресло'
       }
     ];
 
@@ -72,6 +79,7 @@ export class FakeBackendService implements InMemoryDbService {
         serNumber: 291156836,
         category: 'Мониторы',
         categoryLabel: 'monitors',
+        type: 'Монитор',
         emp: {
           id: 1,
           fio : 'Иванов Иван Иванович'
@@ -99,6 +107,7 @@ export class FakeBackendService implements InMemoryDbService {
         serNumber: 439554597,
         category: 'Мониторы',
         categoryLabel: 'monitors',
+        type: 'Монитор',
         emp: {
           id: 2,
           fio : 'Петров Иван Петрович'
@@ -124,8 +133,9 @@ export class FakeBackendService implements InMemoryDbService {
         id: 3,
         name: 'Apple iMac 21.5"',
         serNumber: 557160155,
-        category: 'Мониторы',
+        category: 'Моноблоки',
         categoryLabel: 'monoblocks',
+        type: 'Моноблок',
         emp: {
           id: 3,
           fio : 'Петров Петр Петрович'
@@ -153,6 +163,7 @@ export class FakeBackendService implements InMemoryDbService {
         serNumber: 784640288,
         category: 'Ноутбуки',
         categoryLabel: 'laptops',
+        type: 'Ноутбук',
         emp: {
           id: 4,
           fio : 'Иванов Иван Сидорович'
@@ -180,6 +191,7 @@ export class FakeBackendService implements InMemoryDbService {
         serNumber: 409813163,
         category: 'Ноутбуки',
         categoryLabel: 'laptops',
+        type: 'Ноутбук',
         emp: {
           id: 5,
           fio : 'Петров Иван Петрович'

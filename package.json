@@ -7,7 +7,7 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "cr": "ng g c item-wizard"
+        "cr": "ng g c emp-wizard"
     },
     "private": true,
     "dependencies": {

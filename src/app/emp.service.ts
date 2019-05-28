@@ -42,4 +42,8 @@ export class EmpService {
     const url = `${this.apiUrl + this.empsEndpoint}/${id}`;
     return this.http.delete(url);
   }
+  public addEmp(emp: object) {
+    const url = `${this.apiUrl + this.empsEndpoint}`;
+    return this.http.post(url, emp);
+  }
 }

@@ -18,6 +18,7 @@ public newItem: IItem = {
     serNumber: null,
     category: '',
     categoryLabel: '',
+    type: '',
     emp: {
       id: null,
       fio: '',
@@ -44,6 +45,7 @@ public resetWizardData() {
   this.newItem.serNumber = null;
   this.newItem.category = '';
   this.newItem.categoryLabel = '';
+  this.newItem.type = '';
   this.newItem.emp.fio = '';
   this.newItem.date = '';
   this.newItem.status = '';
@@ -66,14 +68,15 @@ public checkFields() {
   const today = `${dd}.${mm}.${yyyy}`;
   this.newItem.date = today;
 }
-  this.itemService.getCategoryByName(this.newItem.category).subscribe(data => {
-    this.newItem.categoryLabel = data[0].label;
-    if (data) {
-      this.itemService.addItem(this.newItem).subscribe(item => {
-        this.itemAdded.emit(true);
-        this.resetWizardData();
-      });
+  for (const key in this.categories) {
+      if (this.categories[key].name === this.newItem.category) {
+        this.newItem.categoryLabel = this.categories[key].label;
+        this.newItem.type = this.categories[key].itemLabel;
     }
+  }
+  this.itemService.addItem(this.newItem).subscribe(data => {
+    this.itemAdded.emit(true);
+    this.resetWizardData();
   });
 }
 }
@@ -83,6 +86,7 @@ interface IItem {
   serNumber: number;
   category: string;
   categoryLabel: string;
+  type: string;
   emp: {
     id: number,
     fio: string,

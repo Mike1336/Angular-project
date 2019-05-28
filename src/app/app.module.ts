@@ -18,6 +18,7 @@ import { FakeBackendService } from './fake-backend.service';
 import { SearchFieldComponent } from './search-field/search-field.component';
 import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
 import { ItemWizardComponent } from './item-wizard/item-wizard.component';
+import { EmpWizardComponent } from './emp-wizard/emp-wizard.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ItemWizardComponent } from './item-wizard/item-wizard.component';
     NotFoundComponent,
     SearchFieldComponent,
     NavbarLeftComponent,
-    ItemWizardComponent
+    ItemWizardComponent,
+    EmpWizardComponent
   ],
   imports: [
     BrowserModule,

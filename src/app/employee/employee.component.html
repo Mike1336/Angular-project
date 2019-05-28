@@ -24,7 +24,10 @@
 <div class="emp-inf clr-col" *ngIf="contentReady">
     <h1 id="emp-name">{{emp.fio}}</h1>
     <h2 id="emp-position">{{emp.pos}}</h2>
-    <h2>Ответственный за категорию: <a routerLink="/inventory/{{emp.catLabel}}" id="emp-category">{{emp.cat}}</a></h2>
+    <h2 *ngIf="emp.cat !== ''; else noCat">Ответственный за категорию: <a routerLink="/inventory/{{emp.catLabel}}" id="emp-category">{{emp.cat}}</a></h2>
+    <ng-template #noCat>
+        <h2></h2>
+    </ng-template>
     <h3>Инвентарь:</h3>
 
     <img src="{{emp.img}}" alt="avatar" id="emp-avatar">

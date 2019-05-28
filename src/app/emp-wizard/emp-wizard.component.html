@@ -1,0 +1,97 @@
+<clr-wizard #wizard clrWizardSize="lg" [(clrWizardOpen)]="show" (clrWizardOnFinish)="checkFields()" (clrWizardOnCancel)="resetWizardData()">
+    <clr-wizard-title>Добавление сотруднка</clr-wizard-title>
+
+    <clr-wizard-button [type]="'cancel'">Отмена</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Назад</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Далее</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'">Добавить сотруднка</clr-wizard-button>
+
+    <clr-wizard-page [clrWizardPageNextDisabled]="name.pristine || !formPageOne.valid">
+        <ng-template clrPageTitle>Данные сотруднка</ng-template>
+        <form #formPageOne="ngForm">
+            <section class="form-block">
+                <label>Заполните поля ниже и нажмите "Далее"</label>
+                <div class="form-group">
+                    <label>ФИО:</label>
+                    <label for="nameInput" aria-haspopup="true" role="tooltip" [class.invalid]="name.touched && !name.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                    <input type="text" id="nameInput" required [(ngModel)]="newEmp.fio" name="name" #name="ngModel">
+                    <span class="tooltip-content">Обязательное поле!</span>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Отдел:</label>
+                    <label for="depSelector" aria-haspopup="true" role="tooltip" [class.invalid]="depSelect.touched && !depSelect.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                      <div class="select">
+                        <select  name="depSelector" #depSelect="ngModel" required [(ngModel)]="newEmp.dep">
+                          <option value="{{dep.name}}" *ngFor="let dep of departments" class="ng-star-inserted"> {{dep.name}} </option>
+                        </select>
+                        <span class="tooltip-content"></span>
+                      </div>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Должность:</label>
+                    <label for="posInput" aria-haspopup="true" role="tooltip" [class.invalid]="pos.touched && !pos.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                      <input type="text" id="posInput" required [(ngModel)]="newEmp.pos" name="pos" #pos="ngModel">
+                      <span class="tooltip-content">Обязательное поле!</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Дата начала работы:</label>
+                    <label for="startInput" aria-haspopup="true" role="tooltip" [class.invalid]="start.touched && !start.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
+                    <input type="date" clrDate id="startInput" required [(ngModel)]="newEmp.startWorking" name="start" #start="ngModel">
+                <span class="tooltip-content">Обязательное поле!</span>
+              </label>
+                </div>
+                <div class="form-group">
+                    <label>Закрепить категорию инвентаря:</label>
+                    <div class="select">
+                        <select name="catSelector" #depSelect="ngModel" [(ngModel)]="newEmp.cat">
+                          <option value="" selected="selected"> Нет категории </option>
+                          <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
+                        </select>
+                        <span class="tooltip-content"></span>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </clr-wizard-page>
+    <clr-wizard-page [clrWizardPageNextDisabled]="!formPageOne.valid">
+        <ng-template clrPageTitle>Подтверждение данных</ng-template>
+        <ng-template clrPageNavTitle>
+            <span>Подтверждение</span>
+        </ng-template>
+        <div *ngIf="formPageOne.valid">
+            <p>Проверьте введённые данные.</p>
+            <form class="compact">
+                <label>Добавляемый сотрудник:</label>
+                <section class="form-block">
+                    <div class="form-group">
+                        <label>ФИО:</label>
+                        <span>{{ this.newEmp.fio }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Отдел:</label>
+                        <span>{{ this.newEmp.dep }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Должность:</label>
+                        <span>{{ this.newEmp.pos }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Дата начала работы:</label>
+                        <span>{{ this.newEmp.startWorking }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Закрепленная категория:</label>
+                        <span *ngIf="this.newEmp.cat !== ''; else noCat">{{ this.newEmp.cat }}</span>
+                        <ng-template #noCat>
+                            <span> Отсутствует </span>
+                        </ng-template>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </clr-wizard-page>
+</clr-wizard>

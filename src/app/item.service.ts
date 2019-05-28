@@ -51,6 +51,5 @@ export class ItemService {
   public addItem(item: object) {
     const url = `${this.apiUrl + this.itemsEndpoint}`;
     return this.http.post(url, item);
-
   }
 }
