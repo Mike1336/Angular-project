@@ -41,8 +41,8 @@
                     <label>Дата начала работы:</label>
                     <label for="startInput" aria-haspopup="true" role="tooltip" [class.invalid]="start.touched && !start.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
                     <input type="date" clrDate id="startInput" required [(ngModel)]="newEmp.startWorking" name="start" #start="ngModel">
-                <span class="tooltip-content">Обязательное поле!</span>
-              </label>
+                    <span class="tooltip-content">Обязательное поле!</span>
+                  </label>
                 </div>
                 <div class="form-group">
                     <label>Закрепить категорию инвентаря:</label>

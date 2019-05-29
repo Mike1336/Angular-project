@@ -52,4 +52,8 @@ export class ItemService {
     const url = `${this.apiUrl + this.itemsEndpoint}`;
     return this.http.post(url, item);
   }
+  public updateItem(item: object) {
+    const url = `${this.apiUrl + this.itemsEndpoint}`;
+    return this.http.put(url, item);
+  }
 }

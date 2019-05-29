@@ -27,29 +27,29 @@
 <div class="clr-row clr-justify-content-end" *ngIf="contentReady">
     <form class="search">
         <label for="search_input">
-      <app-search-field [(searchQuery)]="searchField" (keyup)="search()"></app-search-field>
-    </label>
+          <app-search-field [(searchQuery)]="searchField" (keyup)="search()"></app-search-field>
+        </label>
     </form>
     <button class="btn clr-offset-1" (click)="itemWizard.show = true">Добавить</button>
 </div>
-<clr-datagrid *ngIf="contentReady">
+<clr-datagrid *ngIf="contentReady" [clrDgLoading]="loading">
     <clr-dg-placeholder>Увы! Запрашиваемый контент не найден :(</clr-dg-placeholder>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'name'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Название</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'serNumber'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Номер</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'category'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Категория</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'emp.fio'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Сотрудник</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'date'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Дата присвоения единицы</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'status'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Состояние</ng-container>
     </clr-dg-column>
     <clr-dg-row *clrDgItems="let item of items">

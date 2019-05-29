@@ -19,7 +19,7 @@ import { SearchFieldComponent } from './search-field/search-field.component';
 import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
 import { ItemWizardComponent } from './item-wizard/item-wizard.component';
 import { EmpWizardComponent } from './emp-wizard/emp-wizard.component';
-
+import { ItemModalComponent } from './item-modal/item-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,8 @@ import { EmpWizardComponent } from './emp-wizard/emp-wizard.component';
     SearchFieldComponent,
     NavbarLeftComponent,
     ItemWizardComponent,
-    EmpWizardComponent
+    EmpWizardComponent,
+    ItemModalComponent
   ],
   imports: [
     BrowserModule,

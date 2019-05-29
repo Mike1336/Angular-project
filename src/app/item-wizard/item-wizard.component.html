@@ -7,7 +7,8 @@
     <clr-wizard-button [type]="'finish'">Добавить единицу</clr-wizard-button>
 
     <clr-wizard-page [clrWizardPageNextDisabled]="name.pristine || !formPageOne.valid">
-        <ng-template clrPageTitle>Данные единицы</ng-template>
+        <ng-template clrPageTitle>Введите данные единицы</ng-template>
+        <ng-template clrPageNavTitle>Данные единицы</ng-template>
         <form #formPageOne="ngForm">
             <section class="form-block">
                 <label>Заполните поля ниже и нажмите "Далее"</label>
@@ -29,7 +30,7 @@
                     <label>Категория:</label>
                     <label for="typeSelector" aria-haspopup="true" role="tooltip" [class.invalid]="select.touched && !select.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
                     <div class="select">
-                      <select  name="typeSelector" #select="ngModel" required [(ngModel)]="newItem.category">
+                      <select class="clr-select"required [(ngModel)]="newItem.category"  name="typeSelector" #select="ngModel" >
                         <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
                       </select>
                       <span class="tooltip-content"></span>
@@ -57,9 +58,7 @@
     </clr-wizard-page>
     <clr-wizard-page [clrWizardPageNextDisabled]="!formPageOne.valid">
         <ng-template clrPageTitle>Подтверждение данных</ng-template>
-        <ng-template clrPageNavTitle>
-            <span>Подтверждение</span>
-        </ng-template>
+        <ng-template clrPageNavTitle><span>Подтверждение</span></ng-template>
         <div *ngIf="formPageOne.valid">
             <p>Проверьте введенные данные.</p>
             <form class="compact">
@@ -87,7 +86,6 @@
                         <ng-template #noEmp>
                             <span> Не назначен </span>
                         </ng-template>
-
                     </div>
                 </section>
             </form>

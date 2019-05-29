@@ -15,6 +15,7 @@ export class ItemsComponent implements OnInit {
  public currentCategory: string;
  public searchField = '';
  public contentReady = false;
+ public loading = false;
  @ViewChild('itemWizard') itemWizard: ItemWizardComponent;
   constructor(private itemService: ItemService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
@@ -29,6 +30,7 @@ export class ItemsComponent implements OnInit {
     });
     this.route.queryParams.subscribe(params => {
       if (params.keyword) {
+        this.loading = true;
         this.searchField = params.keyword;
         this.searchItems(this.searchField, this.filterBy);
      } else {
@@ -74,15 +76,19 @@ export class ItemsComponent implements OnInit {
     this.filterBy !== 'all' ? this.getItemsOfCategory(this.filterBy) : this.getAllItems();
   }
   public getAllItems() {
+    this.loading = true;
     this.itemService.getItems().subscribe(data => {
       this.items = data;
       this.contentReady = true;
+      this.loading = false;
     });
   }
   public getItemsOfCategory(category: string) {
+    this.loading = true;
     this.itemService.getItemsByCategory(category).subscribe(data => {
       this.items = data;
       this.contentReady = true;
+      this.loading = false;
     });
   }
   public getCurrentCategory(categoryLabel: string) {
@@ -94,11 +100,14 @@ export class ItemsComponent implements OnInit {
     this.itemService.getItemsBySearchWord(queryString, category).subscribe(data => {
         this.items = data;
         this.contentReady = true;
+        this.loading = false;
     });
   }
   public deleteItem(id: number) {
+    this.loading = true;
     this.itemService.removeItem(id).subscribe(data => {
       this.getItemsOfCurrentCategory();
     });
+    this.loading = false;
   }
 }

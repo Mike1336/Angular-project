@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-
+<app-item-modal *ngIf="contentReady" #modal (itemAdded)="createItem()" (itemEdited)="saveEdit()"></app-item-modal>
 <div class="item-inf clr-col" *ngIf="contentReady">
     <h1>{{item.type}} {{item.name}} ({{item.serNumber}})</h1>
     <h3>Состояние: {{item.status}}</h3>
@@ -30,24 +30,31 @@
     </ng-template>
 </div>
 
-<clr-datagrid class="clr-col" *ngIf="contentReady">
+<clr-datagrid class="clr-col" *ngIf="contentReady" [clrDgLoading]="loading">
+    <clr-dg-action-bar>
+        <div class="btn-group">
+            <button type="button" class="btn btn-sm btn-secondary" (click)="showCreateModal()">
+              <clr-icon shape="plus"></clr-icon> Добавить
+            </button>
+        </div>
+    </clr-dg-action-bar>
     <clr-dg-placeholder>История пуста</clr-dg-placeholder>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'reason'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Причина ремонта</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'indate'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Дата отвоза в ремонт</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
-        <ng-container *clrDgHideableColumn="{hidden: false}">Дата привоза из ремонта</ng-container>
+    <clr-dg-column [clrDgField]="'outdate'">
+        <ng-container *clrDgHideableColumn="{hidden: false}">Дата возвращения из ремонта</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'serviceCenter'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Сервисный центр</ng-container>
     </clr-dg-column>
-    <clr-dg-row *clrDgItems="let visit of item.history">
+    <clr-dg-row *clrDgItems="let visit of item.history; let i = index">
         <clr-dg-action-overflow>
-            <button class="action-item" (click)="onEdit(user)">Изменить</button>
-            <button class="action-item" (click)="onDelete(user)">Удалить</button>
+            <button class="action-item" (click)="showEditModal(i)">Изменить</button>
+            <button class="action-item" (click)="deleteItem(i)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell>{{visit.reason}}</clr-dg-cell>
         <clr-dg-cell>{{visit.indate}}</clr-dg-cell>

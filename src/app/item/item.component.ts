@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../item.service';
 import { ActivatedRoute } from '@angular/router';
+import { ItemModalComponent } from '../item-modal/item-modal.component';
 
 @Component({
   selector: 'app-item',
@@ -13,23 +14,62 @@ export class ItemComponent implements OnInit {
   public itemId: number;
   public item: IItem;
   public contentReady = false;
-constructor(private itemService: ItemService, private route: ActivatedRoute) {}
-ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.itemId = params.id;
-    });
-    this.getItem(this.itemId);
+  public loading = false;
+
+  @ViewChild('modal') itemModal: ItemModalComponent;
+
+  constructor(private itemService: ItemService, private route: ActivatedRoute) {}
+  ngOnInit() {
+      this.route.params.subscribe(params => {
+        this.itemId = params.id;
+      });
+      this.getItem(this.itemId);
+    }
+  public getItem(id: number) {
+      this.itemService.getItemById(id).subscribe(data => {
+        this.title = `${data.type} ${data.name}`;
+        this.item = data;
+        this.contentReady = true;
+        this.loading = false;
+      });
+    }
+  public showCreateModal() {
+    this.itemModal.newItem = this.item;
+    this.itemModal.show = true;
+    this.itemModal.showAction('create');
   }
-getItem(id: number) {
-    this.itemService.getItemById(id).subscribe(data => {
-      this.title = `${data.type} ${data.name}`;
-      this.item = data;
-      this.contentReady = true;
-      console.log(data);
+  public createItem() {
+    this.loading = true;
+    this.itemService.updateItem(this.itemModal.newItem).subscribe( data => {
+      this.getItem(this.itemId);
+      this.itemModal.cleanForm();
+      this.loading = false;
     });
+  }
+  public showEditModal(itemIndex: number) {
+    this.itemModal.indexForEdit = itemIndex;
+    this.itemModal.newItem = this.item;
+    this.itemModal.show = true;
+    this.itemModal.showAction('edit');
+    this.itemModal.newVisit = this.item.history[itemIndex];
+  }
+  public saveEdit() {
+    this.loading = true;
+    this.itemService.updateItem(this.itemModal.newItem).subscribe( data => {
+      this.getItem(this.itemId);
+      this.itemModal.cleanForm();
+    });
+    this.loading = false;
+  }
+  public deleteItem(index: number) {
+    this.loading = true;
+    this.item.history.splice(index, 1);
+    this.itemService.updateItem(this.item).subscribe( data => {
+      this.getItem(this.itemId);
+    });
+    this.loading = false;
   }
 }
-
 interface IItem {
   id: number;
   name: string;

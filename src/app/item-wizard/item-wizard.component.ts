@@ -25,6 +25,7 @@ public newItem: IItem = {
     },
     date: '',
     status: '',
+    history: [],
   };
 public emps: IEmps;
 public categories: any;
@@ -93,6 +94,7 @@ interface IItem {
   };
   date: string;
   status: string;
+  history: [];
 }
 interface IEmps {
   id: number;
@@ -105,6 +107,6 @@ interface IEmps {
   catLabel: string;
   img: string;
   items: [
-    { type: string, model: string, date: string },
+    { type: string, model: string, date: string }
   ];
 }

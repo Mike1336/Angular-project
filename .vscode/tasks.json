@@ -21,6 +21,11 @@
       "type": "npm",
       "script": "cl",
       "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "build",
+      "problemMatcher": []
     }
   ]
 }
