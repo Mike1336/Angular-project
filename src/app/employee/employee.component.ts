@@ -18,12 +18,13 @@ export class EmployeeComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.empId = params.id;
     });
-    this.getItem(this.empId);
+    this.getEmployee(this.empId);
   }
-  getItem(id: number) {
+  getEmployee(id: number) {
     this.empService.getEmpById(id).subscribe(data => {
       this.title = `${data.fio} (${data.dep})`;
       this.emp = data;
+      console.log(this.emp);
       this.contentReady = true;
     });
   }

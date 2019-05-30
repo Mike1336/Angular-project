@@ -7,7 +7,7 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "cr": "ng g c emps-edit-modal"
+        "cr": "ng g c items-of-emp-edit"
     },
     "private": true,
     "dependencies": {

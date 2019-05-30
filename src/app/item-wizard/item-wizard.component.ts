@@ -25,17 +25,24 @@ public newItem: IItem = {
     status: '',
     history: [],
   };
-public emps: IEmps;
+public emps: any;
 public categories: any;
+public itemId: number;
 
 constructor(private itemService: ItemService, private empservice: EmpService) { }
 
 ngOnInit() {
-  this.empservice.getStaff().subscribe(data => {
-    this.emps = data;
-  });
+  this.getEmps();
   this.itemService.getCategories().subscribe(data => {
     this.categories = data;
+  });
+  this.itemService.getItems().subscribe(data => {
+    this.itemId = data.length + 1;
+  });
+}
+public getEmps() {
+  this.empservice.getStaff().subscribe(data => {
+    this.emps = data;
   });
 }
 public resetWizardData() {
@@ -68,6 +75,7 @@ public checkFields() {
   const yyyy = now.getFullYear();
   const today = `${mm}/${dd}/${yyyy}`;
   this.newItem.date = today;
+  this.addItemToEmp(this.newItem.empId);
 }
   for (const key in this.categories) {
       if (this.categories[key].name === this.newItem.category) {
@@ -78,6 +86,36 @@ public checkFields() {
   this.itemService.addItem(this.newItem).subscribe(data => {
     this.itemAdded.emit(true);
     this.resetWizardData();
+  });
+}
+public addItemToEmp(id: number) {
+  this.empservice.getEmpById(id).subscribe(data => {
+    for (const key in data.items) {
+        if (data.items[key].type === this.newItem.type) {
+          data.items[key].modelId = this.itemId;
+          data.items[key].modelName = this.newItem.name;
+          data.items[key].date = this.newItem.date;
+        }
+    }
+    this.empservice.updateEmp(data).subscribe();
+  });
+}
+// при выборе категории исключаются сотрудники, у которых уже есть единицы данной категории,
+// чтобы избежать переприсваиваний единиц сотрудникам
+public checkEmps(category: string) {
+  this.getEmps();
+  this.itemService.getCategoryByName(category).subscribe(data => {
+    // проход по сотрудникам
+    for (const empkey in this.emps) {
+    // проход по свойству единиц у итерируемого сотрудника
+      for (const itemkey in this.emps[empkey].items) {
+        // проверка есть ли у него уже единица из выбранной категории
+        if (this.emps[empkey].items[itemkey].type === data[0].itemLabel && this.emps[empkey].items[itemkey].modelId !== null) {
+          // удаление из списка выбора сотрудников для закрепления
+          this.emps.splice(empkey, 1);
+        }
+      }
+    }
   });
 }
 }
@@ -93,18 +131,4 @@ interface IItem {
   date: string;
   status: string;
   history: [];
-}
-interface IEmps {
-  id: number;
-  fio: string;
-  pos: string;
-  dep: string;
-  depLabel: string;
-  startWorking: string;
-  cat: string;
-  catLabel: string;
-  img: string;
-  items: [
-    { type: string, model: string, date: string }
-  ];
 }

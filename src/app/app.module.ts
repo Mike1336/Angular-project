@@ -37,7 +37,7 @@ import { EmpsEditModalComponent } from './emps-edit-modal/emps-edit-modal.compon
     EmpWizardComponent,
     ItemModalComponent,
     ItemsEditModalComponent,
-    EmpsEditModalComponent
+    EmpsEditModalComponent,
   ],
   imports: [
     BrowserModule,

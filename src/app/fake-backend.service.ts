@@ -80,9 +80,9 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Мониторы',
         categoryLabel: 'monitors',
         type: 'Монитор',
-        empId: 1,
-        empFio: 'Иванов Иван Иванович',
-        date: '11/22/2017',
+        empId: null,
+        empFio: '',
+        date: '-',
         status: 'Хорошее',
         history: [
           {
@@ -106,9 +106,9 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Мониторы',
         categoryLabel: 'monitors',
         type: 'Монитор',
-        empId: 2,
-        empFio: 'Петров Иван Петрович',
-        date: '03/20/2019',
+        empId: null,
+        empFio: '',
+        date: '-',
         status: 'Ремонтируется',
         history: [
           {
@@ -132,9 +132,9 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Моноблоки',
         categoryLabel: 'monoblocks',
         type: 'Моноблок',
-        empId: 3,
-        empFio: 'Петров Петр Петрович',
-        date: '04/08/2019',
+        empId: null,
+        empFio: '',
+        date: '-',
         status: 'Хорошее',
         history: [
           {
@@ -158,9 +158,9 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Ноутбуки',
         categoryLabel: 'laptops',
         type: 'Ноутбук',
-        empId: 4,
-        empFio: 'Иванов Иван Сидорович',
-        date: '11/22/2017',
+        empId: null,
+        empFio: '',
+        date: '-',
         status: 'Хорошее',
         history: [
           {
@@ -184,9 +184,9 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Ноутбуки',
         categoryLabel: 'laptops',
         type: 'Ноутбук',
-        empId: 5,
-        empFio: 'Петров Иван Петрович',
-        date: '12/26/2016',
+        empId: null,
+        empFio: '',
+        date: '-',
         status: 'Хорошее',
         history: [
           {
@@ -216,13 +216,13 @@ export class FakeBackendService implements InMemoryDbService {
         catLabel: 'laptops',
         img: 'assets/images/proger.jpg',
         items: [
-          { id: 1, type: 'Монитор', model: '-', date: '-' },
-          { id: 2, type: 'Моноблок', model: '-', date: '-' },
-          { id: 3, type: 'Ноутбук', model: '-', date: '-' },
-          { id: 4, type: 'Клавиатура', model: '-', date: '-' },
-          { id: 5, type: 'Мышь', model: '-', date: '-' },
-          { id: 6, type: 'Кресло', model: '-', date: '-' },
-          { id: 7, type: 'Стол', model: '-', date: '-' }
+          { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
+          { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
+          { type: 'Ноутбук', modelId: null, modelName: '-', date: '-' },
+          { type: 'Клавиатура', modelId: null, modelName: '-', date: '-' },
+          { type: 'Мышь', modelId: null, modelName: '-', date: '-' },
+          { type: 'Кресло', modelId: null, modelName: '-', date: '-' },
+          { type: 'Стол', modelId: null, modelName: '-', date: '-' }
         ]
       },
       {
@@ -236,13 +236,13 @@ export class FakeBackendService implements InMemoryDbService {
         catLabel: 'monoblocks',
         img: 'assets/images/proger.jpg',
         items: [
-          { id: 1, type: 'Монитор', model: '-', date: '-' },
-          { id: 2, type: 'Моноблок', model: '-', date: '-' },
-          { id: 3, type: 'Ноутбук', model: '-', date: '-' },
-          { id: 4, type: 'Клавиатура', model: '-', date: '-' },
-          { id: 5, type: 'Мышь', model: '-', date: '-' },
-          { id: 6, type: 'Кресло', model: '-', date: '-' },
-          { id: 7, type: 'Стол', model: '-', date: '-' }
+          { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
+          { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
+          { type: 'Ноутбук', modelId: null, modelName: '-', date: '-' },
+          { type: 'Клавиатура', modelId: null, modelName: '-', date: '-' },
+          { type: 'Мышь', modelId: null, modelName: '-', date: '-' },
+          { type: 'Кресло', modelId: null, modelName: '-', date: '-' },
+          { type: 'Стол', modelId: null, modelName: '-', date: '-' }
         ]
       },
       {
@@ -256,13 +256,13 @@ export class FakeBackendService implements InMemoryDbService {
         catLabel: 'keyboards',
         img: 'assets/images/proger.jpg',
         items: [
-          { id: 1, type: 'Монитор', model: '-', date: '-' },
-          { id: 2, type: 'Моноблок', model: '-', date: '-' },
-          { id: 3, type: 'Ноутбук', model: '-', date: '-' },
-          { id: 4, type: 'Клавиатура', model: '-', date: '-' },
-          { id: 5, type: 'Мышь', model: '-', date: '-' },
-          { id: 6, type: 'Кресло', model: '-', date: '-' },
-          { id: 7, type: 'Стол', model: '-', date: '-' }
+          { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
+          { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
+          { type: 'Ноутбук', modelId: null, modelName: '-', date: '-' },
+          { type: 'Клавиатура', modelId: null, modelName: '-', date: '-' },
+          { type: 'Мышь', modelId: null, modelName: '-', date: '-' },
+          { type: 'Кресло', modelId: null, modelName: '-', date: '-' },
+          { type: 'Стол', modelId: null, modelName: '-', date: '-' }
         ]
       },
       {
@@ -276,13 +276,13 @@ export class FakeBackendService implements InMemoryDbService {
         catLabel: 'tables',
         img: 'assets/images/proger.jpg',
         items: [
-          { id: 1, type: 'Монитор', model: '-', date: '-' },
-          { id: 2, type: 'Моноблок', model: '-', date: '-' },
-          { id: 3, type: 'Ноутбук', model: '-', date: '-' },
-          { id: 4, type: 'Клавиатура', model: '-', date: '-' },
-          { id: 5, type: 'Мышь', model: '-', date: '-' },
-          { id: 6, type: 'Кресло', model: '-', date: '-' },
-          { id: 7, type: 'Стол', model: '-', date: '-' }
+          { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
+          { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
+          { type: 'Ноутбук', modelId: null, modelName: '-', date: '-' },
+          { type: 'Клавиатура', modelId: null, modelName: '-', date: '-' },
+          { type: 'Мышь', modelId: null, modelName: '-', date: '-' },
+          { type: 'Кресло', modelId: null, modelName: '-', date: '-' },
+          { type: 'Стол', modelId: null, modelName: '-', date: '-' }
         ]
       },
       {
@@ -296,13 +296,13 @@ export class FakeBackendService implements InMemoryDbService {
         catLabel: 'mouses',
         img: 'assets/images/proger.jpg',
         items: [
-          { id: 1, type: 'Монитор', model: '-', date: '-' },
-          { id: 2, type: 'Моноблок', model: '-', date: '-' },
-          { id: 3, type: 'Ноутбук', model: '-', date: '-' },
-          { id: 4, type: 'Клавиатура', model: '-', date: '-' },
-          { id: 5, type: 'Мышь', model: '-', date: '-' },
-          { id: 6, type: 'Кресло', model: '-', date: '-' },
-          { id: 7, type: 'Стол', model: '-', date: '-' }
+          { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
+          { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
+          { type: 'Ноутбук', modelId: null, modelName: '-', date: '-' },
+          { type: 'Клавиатура', modelId: null, modelName: '-', date: '-' },
+          { type: 'Мышь', modelId: null, modelName: '-', date: '-' },
+          { type: 'Кресло', modelId: null, modelName: '-', date: '-' },
+          { type: 'Стол', modelId: null, modelName: '-', date: '-' }
         ]
       },
       {
@@ -316,13 +316,13 @@ export class FakeBackendService implements InMemoryDbService {
         catLabel: 'armchairs',
         img: 'assets/images/proger.jpg',
         items: [
-          { id: 1, type: 'Монитор', model: '-', date: '-' },
-          { id: 2, type: 'Моноблок', model: '-', date: '-' },
-          { id: 3, type: 'Ноутбук', model: '-', date: '-' },
-          { id: 4, type: 'Клавиатура', model: '-', date: '-' },
-          { id: 5, type: 'Мышь', model: '-', date: '-' },
-          { id: 6, type: 'Кресло', model: '-', date: '-' },
-          { id: 7, type: 'Стол', model: '-', date: '-' }
+          { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
+          { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
+          { type: 'Ноутбук', modelId: null, modelName: '-', date: '-' },
+          { type: 'Клавиатура', modelId: null, modelName: '-', date: '-' },
+          { type: 'Мышь', modelId: null, modelName: '-', date: '-' },
+          { type: 'Кресло', modelId: null, modelName: '-', date: '-' },
+          { type: 'Стол', modelId: null, modelName: '-', date: '-' }
         ]
       },
     ];

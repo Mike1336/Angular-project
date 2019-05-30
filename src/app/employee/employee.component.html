@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-
+<app-items-of-emp-edit #editModal></app-items-of-emp-edit>
 <div class="emp-inf clr-col" *ngIf="contentReady">
     <h1 id="emp-name">{{emp.fio}}</h1>
     <h2 id="emp-position">{{emp.pos}}</h2>
@@ -47,7 +47,17 @@
                 <button class="action-item" (click)="onEdit(user)">Изменить</button>
             </clr-dg-action-overflow>
             <clr-dg-cell>{{item.type}}</clr-dg-cell>
-            <clr-dg-cell>{{item.model}}</clr-dg-cell>
+            <ng-container *ngIf="item.modelId !== null; else noItem">
+                <clr-dg-cell>
+                    <a routerLink="/item/{{item.modelId}}">{{item.modelName}}</a>
+                </clr-dg-cell>
+            </ng-container>
+            <ng-template #noItem>
+                <clr-dg-cell>
+                    {{item.modelName}}
+                </clr-dg-cell>
+            </ng-template>
+
             <clr-dg-cell>{{item.date}}</clr-dg-cell>
         </clr-dg-row>
         <clr-dg-footer>

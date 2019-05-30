@@ -21,7 +21,7 @@
                     <label>Категория:</label>
                     <label for="typeSelector" aria-haspopup="true" role="tooltip" [class.invalid]="select.touched && !select.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
                 <div class="select">
-                  <select class="clr-select"required [(ngModel)]="editingItem.category"  name="typeSelector" #select="ngModel" >
+                  <select class="clr-select"required [(ngModel)]="editingItem.category" (ngModelChange)="checkEmps(editingItem.category)"  name="typeSelector" #select="ngModel" >
                     <option value="{{editingItem.category}}" class="ng-star-inserted" selected = "selected"> {{editingItem.category}} </option>
                     <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
                   </select>
@@ -40,9 +40,9 @@
                     <label for="empSelector">Сотрудник для закрепления:</label>
                     <div class="select">
                         <select name="empSelector" #select="ngModel" [(ngModel)]="editingItem.empFio">
-                    <option value="{{editingItem.empFio}}" class="ng-star-inserted" selected = "selected"> {{editingItem.empFio}} </option>
-                    <option value="{{emp.fio}}" *ngFor="let emp of emps" class="ng-star-inserted"> {{emp.fio}} </option>
-                    <option value="" class="ng-star-inserted"> Не назначен </option>
+                          <option *ngIf="editingItem.empFio !== ''" value="{{editingItem.empFio}}" class="ng-star-inserted" selected = "selected"> {{editingItem.empFio}} </option>
+                          <option value="{{emp.fio}}" *ngFor="let emp of emps" class="ng-star-inserted"> {{emp.fio}} </option>
+                          <option value="" class="ng-star-inserted"> Не назначен </option>
                   </select>
                     </div>
                 </div>

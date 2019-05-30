@@ -22,6 +22,15 @@ export class EmpWizardComponent implements OnInit {
     cat: '',
     catLabel: '',
     img: 'assets/images/proger.jpg',
+    items: [
+      { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
+      { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
+      { type: 'Ноутбук', modelId: null, modelName: '-', date: '-' },
+      { type: 'Клавиатура', modelId: null, modelName: '-', date: '-' },
+      { type: 'Мышь', modelId: null, modelName: '-', date: '-' },
+      { type: 'Кресло', modelId: null, modelName: '-', date: '-' },
+      { type: 'Стол', modelId: null, modelName: '-', date: '-' }
+    ],
     };
   public departments: any;
   public categories: any;
@@ -56,6 +65,7 @@ export class EmpWizardComponent implements OnInit {
       }
     }
     this.empservice.addEmp(this.newEmp).subscribe(data => {
+      console.log(this.newEmp);
       this.empAdded.emit(true);
       this.resetWizardData();
     });
@@ -71,4 +81,5 @@ interface IEmp {
   cat: string;
   catLabel: string;
   img: string;
+  items: any;
 }
