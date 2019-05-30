@@ -47,7 +47,7 @@
                 <div class="form-group">
                     <label for="empSelector">Сотрудник для закрепления:</label>
                     <div class="select">
-                        <select name="empSelector" #select="ngModel" [(ngModel)]="newItem.emp.fio">
+                        <select name="empSelector" #select="ngModel" [(ngModel)]="newItem.empFio">
                         <option value="" class="ng-star-inserted" selected = "selected"> Не назначен </option>
                         <option value="{{emp.fio}}" *ngFor="let emp of emps" class="ng-star-inserted"> {{emp.fio}} </option>
                       </select>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="form-group">
                         <label>Сотрудник для закрепления:</label>
-                        <span *ngIf="this.newItem.emp.fio !== ''; else noEmp">{{ this.newItem.emp.fio }}</span>
+                        <span *ngIf="this.newItem.empFio !== ''; else noEmp">{{ this.newItem.empFio }}</span>
                         <ng-template #noEmp>
                             <span> Не назначен </span>
                         </ng-template>

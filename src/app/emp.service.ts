@@ -38,12 +38,16 @@ export class EmpService {
     url = `${this.apiUrl + this.empsEndpoint}?fio=${word}${depName}`;
     return this.http.get(url);
   }
-  public removeEmp(id: number) {
-    const url = `${this.apiUrl + this.empsEndpoint}/${id}`;
-    return this.http.delete(url);
-  }
   public addEmp(emp: object) {
     const url = `${this.apiUrl + this.empsEndpoint}`;
     return this.http.post(url, emp);
+  }
+  public updateEmp(emp: object) {
+    const url = `${this.apiUrl + this.empsEndpoint}`;
+    return this.http.put(url, emp);
+  }
+  public removeEmp(id: number) {
+    const url = `${this.apiUrl + this.empsEndpoint}/${id}`;
+    return this.http.delete(url);
   }
 }

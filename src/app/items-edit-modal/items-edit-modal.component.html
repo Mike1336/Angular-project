@@ -39,8 +39,8 @@
                 <div class="form-group">
                     <label for="empSelector">Сотрудник для закрепления:</label>
                     <div class="select">
-                        <select name="empSelector" #select="ngModel" [(ngModel)]="editingItem.emp.fio">
-                    <option value="{{editingItem.emp.fio}}" class="ng-star-inserted" selected = "selected"> {{editingItem.emp.fio}} </option>
+                        <select name="empSelector" #select="ngModel" [(ngModel)]="editingItem.empFio">
+                    <option value="{{editingItem.empFio}}" class="ng-star-inserted" selected = "selected"> {{editingItem.empFio}} </option>
                     <option value="{{emp.fio}}" *ngFor="let emp of emps" class="ng-star-inserted"> {{emp.fio}} </option>
                     <option value="" class="ng-star-inserted"> Не назначен </option>
                   </select>

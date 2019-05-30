@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmpService } from '../emp.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpWizardComponent } from '../emp-wizard/emp-wizard.component';
+import { EmpsEditModalComponent } from '../emps-edit-modal/emps-edit-modal.component';
+import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-employees',
@@ -17,7 +19,9 @@ export class EmployeesComponent implements OnInit {
  public searchField = '';
  public contentReady = false;
  @ViewChild('empWizard') empWizard: EmpWizardComponent;
-  constructor(private empservice: EmpService, private route: ActivatedRoute, private router: Router) {}
+ @ViewChild('editModal') modal: EmpsEditModalComponent;
+
+  constructor(private empservice: EmpService, private itemService: ItemService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.filterBy = params.dep;
@@ -99,7 +103,14 @@ export class EmployeesComponent implements OnInit {
       this.contentReady = true;
     });
   }
-
+  public editEmp(index: number) {
+    this.itemService.getItemsByEmpId(this.staff[index].id).subscribe(data => {
+      this.modal.empItems = data;
+    });
+    this.modal.empName = this.staff[index].fio;
+    this.modal.editingEmp = this.staff[index];
+    this.modal.show = true;
+  }
   public deleteEmp(id: number) {
     this.empservice.removeEmp(id).subscribe(data => {
       this.getEmpsOfCurrentDep();

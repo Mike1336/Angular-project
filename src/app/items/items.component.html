@@ -60,7 +60,7 @@
         <clr-dg-cell><a routerLink="/item/{{item.id}}">{{item.name}}</a></clr-dg-cell>
         <clr-dg-cell>{{item.serNumber}}</clr-dg-cell>
         <clr-dg-cell>{{item.category}}</clr-dg-cell>
-        <clr-dg-cell *ngIf="item.emp.fio !== ''; else noEmp"><a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></clr-dg-cell>
+        <clr-dg-cell *ngIf="item.empFio !== ''; else noEmp"><a routerLink="/employee/{{item.empId}}">{{item.empFio}}</a></clr-dg-cell>
         <ng-template #noEmp>
             <clr-dg-cell>Не назначен</clr-dg-cell>
         </ng-template>

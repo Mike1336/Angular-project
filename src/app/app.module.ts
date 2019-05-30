@@ -21,6 +21,7 @@ import { ItemWizardComponent } from './item-wizard/item-wizard.component';
 import { EmpWizardComponent } from './emp-wizard/emp-wizard.component';
 import { ItemModalComponent } from './item-modal/item-modal.component';
 import { ItemsEditModalComponent } from './items-edit-modal/items-edit-modal.component';
+import { EmpsEditModalComponent } from './emps-edit-modal/emps-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ItemsEditModalComponent } from './items-edit-modal/items-edit-modal.com
     ItemWizardComponent,
     EmpWizardComponent,
     ItemModalComponent,
-    ItemsEditModalComponent
+    ItemsEditModalComponent,
+    EmpsEditModalComponent
   ],
   imports: [
     BrowserModule,

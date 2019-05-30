@@ -21,6 +21,7 @@
     </div>
 </div>
 <app-emp-wizard #empWizard (empAdded)="getEmpsOfCurrentDep()"></app-emp-wizard>
+<app-emps-edit-modal #editModal (empEdited)="getEmpsOfCurrentDep()" (empEditCanceled)="getEmpsOfCurrentDep()"></app-emps-edit-modal>
 <h3 class="text-center">{{currentDep}}</h3>
 <div class="clr-row clr-justify-content-end">
     <form class="search" *ngIf="contentReady">
@@ -30,7 +31,7 @@
     </form>
     <button class="btn clr-offset-1" (click)="empWizard.show = true">Добавить</button>
 </div>
-<clr-datagrid *ngIf="contentReady">
+<clr-datagrid *ngIf="contentReady" [clrDgLoading]="loading">
     <clr-dg-placeholder>Увы! Запрашиваемый контент не найден :(</clr-dg-placeholder>
     <clr-dg-column>
         <ng-container *clrDgHideableColumn="{hidden: false}">ФИО сотрудника</ng-container>
@@ -44,9 +45,9 @@
     <clr-dg-column>
         <ng-container *clrDgHideableColumn="{hidden: false}">Ответственный(ая) за категорию на сайте</ng-container>
     </clr-dg-column>
-    <clr-dg-row *clrDgItems="let emp of staff">
+    <clr-dg-row *clrDgItems="let emp of staff; let i = index">
         <clr-dg-action-overflow>
-            <button class="action-item" (click)="onEdit(user)">Изменить</button>
+            <button class="action-item" (click)="editEmp(i)">Изменить</button>
             <button class="action-item" (click)="deleteEmp(emp.id)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/employee/{{emp.id}}">{{emp.fio}}</a></clr-dg-cell>

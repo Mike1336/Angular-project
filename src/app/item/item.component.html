@@ -24,7 +24,7 @@
 <div class="item-inf clr-col" *ngIf="contentReady">
     <h1>{{item.type}} {{item.name}} ({{item.serNumber}})</h1>
     <h3>Состояние: {{item.status}}</h3>
-    <h2 *ngIf="item.emp.id !== null; else noEmp">Закреплен(а) за <a routerLink="/employee/{{item.emp.id}}">{{item.emp.fio}}</a></h2>
+    <h2 *ngIf="item.empId !== null; else noEmp">Закреплен(а) за <a routerLink="/employee/{{item.empId}}">{{item.empFio}}</a></h2>
     <ng-template #noEmp>
         <h2> Нет закрепленного сотрудника </h2>
     </ng-template>

@@ -80,10 +80,8 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Мониторы',
         categoryLabel: 'monitors',
         type: 'Монитор',
-        emp: {
-          id: 1,
-          fio : 'Иванов Иван Иванович'
-        },
+        empId: 1,
+        empFio: 'Иванов Иван Иванович',
         date: '11/22/2017',
         status: 'Хорошее',
         history: [
@@ -108,10 +106,8 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Мониторы',
         categoryLabel: 'monitors',
         type: 'Монитор',
-        emp: {
-          id: 2,
-          fio : 'Петров Иван Петрович'
-        },
+        empId: 2,
+        empFio: 'Петров Иван Петрович',
         date: '03/20/2019',
         status: 'Ремонтируется',
         history: [
@@ -136,10 +132,8 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Моноблоки',
         categoryLabel: 'monoblocks',
         type: 'Моноблок',
-        emp: {
-          id: 3,
-          fio : 'Петров Петр Петрович'
-        },
+        empId: 3,
+        empFio: 'Петров Петр Петрович',
         date: '04/08/2019',
         status: 'Хорошее',
         history: [
@@ -164,10 +158,8 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Ноутбуки',
         categoryLabel: 'laptops',
         type: 'Ноутбук',
-        emp: {
-          id: 4,
-          fio : 'Иванов Иван Сидорович'
-        },
+        empId: 4,
+        empFio: 'Иванов Иван Сидорович',
         date: '11/22/2017',
         status: 'Хорошее',
         history: [
@@ -192,10 +184,8 @@ export class FakeBackendService implements InMemoryDbService {
         category: 'Ноутбуки',
         categoryLabel: 'laptops',
         type: 'Ноутбук',
-        emp: {
-          id: 5,
-          fio : 'Петров Иван Петрович'
-        },
+        empId: 5,
+        empFio: 'Петров Иван Петрович',
         date: '12/26/2016',
         status: 'Хорошее',
         history: [

@@ -69,11 +69,9 @@ interface IItem {
   name: string;
   serNumber: number;
   type: string;
+  empId: number;
+  empFio: string;
   categoryLabel: string;
-  emp: {
-    id: number,
-    fio: string,
-  };
   date: string;
   status: string;
   history: [

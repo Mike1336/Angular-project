@@ -32,6 +32,10 @@ export class ItemService {
     const url = `${this.apiUrl + this.itemsEndpoint}?categoryLabel=${category}`;
     return this.http.get(url);
   }
+  public getItemsByEmpId(id: number) {
+    const url = `${this.apiUrl + this.itemsEndpoint}?empId=${id}`;
+    return this.http.get(url);
+  }
   public getItemsBySearchWord(word: string, category: string) {
     let url: string;
     let categoryName: string;
@@ -44,10 +48,6 @@ export class ItemService {
     }
     return this.http.get(url);
   }
-  public removeItem(id: number) {
-    const url = `${this.apiUrl + this.itemsEndpoint}/${id}`;
-    return this.http.delete(url);
-  }
   public addItem(item: object) {
     const url = `${this.apiUrl + this.itemsEndpoint}`;
     return this.http.post(url, item);
@@ -55,5 +55,9 @@ export class ItemService {
   public updateItem(item: object) {
     const url = `${this.apiUrl + this.itemsEndpoint}`;
     return this.http.put(url, item);
+  }
+  public removeItem(id: number) {
+    const url = `${this.apiUrl + this.itemsEndpoint}/${id}`;
+    return this.http.delete(url);
   }
 }

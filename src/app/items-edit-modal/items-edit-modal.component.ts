@@ -18,10 +18,8 @@ export class ItemsEditModalComponent implements OnInit {
     category: '',
     categoryLabel: '',
     type: '',
-    emp: {
-      id: null,
-      fio: '',
-    },
+    empId: null,
+    empFio: '',
     date: '',
     status: '',
     history: [],
@@ -41,13 +39,13 @@ export class ItemsEditModalComponent implements OnInit {
     });
   }
   public editItem() {
-    if (this.editingItem.emp.fio === '') {
-      this.editingItem.emp.id = null;
+    if (this.editingItem.empFio === '') {
+      this.editingItem.empId = null;
       this.editingItem.date = '-';
     } else {
     for (const key in this.emps) {
-        if (this.emps[key].fio === this.editingItem.emp.fio) {
-          this.editingItem.emp.id = this.emps[key].id;
+        if (this.emps[key].fio === this.editingItem.empFio) {
+          this.editingItem.empId = this.emps[key].id;
       }
     }
     const now = new Date();
@@ -65,6 +63,7 @@ export class ItemsEditModalComponent implements OnInit {
           this.editingItem.type = this.categories[key].itemLabel;
       }
     }
+    console.log(this.editingItem);
     this.itemService.updateItem(this.editingItem).subscribe(data => {
       this.itemEdited.emit(true);
     });
@@ -74,7 +73,6 @@ export class ItemsEditModalComponent implements OnInit {
     this.itemEditCanceled.emit(true);
     this.show = false;
   }
-
 }
 interface IItem {
   id: number;
@@ -83,10 +81,8 @@ interface IItem {
   category: string;
   categoryLabel: string;
   type: string;
-  emp: {
-    id: number,
-    fio: string,
-  };
+  empId: number;
+  empFio: string;
   date: string;
   status: string;
   history: [];

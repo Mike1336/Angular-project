@@ -19,10 +19,8 @@ public newItem: IItem = {
     category: '',
     categoryLabel: '',
     type: '',
-    emp: {
-      id: null,
-      fio: '',
-    },
+    empId: null,
+    empFio: '',
     date: '',
     status: '',
     history: [],
@@ -47,18 +45,19 @@ public resetWizardData() {
   this.newItem.category = '';
   this.newItem.categoryLabel = '';
   this.newItem.type = '';
-  this.newItem.emp.fio = '';
+  this.newItem.empId = null;
+  this.newItem.empFio = '';
   this.newItem.date = '';
   this.newItem.status = '';
 }
 public checkFields() {
-  if (this.newItem.emp.fio === '') {
-    this.newItem.emp.id = null;
+  if (this.newItem.empFio === '') {
+    this.newItem.empId = null;
     this.newItem.date = '-';
   } else {
   for (const key in this.emps) {
-      if (this.emps[key].fio === this.newItem.emp.fio) {
-        this.newItem.emp.id = this.emps[key].id;
+      if (this.emps[key].fio === this.newItem.empFio) {
+        this.newItem.empId = this.emps[key].id;
     }
   }
   const now = new Date();
@@ -89,10 +88,8 @@ interface IItem {
   category: string;
   categoryLabel: string;
   type: string;
-  emp: {
-    id: number,
-    fio: string,
-  };
+  empId: number;
+  empFio: string;
   date: string;
   status: string;
   history: [];
