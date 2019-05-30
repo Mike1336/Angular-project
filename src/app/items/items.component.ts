@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../item.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ItemWizardComponent } from '../item-wizard/item-wizard.component';
+import { ItemsEditModalComponent } from '../items-edit-modal/items-edit-modal.component';
 
 @Component({
   selector: 'app-items',
@@ -17,6 +18,8 @@ export class ItemsComponent implements OnInit {
  public contentReady = false;
  public loading = false;
  @ViewChild('itemWizard') itemWizard: ItemWizardComponent;
+ @ViewChild('editModal') modal: ItemsEditModalComponent;
+
   constructor(private itemService: ItemService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -102,6 +105,10 @@ export class ItemsComponent implements OnInit {
         this.contentReady = true;
         this.loading = false;
     });
+  }
+  public editItem(index: number) {
+    this.modal.editingItem = this.items[index];
+    this.modal.show = true;
   }
   public deleteItem(id: number) {
     this.loading = true;

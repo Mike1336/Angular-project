@@ -21,8 +21,8 @@
     </div>
 </div>
 
-<app-item-wizard #itemWizard (itemAdded)="getItemsOfCurrentCategory()"></app-item-wizard>
-
+<app-item-wizard #itemWizard (itemAdded)="getItemsOfCurrentCategory()" *ngIf="contentReady"></app-item-wizard>
+<app-items-edit-modal #editModal (itemEdited)="getItemsOfCurrentCategory()" *ngIf="contentReady"></app-items-edit-modal>
 <h3 class="text-center">{{currentCategory}}</h3>
 <div class="clr-row clr-justify-content-end" *ngIf="contentReady">
     <form class="search">
@@ -52,9 +52,9 @@
     <clr-dg-column [clrDgField]="'status'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Состояние</ng-container>
     </clr-dg-column>
-    <clr-dg-row *clrDgItems="let item of items">
+    <clr-dg-row *clrDgItems="let item of items; let i = index">
         <clr-dg-action-overflow>
-            <button class="action-item" (click)="onEdit(user)">Изменить</button>
+            <button class="action-item" (click)="editItem(i)">Изменить</button>
             <button class="action-item" (click)="deleteItem(item.id)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/item/{{item.id}}">{{item.name}}</a></clr-dg-cell>

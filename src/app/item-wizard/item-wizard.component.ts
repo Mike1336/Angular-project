@@ -53,6 +53,7 @@ public resetWizardData() {
 }
 public checkFields() {
   if (this.newItem.emp.fio === '') {
+    this.newItem.emp.id = null;
     this.newItem.date = '-';
   } else {
   for (const key in this.emps) {
@@ -66,7 +67,7 @@ public checkFields() {
   // январь - нулевой месяц
   const mm = String(now.getMonth() + 1).padStart(2, '0');
   const yyyy = now.getFullYear();
-  const today = `${dd}.${mm}.${yyyy}`;
+  const today = `${mm}/${dd}/${yyyy}`;
   this.newItem.date = today;
 }
   for (const key in this.categories) {
