@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ItemService } from '../item.service';
 
 @Component({
   selector: 'app-item-modal',
@@ -21,8 +20,9 @@ export class ItemModalComponent implements OnInit {
 
   @Output() itemAdded = new EventEmitter<boolean>();
   @Output() itemEdited = new EventEmitter<boolean>();
+  @Output() itemEditCanceled = new EventEmitter<boolean>();
 
-  constructor(private itemService: ItemService) { }
+  constructor() { }
 
   ngOnInit() {
   }
@@ -39,6 +39,7 @@ export class ItemModalComponent implements OnInit {
     this.show = false;
   }
   public closeModal() {
+    this.itemEditCanceled.emit(true);
     this.show = false;
     this.cleanForm();
   }

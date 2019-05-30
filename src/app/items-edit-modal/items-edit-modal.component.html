@@ -1,5 +1,5 @@
 <clr-modal [(clrModalOpen)]="show" [clrModalClosable]="false">
-    <h3 class="modal-title">Изменение единицы: <br> {{editingItem.name}}</h3>
+    <h3 class="modal-title">Изменение единицы: <br> {{itemName}}</h3>
     <div class="modal-body">
         <form #editForm="ngForm">
             <section class="form-block">
@@ -51,7 +51,7 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline" (click)="show = false">Отмена</button>
+        <button type="button" class="btn btn-outline" (click)="editCancel()">Отмена</button>
         <button *ngIf="!editForm.valid" type="button" class="btn btn-primary" disabled>Сохранить</button>
         <button *ngIf="editForm.valid" type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
     </div>

@@ -107,6 +107,7 @@ export class ItemsComponent implements OnInit {
     });
   }
   public editItem(index: number) {
+    this.modal.itemName = this.items[index].name;
     this.modal.editingItem = this.items[index];
     this.modal.show = true;
   }

@@ -9,6 +9,7 @@ import { EmpService } from '../emp.service';
 })
 export class ItemsEditModalComponent implements OnInit {
   @Output() itemEdited = new EventEmitter<boolean>();
+  @Output() itemEditCanceled = new EventEmitter<boolean>();
   public show = false;
   public editingItem: IItem = {
     id: null,
@@ -27,6 +28,7 @@ export class ItemsEditModalComponent implements OnInit {
   };
   public emps: IEmps;
   public categories: any;
+  public itemName: string;
 
   constructor(private itemService: ItemService, private empservice: EmpService) { }
 
@@ -63,10 +65,13 @@ export class ItemsEditModalComponent implements OnInit {
           this.editingItem.type = this.categories[key].itemLabel;
       }
     }
-    console.log(this.editingItem);
     this.itemService.updateItem(this.editingItem).subscribe(data => {
       this.itemEdited.emit(true);
     });
+    this.show = false;
+  }
+  public editCancel() {
+    this.itemEditCanceled.emit(true);
     this.show = false;
   }
 
