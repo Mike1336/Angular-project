@@ -21,7 +21,7 @@ export class ItemsComponent implements OnInit {
  @ViewChild('itemWizard') itemWizard: ItemWizardComponent;
  @ViewChild('editModal') modal: ItemsEditModalComponent;
 
-  constructor(private itemService: ItemService, private empservice: EmpService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private itemService: ItemService, private empService: EmpService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.filterBy = params.cat;
@@ -114,25 +114,26 @@ export class ItemsComponent implements OnInit {
     this.modal.checkEmps(this.items[index].category);
     this.modal.show = true;
   }
-  public deleteItem(id: number) {
+  public deleteItem(item: any) {
     this.loading = true;
-    this.deleteItemFromEmp(id);
-    this.itemService.removeItem(id).subscribe(data => {
+    if (item.empId !== null) {
+      this.deleteItemFromEmp(item.id);
+    }
+    this.itemService.removeItem(item.id).subscribe(data => {
       this.getItemsOfCurrentCategory();
     });
     this.loading = false;
   }
   public deleteItemFromEmp(itemId: number) {
     this.itemService.getItemById(itemId).subscribe( item => {
-      this.empservice.getEmpById(item.empId).subscribe(emps => {
-        for (const key in emps.items) {
-            if (emps.items[key].type === item.type) {
-              emps.items[key].modelId = null;
-              emps.items[key].modelName = '-';
-              emps.items[key].date = '-';
-            }
-        }
-        this.empservice.updateEmp(emps).subscribe(data => {
+      this.empService.getEmpById(item.empId).subscribe(emps => {
+        emps.items.forEach(element => {
+          if (element.type === item.type) {
+            element.modelId = null;
+            element.modelName = '-';
+            element.date = '-';
+            this.empService.updateEmp(emps).subscribe();
+          }
         });
       });
     });

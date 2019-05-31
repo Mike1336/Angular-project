@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../item.service';
 import { ActivatedRoute } from '@angular/router';
-import { ItemModalComponent } from '../item-modal/item-modal.component';
-
+import { ItemHistoryModalComponent } from '../item-history-modal/item-history-modal.component';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
@@ -16,7 +15,7 @@ export class ItemComponent implements OnInit {
   public contentReady = false;
   public loading = false;
 
-  @ViewChild('modal') itemModal: ItemModalComponent;
+  @ViewChild('modal') itemModal: ItemHistoryModalComponent;
 
   constructor(private itemService: ItemService, private route: ActivatedRoute) {}
   ngOnInit() {
@@ -29,6 +28,7 @@ export class ItemComponent implements OnInit {
       this.itemService.getItemById(id).subscribe(data => {
         this.title = `${data.type} ${data.name}`;
         this.item = data;
+        console.log(data);
         this.contentReady = true;
         this.loading = false;
       });

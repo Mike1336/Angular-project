@@ -20,11 +20,11 @@ export class ItemService {
   public getCategories() {
     return this.http.get(this.apiUrl + this.categoryEndpoint);
   }
-  public getCategoryByLabel(label: string) {
+  public getCategoryByLabel(label: string): Observable<any> {
     const url = `${this.apiUrl + this.categoryEndpoint}?label=${label}`;
     return this.http.get(url);
   }
-  public getCategoryByName(name: string) {
+  public getCategoryByName(name: string): Observable<any> {
     const url = `${this.apiUrl + this.categoryEndpoint}?name=${name}`;
     return this.http.get(url);
   }
@@ -32,11 +32,15 @@ export class ItemService {
     const url = `${this.apiUrl + this.itemsEndpoint}?categoryLabel=${category}`;
     return this.http.get(url);
   }
-  public getItemsByEmpId(id: number) {
+  public getItemsByType(itemType: string): Observable<any> {
+    const url = `${this.apiUrl + this.itemsEndpoint}?type=${itemType}`;
+    return this.http.get(url);
+  }
+  public getItemsByEmpId(id: number): Observable<any> {
     const url = `${this.apiUrl + this.itemsEndpoint}?empId=${id}`;
     return this.http.get(url);
   }
-  public getItemsBySearchWord(word: string, category: string) {
+  public getItemsBySearchWord(word: string, category: string): Observable<any> {
     let url: string;
     let categoryName: string;
     const regexp = new RegExp('^[0-9]+'); // регулярка для проверки является ли первый символ числом
@@ -48,15 +52,15 @@ export class ItemService {
     }
     return this.http.get(url);
   }
-  public addItem(item: object) {
+  public addItem(item: object): Observable<any> {
     const url = `${this.apiUrl + this.itemsEndpoint}`;
     return this.http.post(url, item);
   }
-  public updateItem(item: object) {
+  public updateItem(item: object): Observable<any> {
     const url = `${this.apiUrl + this.itemsEndpoint}`;
     return this.http.put(url, item);
   }
-  public removeItem(id: number) {
+  public removeItem(id: number): Observable<any> {
     const url = `${this.apiUrl + this.itemsEndpoint}/${id}`;
     return this.http.delete(url);
   }

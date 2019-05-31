@@ -7,31 +7,31 @@
                 <div class="form-group">
                     <label>Причина ремонта:</label>
                     <label for="reasonInput" aria-haspopup="true" role="tooltip" [class.invalid]="reason.touched && !reason.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                      <input type="text" id="reasonInput" required [(ngModel)]="newVisit.reason" name="reason" #reason="ngModel">
-                      <span class="tooltip-content">Заполните поле!</span>
-                    </label>
+                    <input type="text" id="reasonInput" required [(ngModel)]="newVisit.reason" name="reason" #reason="ngModel">
+                    <span class="tooltip-content">Заполните поле!</span>
+                  </label>
                 </div>
                 <div class="form-group">
                     <label>Дата отвоза в ремонт:</label>
                     <label for="indateInput" aria-haspopup="true" role="tooltip" [class.invalid]="indate.touched && !indate.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                      <input type="date" clrDate id="indateInput" name="indate" required [(ngModel)]="newVisit.indate" #indate="ngModel">
-                    </label>
+                    <input type="date" clrDate id="indateInput" name="indate" required [(ngModel)]="newVisit.indate" #indate="ngModel">
+                  </label>
                 </div>
                 <div class="form-group">
                     <label>Дата возвращения из ремонта:</label>
                     <label for="outdateInput" aria-haspopup="true" role="tooltip" [class.invalid]="outdate.touched && !outdate.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                      <input type="date" clrDate id="outdateInput" required [(ngModel)]="newVisit.outdate" name="outdate" #outdate="ngModel">
-                    </label>
+                    <input type="date" clrDate id="outdateInput" required [(ngModel)]="newVisit.outdate" name="outdate" #outdate="ngModel">
+                  </label>
                 </div>
                 <div class="form-group">
                     <label for="selects_1">Сервисный центр:</label>
                     <div class="select">
                         <label for="outdateInput" aria-haspopup="true" role="tooltip" [class.invalid]="select.touched && !select.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                          <select id="selects_1" name="serviceCenter" required [(ngModel)]="newVisit.serviceCenter" #select="ngModel">
-                            <option value="Официальный" >Официальный</option>
-                            <option value="Неофициальный">Неофициальный</option>
-                          </select>
-                        </label>
+                        <select id="selects_1" name="serviceCenter" required [(ngModel)]="newVisit.serviceCenter" #select="ngModel">
+                          <option value="Официальный" >Официальный</option>
+                          <option value="Неофициальный">Неофициальный</option>
+                        </select>
+                      </label>
                     </div>
                 </div>
             </section>

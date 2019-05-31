@@ -20,6 +20,7 @@
         </div>
     </div>
 </div>
+<app-emp-items-modal #editModal (itemEdited)="editItem()" (editCanceled)="getEmployee(this.empId)"></app-emp-items-modal>
 <div class="emp-inf clr-col" *ngIf="contentReady">
     <h1 id="emp-name">{{emp.fio}}</h1>
     <h2 id="emp-position">{{emp.pos}}</h2>
@@ -28,7 +29,6 @@
         <h2></h2>
     </ng-template>
     <h3>Инвентарь:</h3>
-
     <img src="{{emp.img}}" alt="avatar" id="emp-avatar">
     <clr-datagrid>
         <clr-dg-placeholder>Инвентарь пуст</clr-dg-placeholder>
@@ -41,21 +41,17 @@
         <clr-dg-column>
             <ng-container *clrDgHideableColumn="{hidden: false}">Дата закрепления</ng-container>
         </clr-dg-column>
-        <clr-dg-row *clrDgItems="let item of emp.items">
+        <clr-dg-row *clrDgItems="let item of emp.items; let i = index;">
             <clr-dg-action-overflow>
-                <button class="action-item" (click)="onEdit(user)">Изменить</button>
+                <button class="action-item" (click)="showModal(emp.items[i])">Изменить</button>
             </clr-dg-action-overflow>
             <clr-dg-cell>{{item.type}}</clr-dg-cell>
-            <ng-container *ngIf="item.modelId !== null; else noItem">
-                <clr-dg-cell>
-                    <a routerLink="/item/{{item.modelId}}">{{item.modelName}}</a>
-                </clr-dg-cell>
-            </ng-container>
-            <ng-template #noItem>
-                <clr-dg-cell>
+            <clr-dg-cell>
+                <a *ngIf="item.modelId !== null; else noItem" routerLink="/item/{{item.modelId}}">{{item.modelName}}</a>
+                <ng-template #noItem>
                     {{item.modelName}}
-                </clr-dg-cell>
-            </ng-template>
+                </ng-template>
+            </clr-dg-cell>
 
             <clr-dg-cell>{{item.date}}</clr-dg-cell>
         </clr-dg-row>

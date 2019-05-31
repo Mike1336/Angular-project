@@ -1,0 +1,24 @@
+<clr-modal [(clrModalOpen)]="show" [clrModalClosable]="false">
+    <h3 class="modal-title">Изменение единицы "{{newEmpItem.type}}" у сотрудника {{empFio}}:</h3>
+    <div class="modal-body">
+        <form #editForm="ngForm">
+            <section class="form-block">
+                <div class="form-group">
+                    <label for="selects_1">{{newEmpItem.type}}:</label>
+                    <div class="select">
+                        <select id="selects_1" name="serviceCenter" [(ngModel)]="newEmpItem.modelName">
+                          <option *ngIf="newEmpItem.modelName !== '-'" value="{{newEmpItem.modelName}}" class="ng-star-inserted" selected = "selected"> {{newEmpItem.modelName}} </option>
+                          <option  value="-" class="ng-star-inserted" selected = "selected"> Отсутствует </option>
+                          <option value="{{item.name}}" *ngFor="let item of items">{{item.name}}</option>
+                      </select>
+                    </div>
+                </div>
+            </section>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline" (click)="closeModal()">Отмена</button>
+        <button *ngIf="!editForm.valid" type="button" class="btn btn-primary" disabled>Сохранить</button>
+        <button *ngIf="editForm.valid" type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
+    </div>
+</clr-modal>

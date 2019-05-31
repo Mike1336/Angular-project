@@ -6,21 +6,18 @@
                 <div class="form-group">
                     <label>ФИО:</label>
                     <label for="nameInput" aria-haspopup="true" role="tooltip" [class.invalid]="name.touched && !name.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                    <input type="text" id="nameInput" required [(ngModel)]="editingEmp.fio" name="name" #name="ngModel">
-                    <span class="tooltip-content">Обязательное поле!</span>
+                      <input type="text" id="nameInput" required [(ngModel)]="editingEmp.fio" name="name" #name="ngModel">
+                      <span class="tooltip-content">Обязательное поле!</span>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>Отдел:</label>
-                    <label for="depSelector" aria-haspopup="true" role="tooltip" [class.invalid]="depSelect.touched && !depSelect.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                      <div class="select">
-                        <select  name="depSelector" #depSelect="ngModel" required [(ngModel)]="editingEmp.dep">
+                    <div class="select">
+                        <select name="depSelector" #depSelect="ngModel" [(ngModel)]="editingEmp.dep">
                           <option value="{{editingEmp.dep}}" class="ng-star-inserted" selected = "selected"> {{editingEmp.dep}} </option>
                           <option value="{{dep.name}}" *ngFor="let dep of departments" class="ng-star-inserted"> {{dep.name}} </option>
                         </select>
-                        <span class="tooltip-content"></span>
-                      </div>
-                    </label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Должность:</label>
@@ -45,7 +42,6 @@
                           <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
                           <option value=""> Нет категории </option>
                         </select>
-                        <span class="tooltip-content"></span>
                     </div>
                 </div>
             </section>

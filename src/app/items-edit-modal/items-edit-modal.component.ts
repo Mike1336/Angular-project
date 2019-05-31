@@ -28,24 +28,25 @@ export class ItemsEditModalComponent implements OnInit {
   public categories: any;
   public itemName: string;
 
-  constructor(private itemService: ItemService, private empservice: EmpService) { }
+  constructor(private itemService: ItemService, private empService: EmpService) { }
 
   ngOnInit() {
     this.getEmps();
   }
   public getEmps() {
-    this.empservice.getStaff().subscribe(data => {
+    this.empService.getStaff().subscribe(data => {
       this.emps = data;
     });
   }
+  // метод, скрывающий уже выбранную категорию из списка выбора
   public displayCategories() {
     this.itemService.getCategories().subscribe(data => {
       this.categories = data;
-      for (const key in this.categories) {
-        if (this.categories[key].name === this.editingItem.category) {
-          this.categories.splice(key, 1);
+      this.categories.forEach((element, index) => {
+        if (element.name === this.editingItem.category) {
+          this.categories.splice(index, 1);
         }
-      }
+      });
     });
   }
   public editItem() {
@@ -85,7 +86,7 @@ export class ItemsEditModalComponent implements OnInit {
     this.show = false;
   }
   public deleteItemFromEmp(id: number) {
-    this.empservice.getEmpById(id).subscribe(data => {
+    this.empService.getEmpById(id).subscribe(data => {
       for (const key in data.items) {
           if (data.items[key].type === this.editingItem.type) {
             data.items[key].modelId = null;
@@ -93,12 +94,12 @@ export class ItemsEditModalComponent implements OnInit {
             data.items[key].date = '-';
           }
       }
-      this.empservice.updateEmp(data).subscribe(data => {
+      this.empService.updateEmp(data).subscribe(data => {
       });
     });
   }
   public addItemToEmp(id: number) {
-    this.empservice.getEmpById(id).subscribe(data => {
+    this.empService.getEmpById(id).subscribe(data => {
       for (const key in data.items) {
           if (data.items[key].type === this.editingItem.type) {
             data.items[key].modelId = this.editingItem.id;
@@ -106,24 +107,25 @@ export class ItemsEditModalComponent implements OnInit {
             data.items[key].date = this.editingItem.date;
           }
       }
-      this.empservice.updateEmp(data).subscribe(data => {
+      this.empService.updateEmp(data).subscribe(data => {
       });
     });
   }
   public checkEmps(category: string) {
+    this.displayCategories();
     this.getEmps();
     this.itemService.getCategoryByName(category).subscribe(data => {
       // проход по сотрудникам
-      for (const empkey in this.emps) {
+      this.emps.forEach((emp, empIndex) => {
       // проход по свойству единиц у итерируемого сотрудника
-        for (const itemkey in this.emps[empkey].items) {
-          // проверка есть ли у него уже единица из выбранной категории
-          if (this.emps[empkey].items[itemkey].type === data[0].itemLabel && this.emps[empkey].items[itemkey].modelId !== null) {
-            // удаление из списка выбора сотрудников для закрепления
-            this.emps.splice(empkey, 1);
+        emp.items.forEach(empItem => {
+      // проверка есть ли у него уже единица из выбранной категории
+          if (empItem.type === data[0].itemLabel && empItem.modelId !== null) {
+      // удаление из списка выбора сотрудников для закрепления
+          this.emps.splice(empIndex, 1);
           }
-        }
-      }
+        });
+      });
     });
   }
 }

@@ -19,9 +19,10 @@ import { SearchFieldComponent } from './search-field/search-field.component';
 import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
 import { ItemWizardComponent } from './item-wizard/item-wizard.component';
 import { EmpWizardComponent } from './emp-wizard/emp-wizard.component';
-import { ItemModalComponent } from './item-modal/item-modal.component';
+import { ItemHistoryModalComponent } from './item-history-modal/item-history-modal.component';
 import { ItemsEditModalComponent } from './items-edit-modal/items-edit-modal.component';
 import { EmpsEditModalComponent } from './emps-edit-modal/emps-edit-modal.component';
+import { EmpItemsModalComponent } from './emp-items-modal/emp-items-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +35,11 @@ import { EmpsEditModalComponent } from './emps-edit-modal/emps-edit-modal.compon
     SearchFieldComponent,
     NavbarLeftComponent,
     ItemWizardComponent,
+    ItemHistoryModalComponent,
     EmpWizardComponent,
-    ItemModalComponent,
     ItemsEditModalComponent,
     EmpsEditModalComponent,
+    EmpItemsModalComponent,
   ],
   imports: [
     BrowserModule,

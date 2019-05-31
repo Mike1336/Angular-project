@@ -30,7 +30,7 @@
                     <label>Категория:</label>
                     <label for="typeSelector" aria-haspopup="true" role="tooltip" [class.invalid]="select.touched && !select.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
                     <div class="select">
-                      <select class="clr-select"required [(ngModel)]="newItem.category" (ngModelChange)="checkEmps(newItem.category)"  name="typeSelector" #select="ngModel" >
+                      <select class="clr-select" required [(ngModel)]="newItem.category" (ngModelChange)="checkEmps(newItem.category)"  name="typeSelector" #select="ngModel" >
                         <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
                       </select>
                       <span class="tooltip-content"></span>

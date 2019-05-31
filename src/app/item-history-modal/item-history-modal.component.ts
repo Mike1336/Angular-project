@@ -1,11 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-item-modal',
-  templateUrl: './item-modal.component.html',
-  styleUrls: ['./item-modal.component.scss']
+  selector: 'app-item-history-modal',
+  templateUrl: './item-history-modal.component.html',
+  styleUrls: ['./item-history-modal.component.scss']
 })
-export class ItemModalComponent implements OnInit {
+export class ItemHistoryModalComponent implements OnInit {
   public show = false;
   public create = false;
   public edit = false;

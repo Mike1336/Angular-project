@@ -27,10 +27,10 @@ export class EmpsEditModalComponent implements OnInit {
   public categories: any;
   public empName: string;
   public empItems: any;
-  constructor(private itemService: ItemService, private empservice: EmpService) { }
+  constructor(private itemService: ItemService, private empService: EmpService) { }
 
   ngOnInit() {
-    this.empservice.getDepartments().subscribe(data => {
+    this.empService.getDepartments().subscribe(data => {
       this.departments = data;
     });
     this.itemService.getCategories().subscribe(data => {
@@ -53,7 +53,7 @@ export class EmpsEditModalComponent implements OnInit {
           this.empItems[key].empFio = this.editingEmp.fio;
         }
       }
-      this.empservice.updateEmp(this.editingEmp).subscribe(data => {
+      this.empService.updateEmp(this.editingEmp).subscribe(data => {
       this.empEdited.emit(true);
       });
       for (const key in this.empItems) {

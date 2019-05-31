@@ -17,11 +17,12 @@ export class EmployeesComponent implements OnInit {
  public filterBy: string;
  public currentDep: string;
  public searchField = '';
+ public loading = false;
  public contentReady = false;
  @ViewChild('empWizard') empWizard: EmpWizardComponent;
  @ViewChild('editModal') modal: EmpsEditModalComponent;
 
-  constructor(private empservice: EmpService, private itemService: ItemService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private empService: EmpService, private itemService: ItemService, private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.filterBy = params.dep;
@@ -34,6 +35,7 @@ export class EmployeesComponent implements OnInit {
     });
     this.route.queryParams.subscribe(params => {
       if (params.keyword) {
+        this.loading = true;
         this.searchField = params.keyword;
         this.searchEmps(params.keyword, this.filterBy);
      } else {
@@ -78,29 +80,34 @@ export class EmployeesComponent implements OnInit {
   }
 
   public getAllEmps() {
-    this.empservice.getStaff().subscribe(data => {
+    this.loading = true;
+    this.empService.getStaff().subscribe(data => {
       this.staff = data;
       this.contentReady = true;
+      this.loading = false;
     });
   }
 
   public getEmpsOfDep(dep: string) {
-    this.empservice.getEmpsByDep(dep).subscribe(data => {
+    this.loading = true;
+    this.empService.getEmpsByDep(dep).subscribe(data => {
       this.staff = data;
       this.contentReady = true;
+      this.loading = false;
     });
   }
 
   public getCurrentDepartment(depLabel: string) {
-    this.empservice.getDepByLabel(depLabel).subscribe(data => {
+    this.empService.getDepByLabel(depLabel).subscribe(data => {
       this.currentDep = `Отдел: ${data[0].name}`;
     });
   }
 
   public searchEmps(queryString: string, department: string) {
-    this.empservice.getEmpsBySearchWord(queryString, department).subscribe(data => {
+    this.empService.getEmpsBySearchWord(queryString, department).subscribe(data => {
       this.staff = data;
       this.contentReady = true;
+      this.loading = false;
     });
   }
   public editEmp(index: number) {
@@ -112,8 +119,20 @@ export class EmployeesComponent implements OnInit {
     this.modal.show = true;
   }
   public deleteEmp(id: number) {
-    this.empservice.removeEmp(id).subscribe(data => {
+    this.loading = true;
+    this.removeEmpFromItem(id);
+    this.empService.removeEmp(id).subscribe(data => {
       this.getEmpsOfCurrentDep();
+    });
+    this.loading = false;
+  }
+  public removeEmpFromItem(id: number) {
+    this.itemService.getItemsByEmpId(id).subscribe( data => {
+      data.forEach(element => {
+        element.empId = null;
+        element.empFio = '';
+        this.itemService.updateItem(element).subscribe();
+      });
     });
   }
 }

@@ -53,7 +53,12 @@
         <clr-dg-cell><a routerLink="/employee/{{emp.id}}">{{emp.fio}}</a></clr-dg-cell>
         <clr-dg-cell>{{emp.dep}}</clr-dg-cell>
         <clr-dg-cell>{{emp.startWorking}}</clr-dg-cell>
-        <clr-dg-cell><a routerLink="/inventory/{{emp.catLabel}}">{{emp.cat}}</a></clr-dg-cell>
+        <clr-dg-cell>
+            <a *ngIf="emp.cat !== ''; else noCat" routerLink="/inventory/{{emp.catLabel}}">{{emp.cat}}</a>
+            <ng-template #noCat>
+                Нет категории
+            </ng-template>
+        </clr-dg-cell>
     </clr-dg-row>
     <clr-dg-footer>
         <clr-dg-column-toggle>

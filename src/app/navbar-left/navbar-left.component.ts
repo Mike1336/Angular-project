@@ -12,7 +12,7 @@ export class NavbarLeftComponent implements OnInit {
   public categories: any;
   public departments: any;
 
-  constructor(private itemSevice: ItemService, private empservice: EmpService) { }
+  constructor(private itemSevice: ItemService, private empService: EmpService) { }
 
   ngOnInit() {
     this.getAllCategories();
@@ -24,7 +24,7 @@ export class NavbarLeftComponent implements OnInit {
     });
   }
   public getAllDeps() {
-    this.empservice.getDepartments().subscribe(data => {
+    this.empService.getDepartments().subscribe(data => {
       this.departments = data;
     });
   }

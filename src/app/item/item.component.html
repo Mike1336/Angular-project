@@ -20,7 +20,7 @@
         </div>
     </div>
 </div>
-<app-item-modal *ngIf="contentReady" #modal (itemAdded)="createItem()" (itemEdited)="saveEdit()" (itemEditCanceled)="getItem(this.itemId)"></app-item-modal>
+<app-item-history-modal *ngIf="contentReady" #modal (itemAdded)="createItem()" (itemEdited)="saveEdit()" (itemEditCanceled)="getItem(this.itemId)"></app-item-history-modal>
 <div class="item-inf clr-col" *ngIf="contentReady">
     <h1>{{item.type}} {{item.name}} ({{item.serNumber}})</h1>
     <h3>Состояние: {{item.status}}</h3>
