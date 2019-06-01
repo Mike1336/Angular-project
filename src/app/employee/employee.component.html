@@ -29,8 +29,7 @@
         <h2></h2>
     </ng-template>
     <h3>Инвентарь:</h3>
-    <img src="{{emp.img}}" alt="avatar" id="emp-avatar">
-    <clr-datagrid>
+    <clr-datagrid [clrDgLoading]="loading">
         <clr-dg-placeholder>Инвентарь пуст</clr-dg-placeholder>
         <clr-dg-column>
             <ng-container *clrDgHideableColumn="{hidden: false}">Тип</ng-container>

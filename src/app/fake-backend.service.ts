@@ -203,6 +203,32 @@ export class FakeBackendService implements InMemoryDbService {
           }
         ]
       },
+      {
+        id: 6,
+        name: 'Benq GL2450',
+        serNumber: 439554543,
+        category: 'Мониторы',
+        categoryLabel: 'monitors',
+        type: 'Монитор',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: [
+          {
+            reason: 'Поломка Benq',
+            indate: '03/25/2019',
+            outdate: '03/27/2019',
+            serviceCenter: 'Неофициальный'
+          },
+          {
+            reason: 'Поломка Benq',
+            indate: '04/03/2019',
+            outdate: '04/06/2019',
+            serviceCenter: 'Официальный'
+          }
+        ]
+      },
     ];
     const emps = [
       {
@@ -214,7 +240,6 @@ export class FakeBackendService implements InMemoryDbService {
         startWorking: '11.11.2011',
         cat: 'Ноутбуки',
         catLabel: 'laptops',
-        img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
           { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
@@ -234,7 +259,6 @@ export class FakeBackendService implements InMemoryDbService {
         startWorking: '12.12.2012',
         cat: 'Моноблоки',
         catLabel: 'monoblocks',
-        img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
           { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
@@ -254,7 +278,6 @@ export class FakeBackendService implements InMemoryDbService {
         startWorking: '10.10.2010',
         cat: 'Клавиатуры',
         catLabel: 'keyboards',
-        img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
           { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
@@ -274,7 +297,6 @@ export class FakeBackendService implements InMemoryDbService {
         startWorking: '10.10.2010',
         cat: 'Столы',
         catLabel: 'tables',
-        img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
           { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
@@ -294,7 +316,6 @@ export class FakeBackendService implements InMemoryDbService {
         startWorking: '10.10.2010',
         cat: 'Мыши',
         catLabel: 'mouses',
-        img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
           { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
@@ -314,7 +335,6 @@ export class FakeBackendService implements InMemoryDbService {
         startWorking: '10.10.2010',
         cat: 'Кресла',
         catLabel: 'armchairs',
-        img: 'assets/images/proger.jpg',
         items: [
           { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
           { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },

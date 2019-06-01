@@ -6,10 +6,12 @@
                 <div class="form-group">
                     <label for="selects_1">{{newEmpItem.type}}:</label>
                     <div class="select">
-                        <select id="selects_1" name="serviceCenter" [(ngModel)]="newEmpItem.modelName">
-                          <option *ngIf="newEmpItem.modelName !== '-'" value="{{newEmpItem.modelName}}" class="ng-star-inserted" selected = "selected"> {{newEmpItem.modelName}} </option>
-                          <option  value="-" class="ng-star-inserted" selected = "selected"> Отсутствует </option>
-                          <option value="{{item.name}}" *ngFor="let item of items">{{item.name}}</option>
+                        <select id="selects_1" name="serviceCenter" [(ngModel)]="newEmpItem.modelName" (ngModelChange)="getItems(newEmpItem.type)">
+                          <option *ngIf="newEmpItem.modelName !== '-'" value="{{newEmpItem.modelName}}" selected = "selected"> {{newEmpItem.modelName}} </option>
+                          <option  value="-" selected = "selected"> Отсутствует </option>
+                          <ng-container *ngFor="let item of items">
+                            <option *ngIf="newEmpItem.modelName !== item.name || item.empId === empId " value="{{item.name}}">{{item.name}}</option>                            
+                          </ng-container>
                       </select>
                     </div>
                 </div>

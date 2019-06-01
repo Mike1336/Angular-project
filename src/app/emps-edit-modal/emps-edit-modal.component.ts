@@ -21,7 +21,6 @@ export class EmpsEditModalComponent implements OnInit {
     startWorking: '',
     cat: '',
     catLabel: '',
-    img: 'assets/images/proger.jpg',
   };
   public departments: any;
   public categories: any;
@@ -78,5 +77,4 @@ interface IEmp {
   startWorking: string;
   cat: string;
   catLabel: string;
-  img: string;
 }

@@ -109,8 +109,8 @@ public checkEmps(category: string) {
     this.emps.forEach((emp, empIndex) => {
       // проход по свойству единиц у итерируемого сотрудника
         emp.items.forEach(empItem => {
-      // проверка есть ли у него уже единица из выбранной категории
-          if (empItem.type === data[0].itemLabel && empItem.modelId !== null) {
+      // проверка есть ли у него уже есть единица из выбранной категории
+        if (empItem.type === data[0].itemLabel && empItem.modelId !== null) {
       // удаление из списка выбора сотрудников для закрепления
           this.emps.splice(empIndex, 1);
           }

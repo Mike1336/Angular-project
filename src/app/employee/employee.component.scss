@@ -30,10 +30,8 @@
     }
 }
 
-img#emp-avatar {
-    max-width: 400px;
-    margin-left: 50%;
-    transform: translateX(-50%);
+clr-datagrid {
+    grid-column: 2;
 }
 
 .employee-items {
@@ -54,7 +52,7 @@ img#emp-avatar {
             grid-column: 1;
         }
         h3 {
-            grid-row: 5;
+            grid-row: 4;
         }
         #emp-name {
             grid-row: 1;

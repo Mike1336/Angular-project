@@ -24,6 +24,7 @@ export class ItemsEditModalComponent implements OnInit {
     status: '',
     history: [],
   };
+  public oldEmpId: number;
   public emps: any;
   public categories: any;
   public itemName: string;
@@ -50,32 +51,39 @@ export class ItemsEditModalComponent implements OnInit {
     });
   }
   public editItem() {
+    // удаляем единицу у прошлого сотрудника (если он был)
+    if (this.oldEmpId !== null) {
+      this.deleteItemFromEmp(this.oldEmpId);
+    }
+    // удаляем единицу у прошлого сотрудника если выбираем "не назначен" в селекторе единицы
+    // иначе - привязываем единицу к сотруднику
     if (this.editingItem.empFio === '') {
       this.deleteItemFromEmp(this.editingItem.empId);
       this.editingItem.empId = null;
       this.editingItem.date = '-';
     } else {
-    for (const key in this.emps) {
-        if (this.emps[key].fio === this.editingItem.empFio) {
-          this.editingItem.empId = this.emps[key].id;
-      }
-    }
-    const now = new Date();
+      this.emps.forEach(element => {
+        if (element.fio === this.editingItem.empFio) {
+          this.editingItem.empId = element.id;
+        }
+      });
+      const now = new Date();
     // двузначный формат, добавление 0 к однозначным
-    const dd = String(now.getDate()).padStart(2, '0');
+      const dd = String(now.getDate()).padStart(2, '0');
     // январь - нулевой месяц
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const yyyy = now.getFullYear();
-    const today = `${mm}/${dd}/${yyyy}`;
-    this.editingItem.date = today;
-    this.addItemToEmp(this.editingItem.empId);
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const yyyy = now.getFullYear();
+      const today = `${mm}/${dd}/${yyyy}`;
+
+      this.editingItem.date = today;
+      this.addItemToEmp(this.editingItem.empId);
   }
-    for (const key in this.categories) {
-        if (this.categories[key].name === this.editingItem.category) {
-          this.editingItem.categoryLabel = this.categories[key].label;
-          this.editingItem.type = this.categories[key].itemLabel;
+    this.categories.forEach(element => {
+      if (element.name === this.editingItem.category) {
+        this.editingItem.categoryLabel = element.categoryLabel;
+        this.editingItem.type = element.itemLabel;
       }
-    }
+  });
     this.itemService.updateItem(this.editingItem).subscribe(data => {
       this.itemEdited.emit(true);
     });
@@ -87,28 +95,26 @@ export class ItemsEditModalComponent implements OnInit {
   }
   public deleteItemFromEmp(id: number) {
     this.empService.getEmpById(id).subscribe(data => {
-      for (const key in data.items) {
-          if (data.items[key].type === this.editingItem.type) {
-            data.items[key].modelId = null;
-            data.items[key].modelName = '-';
-            data.items[key].date = '-';
-          }
-      }
-      this.empService.updateEmp(data).subscribe(data => {
+      data.items.forEach(element => {
+        if (element.type === this.editingItem.type) {
+          element.modelId = null;
+          element.modelName = '-';
+          element.date = '-';
+        }
       });
+      this.empService.updateEmp(data).subscribe();
     });
   }
   public addItemToEmp(id: number) {
     this.empService.getEmpById(id).subscribe(data => {
-      for (const key in data.items) {
-          if (data.items[key].type === this.editingItem.type) {
-            data.items[key].modelId = this.editingItem.id;
-            data.items[key].modelName = this.editingItem.name;
-            data.items[key].date = this.editingItem.date;
-          }
-      }
-      this.empService.updateEmp(data).subscribe(data => {
+      data.items.forEach(element => {
+        if (element.type === this.editingItem.type) {
+          element.modelId = this.editingItem.id;
+          element.modelName = this.editingItem.name;
+          element.date = this.editingItem.date;
+        }
       });
+      this.empService.updateEmp(data).subscribe();
     });
   }
   public checkEmps(category: string) {
@@ -119,7 +125,7 @@ export class ItemsEditModalComponent implements OnInit {
       this.emps.forEach((emp, empIndex) => {
       // проход по свойству единиц у итерируемого сотрудника
         emp.items.forEach(empItem => {
-      // проверка есть ли у него уже единица из выбранной категории
+      // проверка есть ли у него уже есть единица из выбранной категории
           if (empItem.type === data[0].itemLabel && empItem.modelId !== null) {
       // удаление из списка выбора сотрудников для закрепления
           this.emps.splice(empIndex, 1);

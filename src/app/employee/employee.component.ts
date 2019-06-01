@@ -14,6 +14,7 @@ export class EmployeeComponent implements OnInit {
   public empId: number;
   public emp: IEmp;
   public items: any;
+  public loading = false;
   public contentReady = false;
   @ViewChild('editModal') modal: EmpItemsModalComponent;
   constructor(private empService: EmpService, private itemService: ItemService, private route: ActivatedRoute) {}
@@ -25,29 +26,31 @@ export class EmployeeComponent implements OnInit {
     this.getEmployee(this.empId);
   }
   public getEmployee(id: number) {
+    this.loading = true;
     this.empService.getEmpById(id).subscribe(data => {
       this.title = `${data.fio} (${data.dep})`;
       this.emp = data;
       this.contentReady = true;
+      this.loading = false;
     });
   }
   public showModal(item: any) {
     this.itemService.getItemsByType(item.type).subscribe( data => {
       this.items = data;
-      this.items.forEach((element, index ) => {
-        if (element.name === item.modelName && element.empId !== null) {
-          this.items.splice(index, 1);
+      this.items.forEach((element) => {
+        if (element.name === item.modelName && element.empId === this.emp.id) {
           this.modal.currentItem = element;
         }
       });
-      this.modal.items = this.items;
     });
-    this.modal.show = true;
+    this.modal.newEmpItem = item;
+    this.modal.getItems(item.type);
     this.modal.empId = this.emp.id;
     this.modal.empFio = this.emp.fio;
-    this.modal.newEmpItem = item;
+    this.modal.show = true;
   }
   public editItem() {
+    this.loading = true;
     const item = this.modal.newEmpItem;
     this.emp.items.forEach(element => {
       if (element.type === item.type) {
@@ -56,6 +59,7 @@ export class EmployeeComponent implements OnInit {
     });
     this.empService.updateEmp(this.emp).subscribe(data => {
       this.getEmployee(this.empId);
+      this.loading = false;
     });
   }
 }
@@ -69,7 +73,6 @@ interface IEmp {
   startWorking: string;
   cat: string;
   catLabel: string;
-  img: string;
   items: [
     {
       type: string,

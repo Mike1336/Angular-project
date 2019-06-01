@@ -21,7 +21,6 @@ export class EmpWizardComponent implements OnInit {
     startWorking: '',
     cat: '',
     catLabel: '',
-    img: 'assets/images/proger.jpg',
     items: [
       { type: 'Монитор', modelId: null, modelName: '-', date: '-' },
       { type: 'Моноблок', modelId: null, modelName: '-', date: '-' },
@@ -80,6 +79,5 @@ interface IEmp {
   startWorking: string;
   cat: string;
   catLabel: string;
-  img: string;
   items: any;
 }

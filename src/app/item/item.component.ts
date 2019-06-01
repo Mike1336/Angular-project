@@ -28,7 +28,6 @@ export class ItemComponent implements OnInit {
       this.itemService.getItemById(id).subscribe(data => {
         this.title = `${data.type} ${data.name}`;
         this.item = data;
-        console.log(data);
         this.contentReady = true;
         this.loading = false;
       });
@@ -66,8 +65,8 @@ export class ItemComponent implements OnInit {
     this.item.history.splice(index, 1);
     this.itemService.updateItem(this.item).subscribe( data => {
       this.getItem(this.itemId);
+      this.loading = false;
     });
-    this.loading = false;
   }
 }
 interface IItem {

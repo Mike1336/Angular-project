@@ -12,7 +12,7 @@ export class EmpItemsModalComponent implements OnInit {
   public empId: number;
   public empFio: string;
   public currentItem: any;
-  public items: any;
+  public items: any[];
   public newEmpItem = {
     type: '',
     modelId: null,
@@ -36,14 +36,25 @@ export class EmpItemsModalComponent implements OnInit {
     const mm = String(now.getMonth() + 1).padStart(2, '0');
     const yyyy = now.getFullYear();
     const today = `${mm}/${dd}/${yyyy}`;
+    // если выбрана единица - находим её, берем у неё id и ставим текущую дату
+    // также к единице привязываем сотрудника
     if (this.newEmpItem.modelName !== '-') {
-      this.items.forEach(element => {
-          if (element.name === this.newEmpItem.modelName) {
+      this.items.some(element => {
+          if (element.name === this.newEmpItem.modelName && element.empId === null) {
+            // при смене единицы, стираются данные о сотруднике у бывшей единицы
+            if (this.newEmpItem.modelId !== null) {
+              this.itemService.getItemById(this.newEmpItem.modelId).subscribe(data => {
+                data.empId = null;
+                data.empFio = '';
+                this.itemService.updateItem(data).subscribe();
+              });
+            }
             this.newEmpItem.modelId = element.id;
             this.newEmpItem.date = today;
             element.empId = this.empId;
             element.empFio = this.empFio;
             this.itemService.updateItem(element).subscribe();
+            return element;
           }
       });
     } else {
@@ -57,6 +68,12 @@ export class EmpItemsModalComponent implements OnInit {
     this.show = false;
 }
   public closeModal() {
+    this.editCanceled.emit(true);
     this.show = false;
+  }
+  public getItems(type: string) {
+    this.itemService.getItemsByType(type).subscribe( data => {
+      this.items = data;
+    });
   }
 }
