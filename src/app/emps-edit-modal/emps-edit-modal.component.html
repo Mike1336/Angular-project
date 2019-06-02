@@ -15,7 +15,9 @@
                     <div class="select">
                         <select name="depSelector" #depSelect="ngModel" [(ngModel)]="editingEmp.dep">
                           <option value="{{editingEmp.dep}}" class="ng-star-inserted" selected = "selected"> {{editingEmp.dep}} </option>
-                          <option value="{{dep.name}}" *ngFor="let dep of departments" class="ng-star-inserted"> {{dep.name}} </option>
+                          <ng-container *ngFor="let dep of departments">
+                            <option *ngIf="dep.name !== editingEmp.dep" value="{{dep.name}}">{{dep.name}}</option>                            
+                          </ng-container>
                         </select>
                     </div>
                 </div>
@@ -38,8 +40,10 @@
                     <label>Закрепить категорию инвентаря:</label>
                     <div class="select">
                         <select name="catSelector" #depSelect="ngModel" [(ngModel)]="editingEmp.cat">
-                          <option value="{{editingEmp.cat}}" selected="selected">{{editingEmp.cat}} </option>
-                          <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
+                          <option *ngIf="editingEmp.cat !== ''" value="{{editingEmp.cat}}" selected="selected">{{editingEmp.cat}} </option>
+                          <ng-container *ngFor="let cat of categories">
+                            <option *ngIf="cat.name !== editingEmp.cat" value="{{cat.name}}">{{cat.name}}</option>                            
+                          </ng-container>
                           <option value=""> Нет категории </option>
                         </select>
                     </div>

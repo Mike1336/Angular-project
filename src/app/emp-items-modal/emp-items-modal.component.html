@@ -10,7 +10,7 @@
                           <option *ngIf="newEmpItem.modelName !== '-'" value="{{newEmpItem.modelName}}" selected = "selected"> {{newEmpItem.modelName}} </option>
                           <option  value="-" selected = "selected"> Отсутствует </option>
                           <ng-container *ngFor="let item of items">
-                            <option *ngIf="newEmpItem.modelName !== item.name || item.empId === empId " value="{{item.name}}">{{item.name}}</option>                            
+                            <option *ngIf="item.name !== newEmpItem.modelName  && item.empId === null || item.empId === empId" value="{{item.name}}">{{item.name}}</option>                            
                           </ng-container>
                       </select>
                     </div>

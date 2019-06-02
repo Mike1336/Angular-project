@@ -74,6 +74,13 @@ export class EmpItemsModalComponent implements OnInit {
   public getItems(type: string) {
     this.itemService.getItemsByType(type).subscribe( data => {
       this.items = data;
+      if (this.newEmpItem.modelId !== null) {
+        this.items.forEach((element, index) => {
+          if (element.name === this.newEmpItem.modelName) {
+            this.items.splice(index, 1);
+          }
+        });
+      }
     });
   }
 }

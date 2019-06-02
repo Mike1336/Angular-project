@@ -25,6 +25,7 @@ export class ItemComponent implements OnInit {
       this.getItem(this.itemId);
     }
   public getItem(id: number) {
+      this.loading = true;
       this.itemService.getItemById(id).subscribe(data => {
         this.title = `${data.type} ${data.name}`;
         this.item = data;
@@ -57,8 +58,8 @@ export class ItemComponent implements OnInit {
     this.itemService.updateItem(this.itemModal.newItem).subscribe( data => {
       this.getItem(this.itemId);
       this.itemModal.cleanForm();
+      this.loading = false;
     });
-    this.loading = false;
   }
   public deleteItem(index: number) {
     this.loading = true;
