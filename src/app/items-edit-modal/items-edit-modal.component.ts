@@ -39,15 +39,9 @@ export class ItemsEditModalComponent implements OnInit {
       this.emps = data;
     });
   }
-  // метод, скрывающий уже выбранную категорию из списка выбора
   public displayCategories() {
     this.itemService.getCategories().subscribe(data => {
       this.categories = data;
-      this.categories.forEach((element, index) => {
-        if (element.name === this.editingItem.category) {
-          this.categories.splice(index, 1);
-        }
-      });
     });
   }
   public editItem() {
@@ -58,7 +52,6 @@ export class ItemsEditModalComponent implements OnInit {
     // удаляем единицу у прошлого сотрудника если выбираем "не назначен" в селекторе единицы
     // иначе - привязываем единицу к сотруднику
     if (this.editingItem.empFio === '') {
-      this.deleteItemFromEmp(this.editingItem.empId);
       this.editingItem.empId = null;
       this.editingItem.date = '-';
     } else {
@@ -80,7 +73,7 @@ export class ItemsEditModalComponent implements OnInit {
   }
     this.categories.forEach(element => {
       if (element.name === this.editingItem.category) {
-        this.editingItem.categoryLabel = element.categoryLabel;
+        this.editingItem.categoryLabel = element.label;
         this.editingItem.type = element.itemLabel;
       }
   });
@@ -118,7 +111,6 @@ export class ItemsEditModalComponent implements OnInit {
     });
   }
   public checkEmps(category: string) {
-    this.displayCategories();
     this.getEmps();
     this.itemService.getCategoryByName(category).subscribe(data => {
       // проход по сотрудникам

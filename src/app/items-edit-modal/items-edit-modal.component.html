@@ -22,8 +22,10 @@
                     <div class="select">
                         <select class="clr-select" required [(ngModel)]="editingItem.category" (ngModelChange)="checkEmps(editingItem.category)" name="typeSelector">
                           <option value="{{editingItem.category}}" class="ng-star-inserted" selected = "selected"> {{editingItem.category}} </option>
-                          <option value="{{cat.name}}" *ngFor="let cat of categories" class="ng-star-inserted"> {{cat.name}} </option>
-                        </select>
+                          <ng-container *ngFor="let cat of categories">
+                              <option *ngIf="cat.name !== editingItem.category" value="{{cat.name}}">{{cat.name}}</option>                            
+                            </ng-container>
+                          </select>
                     </div>
                 </div>
                 <div class="form-group">

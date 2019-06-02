@@ -203,32 +203,6 @@ export class FakeBackendService implements InMemoryDbService {
           }
         ]
       },
-      {
-        id: 6,
-        name: 'Benq GL2450',
-        serNumber: 439554543,
-        category: 'Мониторы',
-        categoryLabel: 'monitors',
-        type: 'Монитор',
-        empId: null,
-        empFio: '',
-        date: '-',
-        status: 'Хорошее',
-        history: [
-          {
-            reason: 'Поломка Benq',
-            indate: '03/25/2019',
-            outdate: '03/27/2019',
-            serviceCenter: 'Неофициальный'
-          },
-          {
-            reason: 'Поломка Benq',
-            indate: '04/03/2019',
-            outdate: '04/06/2019',
-            serviceCenter: 'Официальный'
-          }
-        ]
-      },
     ];
     const emps = [
       {
