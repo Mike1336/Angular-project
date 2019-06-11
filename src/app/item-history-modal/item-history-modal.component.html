@@ -7,27 +7,27 @@
                 <div class="form-group">
                     <label>Причина ремонта:</label>
                     <label for="reasonInput" aria-haspopup="true" role="tooltip" [class.invalid]="reason.touched && !reason.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                    <input type="text" id="reasonInput" required [(ngModel)]="newVisit.reason" name="reason" #reason="ngModel">
+                    <input type="text" id="reasonInput" required [(ngModel)]="newVisit.reason" name="reason" #reason="ngModel" (ngModelChange)="checkFields()">
                     <span class="tooltip-content">Заполните поле!</span>
                   </label>
                 </div>
                 <div class="form-group">
                     <label>Дата отвоза в ремонт:</label>
                     <label for="indateInput" aria-haspopup="true" role="tooltip" [class.invalid]="indate.touched && !indate.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                    <input type="date" clrDate id="indateInput" name="indate" required [(ngModel)]="newVisit.indate" #indate="ngModel">
+                    <input type="date" clrDate id="indateInput" name="indate" required [(ngModel)]="newVisit.indate" #indate="ngModel" (ngModelChange)="checkFields()">
                   </label>
                 </div>
                 <div class="form-group">
                     <label>Дата возвращения из ремонта:</label>
                     <label for="outdateInput" aria-haspopup="true" role="tooltip" [class.invalid]="outdate.touched && !outdate.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                    <input type="date" clrDate id="outdateInput" required [(ngModel)]="newVisit.outdate" name="outdate" #outdate="ngModel">
+                    <input type="date" clrDate id="outdateInput" required [(ngModel)]="newVisit.outdate" name="outdate" #outdate="ngModel" (ngModelChange)="checkFields()">
                   </label>
                 </div>
                 <div class="form-group">
                     <label for="selects_1">Сервисный центр:</label>
                     <div class="select">
                         <label for="outdateInput" aria-haspopup="true" role="tooltip" [class.invalid]="select.touched && !select.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                        <select id="selects_1" name="serviceCenter" required [(ngModel)]="newVisit.serviceCenter" #select="ngModel">
+                        <select id="selects_1" name="serviceCenter" required [(ngModel)]="newVisit.serviceCenter" #select="ngModel" (ngModelChange)="checkFields()">
                           <option value="Официальный" >Официальный</option>
                           <option value="Неофициальный">Неофициальный</option>
                         </select>
@@ -44,8 +44,8 @@
             <button *ngIf="historyForm.valid" type="button" class="btn btn-success" (click)="addItem()">Добавить</button>
         </ng-container>
         <ng-container *ngIf="edit">
-            <button *ngIf="!historyForm.valid" type="button" class="btn btn-primary" disabled>Сохранить</button>
-            <button *ngIf="historyForm.valid" type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
+            <button *ngIf="!historyForm.valid || !differentVisit" type="button" class="btn btn-primary" disabled>Сохранить</button>
+            <button *ngIf="historyForm.valid && differentVisit" type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
         </ng-container>
     </div>
 </clr-modal>

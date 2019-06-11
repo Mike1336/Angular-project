@@ -211,7 +211,7 @@ export class FakeBackendService implements InMemoryDbService {
         pos: 'Junior Front-end developer',
         dep: 'WEB Front-end',
         depLabel: 'web-front-end',
-        startWorking: '11.11.2011',
+        startWorking: '11/11/2011',
         cat: 'Ноутбуки',
         catLabel: 'laptops',
         items: [
@@ -230,7 +230,7 @@ export class FakeBackendService implements InMemoryDbService {
         pos: 'Junior Front-end developer',
         dep: 'WEB Back-end',
         depLabel: 'web-back-end',
-        startWorking: '12.12.2012',
+        startWorking: '12/12/2012',
         cat: 'Моноблоки',
         catLabel: 'monoblocks',
         items: [
@@ -249,7 +249,7 @@ export class FakeBackendService implements InMemoryDbService {
         pos: 'Junior Android developer',
         dep: 'Android Front-end',
         depLabel: 'android-front-end',
-        startWorking: '10.10.2010',
+        startWorking: '10/10/2010',
         cat: 'Клавиатуры',
         catLabel: 'keyboards',
         items: [
@@ -268,7 +268,7 @@ export class FakeBackendService implements InMemoryDbService {
         pos: 'Middle Android developer',
         dep: 'Android Back-end',
         depLabel: 'android-back-end',
-        startWorking: '10.10.2010',
+        startWorking: '10/10/2010',
         cat: 'Столы',
         catLabel: 'tables',
         items: [
@@ -287,7 +287,7 @@ export class FakeBackendService implements InMemoryDbService {
         pos: 'Senior IOS developer',
         dep: 'IOS Back-end',
         depLabel: 'ios-back-end',
-        startWorking: '10.10.2010',
+        startWorking: '10/10/2010',
         cat: 'Мыши',
         catLabel: 'mouses',
         items: [
@@ -306,7 +306,7 @@ export class FakeBackendService implements InMemoryDbService {
         pos: 'Middle IOS developer',
         dep: 'IOS Front-end',
         depLabel: 'ios-front-end',
-        startWorking: '10.10.2010',
+        startWorking: '10/10/2010',
         cat: 'Кресла',
         catLabel: 'armchairs',
         items: [

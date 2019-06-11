@@ -12,6 +12,8 @@ export class EmpsEditModalComponent implements OnInit {
   @Output() empEdited = new EventEmitter<boolean>();
   @Output() empEditCanceled = new EventEmitter<boolean>();
   public show = false;
+  public differentEmp = false;
+
   public editingEmp: IEmp = {
     id: null,
     fio: '',
@@ -22,9 +24,15 @@ export class EmpsEditModalComponent implements OnInit {
     cat: '',
     catLabel: '',
   };
+
+  public oldEmpName: string;
+  public oldDep: string;
+  public oldPos: string;
+  public oldDate: string;
+  public oldCategory: string;
+
   public departments: any;
   public categories: any;
-  public empName: string;
   public empItems: any;
   constructor(private itemService: ItemService, private empService: EmpService) { }
 
@@ -52,20 +60,32 @@ export class EmpsEditModalComponent implements OnInit {
           this.empItems[key].empFio = this.editingEmp.fio;
         }
       }
-      this.empService.updateEmp(this.editingEmp).subscribe(data => {
-      this.empEdited.emit(true);
-      });
+      this.empService.updateEmp(this.editingEmp).subscribe();
       for (const key in this.empItems) {
         if (this.empItems.hasOwnProperty(key)) {
-          this.itemService.updateItem(this.empItems[key]).subscribe(data => {
-          });
+          this.itemService.updateItem(this.empItems[key]).subscribe();
         }
       }
+      this.empEdited.emit(true);
       this.show = false;
   }
   public editCancel() {
-    this.empEditCanceled.emit(true);
+    if (this.differentEmp) {
+      this.empEditCanceled.emit(true);
+    }
     this.show = false;
+  }
+  public checkFields() {
+    if (this.editingEmp.fio !== this.oldEmpName ||
+        this.editingEmp.dep !== this.oldDep ||
+        this.editingEmp.pos !== this.oldPos ||
+        this.editingEmp.startWorking !== this.oldDate ||
+        this.editingEmp.cat !== this.oldCategory
+      ) {
+      this.differentEmp = true;
+    } else {
+      this.differentEmp = false;
+    }
   }
 }
 interface IEmp {

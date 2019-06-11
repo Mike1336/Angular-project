@@ -24,7 +24,7 @@ export class ItemService {
     const url = `${this.apiUrl + this.categoryEndpoint}?label=${label}`;
     return this.http.get(url);
   }
-  public getCategoryByName(name: string): Observable<any> {
+  public getCategoryByName(name: string) {
     const url = `${this.apiUrl + this.categoryEndpoint}?name=${name}`;
     return this.http.get(url);
   }

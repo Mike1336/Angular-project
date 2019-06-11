@@ -108,11 +108,20 @@ export class ItemsComponent implements OnInit {
     });
   }
   public editItem(index: number) {
-    this.modal.itemName = this.items[index].name;
+    this.modal.newItem = this.items[index];
+    this.modal.differentItem = false;
+
+    this.modal.oldItemName = this.items[index].name;
+    this.modal.oldItemNumber = this.items[index].serNumber;
+    this.modal.oldItemCategory = this.items[index].category;
+    this.modal.oldItemType = this.items[index].type;
+    this.modal.oldItemStatus = this.items[index].status;
     this.modal.oldEmpId = this.items[index].empId;
-    this.modal.editingItem = this.items[index];
+    this.modal.oldEmpFio = this.items[index].empFio;
+
     this.modal.displayCategories();
     this.modal.checkEmps(this.items[index].category);
+
     this.modal.show = true;
   }
   public deleteItem(item: any) {

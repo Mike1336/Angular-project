@@ -114,8 +114,15 @@ export class EmployeesComponent implements OnInit {
     this.itemService.getItemsByEmpId(this.staff[index].id).subscribe(data => {
       this.modal.empItems = data;
     });
-    this.modal.empName = this.staff[index].fio;
+
+    this.modal.oldEmpName = this.staff[index].fio;
+    this.modal.oldDep = this.staff[index].dep;
+    this.modal.oldPos = this.staff[index].pos;
+    this.modal.oldDate = this.staff[index].startWorking;
+    this.modal.oldCategory = this.staff[index].cat;
+
     this.modal.editingEmp = this.staff[index];
+    this.modal.differentEmp = false;
     this.modal.show = true;
   }
   public deleteEmp(id: number) {

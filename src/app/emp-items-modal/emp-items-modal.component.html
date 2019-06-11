@@ -1,12 +1,12 @@
 <clr-modal [(clrModalOpen)]="show" [clrModalClosable]="false">
     <h3 class="modal-title">Изменение единицы "{{newEmpItem.type}}" у сотрудника {{empFio}}:</h3>
     <div class="modal-body">
-        <form #editForm="ngForm">
+        <form>
             <section class="form-block">
                 <div class="form-group">
                     <label for="selects_1">{{newEmpItem.type}}:</label>
                     <div class="select">
-                        <select id="selects_1" name="serviceCenter" [(ngModel)]="newEmpItem.modelName" (ngModelChange)="getItems(newEmpItem.type)">
+                        <select id="selects_1" name="serviceCenter" [(ngModel)]="newEmpItem.modelName" (ngModelChange)="getItems(newEmpItem.type)" (ngModelChange)="checkItem()">
                           <option *ngIf="newEmpItem.modelName !== '-'" value="{{newEmpItem.modelName}}" selected = "selected"> {{newEmpItem.modelName}} </option>
                           <option  value="-" selected = "selected"> Отсутствует </option>
                           <ng-container *ngFor="let item of items">
@@ -20,7 +20,11 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline" (click)="closeModal()">Отмена</button>
-        <button *ngIf="!editForm.valid" type="button" class="btn btn-primary" disabled>Сохранить</button>
-        <button *ngIf="editForm.valid" type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
+        <ng-container *ngIf="differentItem; else elseTemplate">
+            <button type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <button type="button" class="btn btn-primary" disabled>Сохранить</button>
+        </ng-template>
     </div>
 </clr-modal>

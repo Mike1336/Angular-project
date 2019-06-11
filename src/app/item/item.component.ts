@@ -49,9 +49,16 @@ export class ItemComponent implements OnInit {
   public showEditModal(itemIndex: number) {
     this.itemModal.indexForEdit = itemIndex;
     this.itemModal.newItem = this.item;
-    this.itemModal.show = true;
     this.itemModal.showAction('edit');
+
     this.itemModal.newVisit = this.item.history[itemIndex];
+    this.itemModal.oldReason = this.item.history[itemIndex].reason;
+    this.itemModal.oldIndate = this.item.history[itemIndex].indate;
+    this.itemModal.oldOutdate = this.item.history[itemIndex].outdate;
+    this.itemModal.oldService = this.item.history[itemIndex].serviceCenter;
+
+    this.itemModal.differentVisit = false;
+    this.itemModal.show = true;
   }
   public saveEdit() {
     this.loading = true;

@@ -10,6 +10,13 @@ export class ItemHistoryModalComponent implements OnInit {
   public create = false;
   public edit = false;
   public indexForEdit: number;
+
+  public oldReason: string;
+  public oldIndate: string;
+  public oldOutdate: string;
+  public oldService: string;
+  public differentVisit = false;
+
   public newItem: IItem;
   public newVisit = {
     reason: '',
@@ -20,7 +27,7 @@ export class ItemHistoryModalComponent implements OnInit {
 
   @Output() itemAdded = new EventEmitter<boolean>();
   @Output() itemEdited = new EventEmitter<boolean>();
-  @Output() itemEditCanceled = new EventEmitter<boolean>();
+  @Output() modalClosed = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -39,7 +46,9 @@ export class ItemHistoryModalComponent implements OnInit {
     this.show = false;
   }
   public closeModal() {
-    this.itemEditCanceled.emit(true);
+    if (this.differentVisit) {
+      this.modalClosed.emit(true);
+    }
     this.show = false;
     this.cleanForm();
   }
@@ -61,6 +70,17 @@ export class ItemHistoryModalComponent implements OnInit {
         this.edit = true;
         this.create = false;
         break;
+    }
+  }
+  public checkFields() {
+    if (this.newVisit.reason !== this.oldReason ||
+      this.newVisit.indate !== this.oldIndate ||
+      this.newVisit.outdate !== this.oldOutdate ||
+      this.newVisit.serviceCenter !== this.oldService
+      ) {
+      this.differentVisit = true;
+    } else {
+      this.differentVisit = false;
     }
   }
 }

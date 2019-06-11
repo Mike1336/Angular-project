@@ -35,18 +35,22 @@ export class EmployeeComponent implements OnInit {
     });
   }
   public showModal(item: any) {
-    this.itemService.getItemsByType(item.type).subscribe( data => {
-      this.items = data;
-      this.items.forEach((element) => {
-        if (element.name === item.modelName && element.empId === this.emp.id) {
-          this.modal.currentItem = element;
-        }
+    if (item.modelId !== null) {
+      this.itemService.getItemsByType(item.type).subscribe( data => {
+        this.items = data;
+        this.items.forEach((element) => {
+          if (element.name === item.modelName && element.empId === this.emp.id) {
+            this.modal.currentItem = element;
+            this.modal.oldItemName = element.name;
+          }
+        });
       });
-    });
+    }
+    this.modal.differentItem = false;
     this.modal.newEmpItem = item;
-    this.modal.getItems(item.type);
     this.modal.empId = this.emp.id;
     this.modal.empFio = this.emp.fio;
+    this.modal.getItems(item.type);
     this.modal.show = true;
   }
   public editItem() {

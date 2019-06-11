@@ -9,9 +9,24 @@ import { ItemService } from '../item.service';
 export class EmpItemsModalComponent implements OnInit {
 
   public show = false;
+  public differentItem = false;
+  public oldItemName = '-';
   public empId: number;
   public empFio: string;
-  public currentItem: any;
+  public currentItem: IItem = {
+    id: null,
+    name: '-',
+    serNumber: null,
+    category: '',
+    categoryLabel: '',
+    type: '',
+    empId: null,
+    empFio: '',
+    date: '',
+    status: '',
+    history: [],
+  };
+
   public items: any[];
   public newEmpItem = {
     type: '',
@@ -41,11 +56,13 @@ export class EmpItemsModalComponent implements OnInit {
     if (this.newEmpItem.modelName !== '-') {
       this.items.some(element => {
           if (element.name === this.newEmpItem.modelName && element.empId === null) {
-            // при смене единицы, стираются данные о сотруднике у бывшей единицы
+            // проверка была ли единица в слоте инвентаря
             if (this.newEmpItem.modelId !== null) {
               this.itemService.getItemById(this.newEmpItem.modelId).subscribe(data => {
+                // при смене единицы обнуляем данные о сотруднике у предыдущей единицы
                 data.empId = null;
                 data.empFio = '';
+                data.date = '-';
                 this.itemService.updateItem(data).subscribe();
               });
             }
@@ -54,6 +71,7 @@ export class EmpItemsModalComponent implements OnInit {
             element.empId = this.empId;
             element.empFio = this.empFio;
             this.itemService.updateItem(element).subscribe();
+            // выходим из цикла после нахождения и присвоения первой свободной единицы
             return element;
           }
       });
@@ -62,13 +80,16 @@ export class EmpItemsModalComponent implements OnInit {
       this.newEmpItem.date = '-';
       this.currentItem.empId = null;
       this.currentItem.empFio = '';
+      this.currentItem.date = '-';
       this.itemService.updateItem(this.currentItem).subscribe();
     }
     this.itemEdited.emit(true);
     this.show = false;
 }
   public closeModal() {
-    this.editCanceled.emit(true);
+    if (this.differentItem) {
+      this.editCanceled.emit(true);
+    }
     this.show = false;
   }
   public getItems(type: string) {
@@ -83,4 +104,24 @@ export class EmpItemsModalComponent implements OnInit {
       }
     });
   }
+  public checkItem() {
+    if (this.newEmpItem.modelName !== this.oldItemName) {
+      this.differentItem = true;
+    } else {
+      this.differentItem = false;
+    }
+  }
+}
+interface IItem {
+  id: number;
+  name: string;
+  serNumber: number;
+  category: string;
+  categoryLabel: string;
+  type: string;
+  empId: number;
+  empFio: string;
+  date: string;
+  status: string;
+  history: [];
 }

@@ -1,19 +1,19 @@
 <clr-modal [(clrModalOpen)]="show" [clrModalClosable]="false">
-    <h3 class="modal-title">Изменение информации сотрудника: <br> {{empName}}</h3>
+    <h3 class="modal-title">Изменение информации сотрудника: <br> {{oldEmpName}}</h3>
     <div class="modal-body">
         <form #editForm="ngForm">
             <section class="form-block">
                 <div class="form-group">
                     <label>ФИО:</label>
                     <label for="nameInput" aria-haspopup="true" role="tooltip" [class.invalid]="name.touched && !name.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                      <input type="text" id="nameInput" required [(ngModel)]="editingEmp.fio" name="name" #name="ngModel">
+                      <input type="text" id="nameInput" required [(ngModel)]="editingEmp.fio" name="name" #name="ngModel" (ngModelChange)="checkFields()">
                       <span class="tooltip-content">Обязательное поле!</span>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>Отдел:</label>
                     <div class="select">
-                        <select name="depSelector" #depSelect="ngModel" [(ngModel)]="editingEmp.dep">
+                        <select name="depSelector" #depSelect="ngModel" [(ngModel)]="editingEmp.dep" (ngModelChange)="checkFields()">
                           <option value="{{editingEmp.dep}}" class="ng-star-inserted" selected = "selected"> {{editingEmp.dep}} </option>
                           <ng-container *ngFor="let dep of departments">
                             <option *ngIf="dep.name !== editingEmp.dep" value="{{dep.name}}">{{dep.name}}</option>                            
@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label>Должность:</label>
                     <label for="posInput" aria-haspopup="true" role="tooltip" [class.invalid]="pos.touched && !pos.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                      <input type="text" id="posInput" required [(ngModel)]="editingEmp.pos" name="pos" #pos="ngModel">
+                      <input type="text" id="posInput" required [(ngModel)]="editingEmp.pos" name="pos" #pos="ngModel" (ngModelChange)="checkFields()">
                       <span class="tooltip-content">Обязательное поле!</span>
                     </label>
                 </div>
@@ -32,14 +32,14 @@
                 <div class="form-group">
                     <label>Дата начала работы:</label>
                     <label for="startInput" aria-haspopup="true" role="tooltip" [class.invalid]="start.touched && !start.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                    <input type="date" clrDate id="startInput" required [(ngModel)]="editingEmp.startWorking" name="start" #start="ngModel">
+                    <input type="date" clrDate id="startInput" required [(ngModel)]="editingEmp.startWorking" name="start" #start="ngModel" (ngModelChange)="checkFields()">
                     <span class="tooltip-content">Обязательное поле!</span>
                   </label>
                 </div>
                 <div class="form-group">
                     <label>Закрепить категорию инвентаря:</label>
                     <div class="select">
-                        <select name="catSelector" #depSelect="ngModel" [(ngModel)]="editingEmp.cat">
+                        <select name="catSelector" #depSelect="ngModel" [(ngModel)]="editingEmp.cat" (ngModelChange)="checkFields()">
                           <option *ngIf="editingEmp.cat !== ''" value="{{editingEmp.cat}}" selected="selected">{{editingEmp.cat}} </option>
                           <ng-container *ngFor="let cat of categories">
                             <option *ngIf="cat.name !== editingEmp.cat" value="{{cat.name}}">{{cat.name}}</option>                            
@@ -53,7 +53,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline" (click)="editCancel()">Отмена</button>
-        <button *ngIf="!editForm.valid" type="button" class="btn btn-primary" disabled>Сохранить</button>
-        <button *ngIf="editForm.valid" type="button" class="btn btn-success" (click)="editEmp()">Сохранить</button>
+        <button *ngIf="!editForm.valid || !differentEmp" type="button" class="btn btn-primary" disabled>Сохранить</button>
+        <button *ngIf="editForm.valid && differentEmp" type="button" class="btn btn-success" (click)="editEmp()">Сохранить</button>
     </div>
 </clr-modal>

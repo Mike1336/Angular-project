@@ -1,29 +1,29 @@
 <clr-modal [(clrModalOpen)]="show" [clrModalClosable]="false">
-    <h3 class="modal-title">Изменение единицы: <br> {{itemName}}</h3>
+    <h3 class="modal-title">Изменение единицы: <br> {{newItem.type}} {{oldItemName}}</h3>
     <div class="modal-body">
         <form #editForm="ngForm">
             <section class="form-block">
                 <div class="form-group">
                     <label>Название (модель):</label>
                     <label for="nameInput" aria-haspopup="true" role="tooltip" [class.invalid]="name.touched && !name.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                        <input type="text" id="nameInput" required [(ngModel)]="editingItem.name" name="name" #name="ngModel">
+                        <input type="text" id="nameInput" required [(ngModel)]="newItem.name" name="name" #name="ngModel" (ngModelChange)="checkFormValues()">
                         <span class="tooltip-content">Обязательное поле!</span>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>Серийный номер:</label>
                     <label for="numberInput" aria-haspopup="true" role="tooltip" [class.invalid]="number.touched && !number.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                        <input type="number" id="numberInput" required [(ngModel)]="editingItem.serNumber" name="number" #number="ngModel">
+                        <input type="number" id="numberInput" required [(ngModel)]="newItem.serNumber" name="number" #number="ngModel" (ngModelChange)="checkFormValues()">
                         <span class="tooltip-content">Обязательное поле!</span>
                     </label>
                 </div>
                 <div class="form-group">
                     <label for="typeSelector">Категория:</label>
                     <div class="select">
-                        <select class="clr-select" required [(ngModel)]="editingItem.category" (ngModelChange)="checkEmps(editingItem.category)" name="typeSelector">
-                          <option value="{{editingItem.category}}" class="ng-star-inserted" selected = "selected"> {{editingItem.category}} </option>
+                        <select class="clr-select" required [(ngModel)]="newItem.category" (ngModelChange)="checkEmps(newItem.category)" (ngModelChange)="checkFormValues()" name="typeSelector">
+                          <option value="{{newItem.category}}" class="ng-star-inserted" selected = "selected"> {{newItem.category}} </option>
                           <ng-container *ngFor="let cat of categories">
-                              <option *ngIf="cat.name !== editingItem.category" value="{{cat.name}}">{{cat.name}}</option>                            
+                              <option *ngIf="cat.name !== newItem.category" value="{{cat.name}}">{{cat.name}}</option>                            
                             </ng-container>
                           </select>
                     </div>
@@ -31,17 +31,17 @@
                 <div class="form-group">
                     <label>Текущее состояние:</label>
                     <label for="statusInput" aria-haspopup="true" role="tooltip" [class.invalid]="status.touched && !status.valid" class="tooltip tooltip-validation tooltip-md tooltip-bottom-right">
-                      <input type="text" id="statusInput" required [(ngModel)]="editingItem.status" name="status" #status="ngModel">
+                      <input type="text" id="statusInput" required [(ngModel)]="newItem.status" name="status" #status="ngModel" (ngModelChange)="checkFormValues()">
                       <span class="tooltip-content">Обязательное поле!</span>
                   </label>
                 </div>
                 <div class="form-group">
                     <label for="empSelector">Сотрудник для закрепления:</label>
                     <div class="select">
-                        <select name="empSelector" #select="ngModel" [(ngModel)]="editingItem.empFio">
-                          <option *ngIf="editingItem.empFio !== ''" value="{{editingItem.empFio}}" class="ng-star-inserted" selected = "selected"> {{editingItem.empFio}} </option>
-                          <option value="{{emp.fio}}" *ngFor="let emp of emps" class="ng-star-inserted"> {{emp.fio}} </option>
+                        <select name="empSelector" #select="ngModel" [(ngModel)]="newItem.empFio" (ngModelChange)="checkFormValues()">
+                          <option *ngIf="newItem.empFio !== '' && newItem.empFio === oldEmpFio" value="{{newItem.empFio}}" class="ng-star-inserted"> {{newItem.empFio}} </option>
                           <option value="" class="ng-star-inserted"> Не назначен </option>
+                          <option *ngFor="let emp of emps" value="{{emp.fio}}"  class="ng-star-inserted"> {{emp.fio}} </option>
                         </select>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline" (click)="editCancel()">Отмена</button>
-        <button *ngIf="!editForm.valid" type="button" class="btn btn-primary" disabled>Сохранить</button>
-        <button *ngIf="editForm.valid" type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
+        <button *ngIf="!editForm.valid || !differentItem" type="button" class="btn btn-primary" disabled>Сохранить</button>
+        <button *ngIf="editForm.valid && differentItem" type="button" class="btn btn-success" (click)="editItem()">Сохранить</button>
     </div>
 </clr-modal>

@@ -65,7 +65,7 @@
             <clr-dg-column-toggle-title>Столбцы</clr-dg-column-toggle-title>
             <clr-dg-column-toggle-button>Показать все</clr-dg-column-toggle-button>
         </clr-dg-column-toggle>
-        <clr-dg-pagination #pagination [clrDgPageSize]="5">
+        <clr-dg-pagination #pagination [clrDgPageSize]="10">
             <clr-dg-page-size [clrPageSizeOptions]="[1,2,5,10]">Сотрудников на странице</clr-dg-page-size>
             с {{pagination.firstItem + 1}} по {{pagination.lastItem + 1}} из {{pagination.totalItems}} всего
         </clr-dg-pagination>
