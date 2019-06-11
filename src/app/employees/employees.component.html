@@ -20,6 +20,17 @@
         </div>
     </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="showDelModal">
+    <h5 class="modal-title">Удаление сотрудника: <br>{{delEmp.fio}}</h5>
+    <div class="modal-body">
+        <p>Вы действительно хотите удалить данные об этом сотруднике?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteEmp()">Удалить</button>
+    </div>
+</clr-modal>
+
 <app-emp-wizard #empWizard (empAdded)="getEmpsOfCurrentDep()"></app-emp-wizard>
 <app-emps-edit-modal #editModal (empEdited)="getEmpsOfCurrentDep()" (empEditCanceled)="getEmpsOfCurrentDep()"></app-emps-edit-modal>
 <h3 class="text-center">{{currentDep}}</h3>
@@ -48,7 +59,7 @@
     <clr-dg-row *clrDgItems="let emp of staff; let i = index">
         <clr-dg-action-overflow>
             <button class="action-item" (click)="editEmp(i)">Изменить</button>
-            <button class="action-item" (click)="deleteEmp(emp.id)">Удалить</button>
+            <button class="action-item" (click)="showRemoveModal(emp)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/employee/{{emp.id}}">{{emp.fio}}</a></clr-dg-cell>
         <clr-dg-cell>{{emp.dep}}</clr-dg-cell>

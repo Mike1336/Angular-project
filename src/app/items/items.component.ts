@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ItemWizardComponent } from '../item-wizard/item-wizard.component';
 import { ItemsEditModalComponent } from '../items-edit-modal/items-edit-modal.component';
 import { EmpService } from '../emp.service';
+import { del } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-items',
@@ -16,8 +17,22 @@ export class ItemsComponent implements OnInit {
  public filterBy: string;
  public currentCategory: string;
  public searchField = '';
+ public delItem: IItem = {
+    id: null,
+    name: '',
+    serNumber: null,
+    category: '',
+    categoryLabel: '',
+    type: '',
+    empId: null,
+    empFio: '',
+    date: '',
+    status: '',
+    history: [],
+};
  public contentReady = false;
  public loading = false;
+ public showDelModal = false;
  @ViewChild('itemWizard') itemWizard: ItemWizardComponent;
  @ViewChild('editModal') modal: ItemsEditModalComponent;
 
@@ -124,15 +139,20 @@ export class ItemsComponent implements OnInit {
 
     this.modal.show = true;
   }
-  public deleteItem(item: any) {
+  public showRemoveModal(item: any) {
+    this.delItem = item;
+    this.showDelModal = true;
+  }
+  public deleteItem() {
+    this.showDelModal = false;
     this.loading = true;
-    if (item.empId !== null) {
-      this.deleteItemFromEmp(item.id);
+    if (this.delItem.empId !== null) {
+      this.deleteItemFromEmp(this.delItem.id);
     }
-    this.itemService.removeItem(item.id).subscribe(data => {
+    this.itemService.removeItem(this.delItem.id).subscribe(data => {
       this.getItemsOfCurrentCategory();
+      this.loading = false;
     });
-    this.loading = false;
   }
   public deleteItemFromEmp(itemId: number) {
     this.itemService.getItemById(itemId).subscribe( item => {
@@ -148,4 +168,18 @@ export class ItemsComponent implements OnInit {
       });
     });
   }
+}
+
+interface IItem {
+  id: number;
+  name: string;
+  serNumber: number;
+  category: string;
+  categoryLabel: string;
+  type: string;
+  empId: number;
+  empFio: string;
+  date: string;
+  status: string;
+  history: [];
 }

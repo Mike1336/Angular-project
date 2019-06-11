@@ -17,6 +17,18 @@ export class EmployeesComponent implements OnInit {
  public filterBy: string;
  public currentDep: string;
  public searchField = '';
+ public delEmp: IEmp = {
+    id: null,
+    fio: '',
+    pos: '',
+    dep: '',
+    depLabel: '',
+    startWorking: '',
+    cat: '',
+    catLabel: '',
+    items: [],
+  };
+ public showDelModal = false;
  public loading = false;
  public contentReady = false;
  @ViewChild('empWizard') empWizard: EmpWizardComponent;
@@ -125,15 +137,20 @@ export class EmployeesComponent implements OnInit {
     this.modal.differentEmp = false;
     this.modal.show = true;
   }
-  public deleteEmp(id: number) {
-    this.loading = true;
-    this.removeEmpFromItem(id);
-    this.empService.removeEmp(id).subscribe(data => {
-      this.getEmpsOfCurrentDep();
-    });
-    this.loading = false;
+  public showRemoveModal(emp: IEmp) {
+    this.delEmp = emp;
+    this.showDelModal = true;
   }
-  public removeEmpFromItem(id: number) {
+  public deleteEmp() {
+    this.showDelModal = false;
+    this.loading = true;
+    this.removeEmpFromItems(this.delEmp.id);
+    this.empService.removeEmp(this.delEmp.id).subscribe(data => {
+      this.getEmpsOfCurrentDep();
+      this.loading = false;
+    });
+  }
+  public removeEmpFromItems(id: number) {
     this.itemService.getItemsByEmpId(id).subscribe( data => {
       data.forEach(element => {
         element.empId = null;
@@ -142,4 +159,15 @@ export class EmployeesComponent implements OnInit {
       });
     });
   }
+}
+interface IEmp {
+  id: number;
+  fio: string;
+  pos: string;
+  dep: string;
+  depLabel: string;
+  startWorking: string;
+  cat: string;
+  catLabel: string;
+  items: any;
 }

@@ -21,6 +21,16 @@
     </div>
 </div>
 
+<clr-modal [(clrModalOpen)]="showDelModal">
+    <h5 class="modal-title">Удаление единицы: <br>{{delItem.type}} {{delItem.name}}</h5>
+    <div class="modal-body">
+        <p>Вы действительно хотите удалить данные об этой инвентарной единице?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteItem()">Удалить</button>
+    </div>
+</clr-modal>
+
 <app-item-wizard #itemWizard (itemAdded)="getItemsOfCurrentCategory()" *ngIf="contentReady"></app-item-wizard>
 <app-items-edit-modal #editModal (itemEdited)="getItemsOfCurrentCategory()" (itemEditCanceled)="getItemsOfCurrentCategory()" *ngIf="contentReady"></app-items-edit-modal>
 <h3 class="text-center">{{currentCategory}}</h3>
@@ -55,7 +65,7 @@
     <clr-dg-row *clrDgItems="let item of items; let i = index">
         <clr-dg-action-overflow>
             <button class="action-item" (click)="editItem(i)">Изменить</button>
-            <button class="action-item" (click)="deleteItem(item)">Удалить</button>
+            <button class="action-item" (click)="showRemoveModal(item)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/item/{{item.id}}">{{item.name}}</a></clr-dg-cell>
         <clr-dg-cell>{{item.serNumber}}</clr-dg-cell>
