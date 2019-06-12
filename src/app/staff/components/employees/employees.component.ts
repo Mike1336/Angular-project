@@ -154,6 +154,7 @@ export class EmployeesComponent implements OnInit {
       data.forEach(element => {
         element.empId = null;
         element.empFio = '';
+        element.date = '-';
         this.itemService.updateItem(element).subscribe();
       });
     });
