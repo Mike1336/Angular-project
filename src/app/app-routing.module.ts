@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ItemsComponent } from './items/items.component';
-import { EmployeesComponent } from './employees/employees.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { ItemComponent } from './item/item.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { ItemsComponent } from './inventory/components/items/items.component';
+import { EmployeesComponent } from './staff/components/employees/employees.component';
+import { EmployeeComponent } from './staff/components/employee/employee.component';
+import { ItemComponent } from './inventory/components/item/item.component';
+import { NotFoundComponent } from './layout/components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'inventory/:cat', component: ItemsComponent },

@@ -1,0 +1,61 @@
+<title>{{title}}</title>
+
+<div id="page-preloader" class="preloader" *ngIf="!contentReady">
+    <div class="loading-container">
+        <div class="my-spinner"></div>
+        <div class="my-spinner-center"></div>
+        <div class="loading-text">
+            <div class="cssload-preloader">
+                <span>L</span>
+                <span>o</span>
+                <span>a</span>
+                <span>d</span>
+                <span>i</span>
+                <span>n</span>
+                <span>g</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+        </div>
+    </div>
+</div>
+<app-emp-items-modal #editModal (itemEdited)="editItem()" (editCanceled)="getEmployee(this.empId)"></app-emp-items-modal>
+<div class="emp-inf clr-col" *ngIf="contentReady">
+    <h1 id="emp-name">{{emp.fio}}</h1>
+    <h2 id="emp-position">{{emp.pos}}</h2>
+    <h2 *ngIf="emp.cat !== ''">Ответственный за категорию: <a routerLink="/inventory/{{emp.catLabel}}" id="emp-category">{{emp.cat}}</a></h2>
+    <h3>Инвентарь:</h3>
+    <clr-datagrid [clrDgLoading]="loading">
+        <clr-dg-placeholder>Инвентарь пуст</clr-dg-placeholder>
+        <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">Тип</ng-container>
+        </clr-dg-column>
+        <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">Название</ng-container>
+        </clr-dg-column>
+        <clr-dg-column>
+            <ng-container *clrDgHideableColumn="{hidden: false}">Дата закрепления</ng-container>
+        </clr-dg-column>
+        <clr-dg-row *clrDgItems="let item of emp.items; let i = index;">
+            <clr-dg-action-overflow>
+                <button class="action-item" (click)="showModal(emp.items[i])">Изменить</button>
+            </clr-dg-action-overflow>
+            <clr-dg-cell>{{item.type}}</clr-dg-cell>
+            <clr-dg-cell>
+                <a *ngIf="item.modelId !== null; else noItem" routerLink="/item/{{item.modelId}}">{{item.modelName}}</a>
+                <ng-template #noItem>
+                    {{item.modelName}}
+                </ng-template>
+            </clr-dg-cell>
+
+            <clr-dg-cell>{{item.date}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-footer>
+            <clr-dg-column-toggle>
+                <clr-dg-column-toggle-title>Столбцы</clr-dg-column-toggle-title>
+                <clr-dg-column-toggle-button>Показать все</clr-dg-column-toggle-button>
+            </clr-dg-column-toggle>
+        </clr-dg-footer>
+    </clr-datagrid>
+</div>

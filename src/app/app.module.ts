@@ -7,22 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ItemsComponent } from './items/items.component';
-import { EmployeesComponent } from './employees/employees.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { ItemComponent } from './item/item.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { ItemsComponent } from './inventory/components/items/items.component';
+import { EmployeesComponent } from './staff/components/employees/employees.component';
+import { EmployeeComponent } from './staff/components/employee/employee.component';
+import { ItemComponent } from './inventory/components/item/item.component';
+import { NotFoundComponent } from './layout/components/not-found/not-found.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeBackendService } from './fake-backend.service';
-import { SearchFieldComponent } from './search-field/search-field.component';
-import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
-import { ItemWizardComponent } from './item-wizard/item-wizard.component';
-import { EmpWizardComponent } from './emp-wizard/emp-wizard.component';
-import { ItemHistoryModalComponent } from './item-history-modal/item-history-modal.component';
-import { ItemsEditModalComponent } from './items-edit-modal/items-edit-modal.component';
-import { EmpsEditModalComponent } from './emps-edit-modal/emps-edit-modal.component';
-import { EmpItemsModalComponent } from './emp-items-modal/emp-items-modal.component';
+import { SearchFieldComponent } from './layout/components/search-field/search-field.component';
+import { NavbarLeftComponent } from './layout/components/navbar-left/navbar-left.component';
+import { ItemWizardComponent } from './inventory/components/item-wizard/item-wizard.component';
+import { ItemHistoryModalComponent } from './inventory/components/item-history-modal/item-history-modal.component';
+import { ItemsEditModalComponent } from './inventory/components/items-edit-modal/items-edit-modal.component';
+import { EmpWizardComponent } from './staff/components/emp-wizard/emp-wizard.component';
+import { EmpsEditModalComponent } from './staff/components/emps-edit-modal/emps-edit-modal.component';
+import { EmpItemsModalComponent } from './staff/components/emp-items-modal/emp-items-modal.component';
 
 @NgModule({
   declarations: [
