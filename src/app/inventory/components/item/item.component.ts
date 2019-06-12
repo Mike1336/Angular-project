@@ -12,8 +12,16 @@ export class ItemComponent implements OnInit {
   public title = 'Инвентарная единица';
   public itemId: number;
   public item: IItem;
+  public visitIndex: number;
+  public delVisit = {
+    reason: '',
+    indate: '',
+    outdate: '',
+    serviceCenter: ''
+  };
   public contentReady = false;
   public loading = false;
+  public showDelVisit = false;
 
   @ViewChild('modal') itemModal: ItemHistoryModalComponent;
 
@@ -68,13 +76,19 @@ export class ItemComponent implements OnInit {
       this.loading = false;
     });
   }
-  public deleteItem(index: number) {
+  public showDelVisitModal(index: number) {
+    this.visitIndex = index;
+    this.delVisit = this.item.history[index];
+    this.showDelVisit = true;
+  }
+  public deleteVisit() {
     this.loading = true;
-    this.item.history.splice(index, 1);
+    this.item.history.splice(this.visitIndex, 1);
     this.itemService.updateItem(this.item).subscribe( data => {
       this.getItem(this.itemId);
       this.loading = false;
     });
+    this.showDelVisit = false;
   }
 }
 interface IItem {

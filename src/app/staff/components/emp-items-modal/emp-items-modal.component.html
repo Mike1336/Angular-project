@@ -6,11 +6,11 @@
                 <div class="form-group">
                     <label for="selects_1">{{newEmpItem.type}}:</label>
                     <div class="select">
-                        <select id="selects_1" name="serviceCenter" [(ngModel)]="newEmpItem.modelName" (ngModelChange)="getItems(newEmpItem.type)" (ngModelChange)="checkItem()">
+                        <select id="selects_1" name="serviceCenter" [(ngModel)]="newEmpItem.modelName" (ngModelChange)="checkItem()">
                           <option *ngIf="newEmpItem.modelName !== '-'" value="{{newEmpItem.modelName}}" selected = "selected"> {{newEmpItem.modelName}} </option>
                           <option  value="-" selected = "selected"> Отсутствует </option>
                           <ng-container *ngFor="let item of items">
-                            <option *ngIf="item.name !== newEmpItem.modelName  && item.empId === null || item.empId === empId" value="{{item.name}}">{{item.name}}</option>                            
+                            <option *ngIf="item.name !== newEmpItem.modelName" value="{{item.name}}">{{item.name}}</option>                            
                           </ng-container>
                       </select>
                     </div>

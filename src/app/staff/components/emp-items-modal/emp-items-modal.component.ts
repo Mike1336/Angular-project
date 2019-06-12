@@ -9,7 +9,7 @@ export class EmpItemsModalComponent implements OnInit {
 
   public show = false;
   public differentItem = false;
-  public oldItemName = '-';
+  public oldItemName: string;
   public empId: number;
   public empFio: string;
   public currentItem: IItem = {
@@ -91,16 +91,14 @@ export class EmpItemsModalComponent implements OnInit {
     }
     this.show = false;
   }
-  public getItems(type: string) {
+  public getEmptyItems(type: string) {
     this.itemService.getItemsByType(type).subscribe( data => {
-      this.items = data;
-      if (this.newEmpItem.modelId !== null) {
-        this.items.forEach((element, index) => {
-          if (element.name === this.newEmpItem.modelName) {
-            this.items.splice(index, 1);
-          }
-        });
-      }
+      this.items = [];
+      data.forEach(item => {
+        if (item.empId === null || item.empId === this.empId) {
+          this.items.splice(this.items.length, 0, item);
+        }
+      });
     });
   }
   public checkItem() {

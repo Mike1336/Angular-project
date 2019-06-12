@@ -64,7 +64,7 @@
     </clr-dg-column>
     <clr-dg-row *clrDgItems="let item of items; let i = index">
         <clr-dg-action-overflow>
-            <button class="action-item" (click)="editItem(i)">Изменить</button>
+            <button class="action-item" (click)="showEditModal(i)">Изменить</button>
             <button class="action-item" (click)="showRemoveModal(item)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/item/{{item.id}}">{{item.name}}</a></clr-dg-cell>

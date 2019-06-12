@@ -120,7 +120,10 @@ export class ItemsComponent implements OnInit {
         this.loading = false;
     });
   }
-  public editItem(index: number) {
+  public showEditModal(index: number) {
+    this.modal.checkEmps(this.items[index].category);
+    this.modal.displayCategories();
+
     this.modal.newItem = this.items[index];
     this.modal.differentItem = false;
 
@@ -131,9 +134,6 @@ export class ItemsComponent implements OnInit {
     this.modal.oldItemStatus = this.items[index].status;
     this.modal.oldEmpId = this.items[index].empId;
     this.modal.oldEmpFio = this.items[index].empFio;
-
-    this.modal.displayCategories();
-    this.modal.checkEmps(this.items[index].category);
 
     this.modal.show = true;
   }

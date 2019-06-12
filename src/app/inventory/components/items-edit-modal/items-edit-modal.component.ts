@@ -36,12 +36,6 @@ export class ItemsEditModalComponent implements OnInit {
   constructor(private itemService: ItemService, private empService: EmpService) { }
 
   ngOnInit() {
-    this.getEmps();
-  }
-  public getEmps() {
-    this.empService.getStaff().subscribe(data => {
-      this.emps = data;
-    });
   }
   public displayCategories() {
     this.itemService.getCategories().subscribe(data => {
@@ -135,17 +129,19 @@ export class ItemsEditModalComponent implements OnInit {
     });
   }
   public checkEmps(category: string) {
-    this.getEmps();
-    this.itemService.getCategoryByName(category).subscribe(cat => {
-      // проход по сотрудникам
-      this.emps.forEach((emp, empIndex) => {
-      // проход по свойству единиц у итерируемого сотрудника
-          emp.items.forEach(empItem => {
-      // проверка есть ли у него единица из выбранной категории
-          if (empItem.type === cat[0].itemLabel && empItem.modelId !== null) {
-      // удаление из списка выбора сотрудников для закрепления
-            this.emps.splice(empIndex, 1);
-          }
+    this.empService.getStaff().subscribe(employees => {
+      this.emps = [];
+      this.itemService.getCategoryByName(category).subscribe(cat => {
+        // проход по сотрудникам
+        employees.forEach(emp => {
+        // проход по свойству единиц у итерируемого сотрудника
+            emp.items.forEach(empItem => {
+        // проверка есть ли у него единица из выбранной категории
+            if (empItem.type === cat[0].itemLabel && empItem.modelId === null) {
+        // добавление в список выбора сотрудников
+              this.emps.splice(this.emps.length, 0, emp);
+            }
+          });
         });
       });
     });

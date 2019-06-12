@@ -20,6 +20,17 @@
         </div>
     </div>
 </div>
+
+<clr-modal [(clrModalOpen)]="showDelVisit">
+    <h5 class="modal-title">Удаление визита в сервис по причине: <br>{{delVisit.reason}}</h5>
+    <div class="modal-body">
+        <p>Вы действительно хотите удалить данные о визите?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteVisit()">Удалить</button>
+    </div>
+</clr-modal>
+
 <app-item-history-modal *ngIf="contentReady" #modal (itemAdded)="createItem()" (itemEdited)="saveEdit()" (modalClosed)="getItem(this.itemId)"></app-item-history-modal>
 <div class="item-inf clr-col" *ngIf="contentReady">
     <h1>{{item.type}} {{item.name}} ({{item.serNumber}})</h1>
@@ -54,7 +65,7 @@
     <clr-dg-row *clrDgItems="let visit of item.history; let i = index">
         <clr-dg-action-overflow>
             <button class="action-item" (click)="showEditModal(i)">Изменить</button>
-            <button class="action-item" (click)="deleteItem(i)">Удалить</button>
+            <button class="action-item" (click)="showDelVisitModal(i)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell>{{visit.reason}}</clr-dg-cell>
         <clr-dg-cell>{{visit.indate}}</clr-dg-cell>

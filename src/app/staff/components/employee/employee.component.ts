@@ -41,16 +41,18 @@ export class EmployeeComponent implements OnInit {
         this.items.forEach((element) => {
           if (element.name === item.modelName && element.empId === this.emp.id) {
             this.modal.currentItem = element;
-            this.modal.oldItemName = element.name;
+            this.modal.oldItemName = this.modal.currentItem.name;
           }
         });
       });
+    } else {
+      this.modal.oldItemName = '-';
     }
     this.modal.differentItem = false;
     this.modal.newEmpItem = item;
     this.modal.empId = this.emp.id;
     this.modal.empFio = this.emp.fio;
-    this.modal.getItems(item.type);
+    this.modal.getEmptyItems(item.type);
     this.modal.show = true;
   }
   public editItem() {
