@@ -14,7 +14,7 @@ import { ItemComponent } from './inventory/components/item/item.component';
 import { NotFoundComponent } from './layout/components/not-found/not-found.component';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeBackendService } from './fake-backend.service';
+import { FakeBackendService } from './backend/fake-backend.service';
 import { SearchFieldComponent } from './layout/components/search-field/search-field.component';
 import { NavbarLeftComponent } from './layout/components/navbar-left/navbar-left.component';
 import { ItemWizardComponent } from './inventory/components/item-wizard/item-wizard.component';
