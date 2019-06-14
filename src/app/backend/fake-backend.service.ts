@@ -109,7 +109,7 @@ export class FakeBackendService implements InMemoryDbService {
         empId: null,
         empFio: '',
         date: '-',
-        status: 'Ремонтируется',
+        status: 'Хорошее',
         history: [
           {
             reason: 'Поломка Benq',
@@ -180,7 +180,7 @@ export class FakeBackendService implements InMemoryDbService {
       {
         id: 5,
         name: 'Lenovo ThinkPad',
-        serNumber: 409813163,
+        serNumber: 409813162,
         category: 'Ноутбуки',
         categoryLabel: 'laptops',
         type: 'Ноутбук',
@@ -202,6 +202,123 @@ export class FakeBackendService implements InMemoryDbService {
             serviceCenter: 'Официальный'
           }
         ]
+      },
+      {
+        id: 6,
+        name: 'Lenovo IdeaCentre',
+        serNumber: 4109131724,
+        category: 'Моноблоки',
+        categoryLabel: 'monoblocks',
+        type: 'Моноблок',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 7,
+        name: 'Apple Magic Keyboard',
+        serNumber: 519846847,
+        category: 'Клавиатуры',
+        categoryLabel: 'keyboards',
+        type: 'Клавиатура',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 8,
+        name: 'Apple Magic Keyboard Space Grey',
+        serNumber: 645734655,
+        category: 'Клавиатуры',
+        categoryLabel: 'keyboards',
+        type: 'Клавиатура',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 9,
+        name: 'Apple Magic Mouse 2',
+        serNumber: 745354570,
+        category: 'Мыши',
+        categoryLabel: 'mouses',
+        type: 'Мышь',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 10,
+        name: 'Apple Magic Mouse 2 Space Grey',
+        serNumber: 823640340,
+        category: 'Мыши',
+        categoryLabel: 'mouses',
+        type: 'Мышь',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 11,
+        name: 'Example table 1',
+        serNumber: 824647341,
+        category: 'Столы',
+        categoryLabel: 'tables',
+        type: 'Стол',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 12,
+        name: 'Example table 2',
+        serNumber: 864357742,
+        category: 'Столы',
+        categoryLabel: 'tables',
+        type: 'Стол',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 13,
+        name: 'Example armchair 1',
+        serNumber: 935627342,
+        category: 'Кресла',
+        categoryLabel: 'armchairs',
+        type: 'Кресло',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
+      },
+      {
+        id: 14,
+        name: 'Example armchair 2',
+        serNumber: 945362330,
+        category: 'Кресла',
+        categoryLabel: 'armchairs',
+        type: 'Кресло',
+        empId: null,
+        empFio: '',
+        date: '-',
+        status: 'Хорошее',
+        history: []
       },
     ];
     const emps = [

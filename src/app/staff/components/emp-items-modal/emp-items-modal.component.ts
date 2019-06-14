@@ -69,6 +69,7 @@ export class EmpItemsModalComponent implements OnInit {
             this.newEmpItem.date = today;
             element.empId = this.empId;
             element.empFio = this.empFio;
+            element.date = today;
             this.itemService.updateItem(element).subscribe();
             // выходим из цикла после нахождения и присвоения первой свободной единицы
             return element;
