@@ -44,21 +44,21 @@
 </div>
 <clr-datagrid *ngIf="contentReady" [clrDgLoading]="loading">
     <clr-dg-placeholder>Увы! Запрашиваемый контент не найден :(</clr-dg-placeholder>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'fio'">
         <ng-container *clrDgHideableColumn="{hidden: false}">ФИО сотрудника</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'dep'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Отдел</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'startWorking'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Дата поступления на работу</ng-container>
     </clr-dg-column>
-    <clr-dg-column>
+    <clr-dg-column [clrDgField]="'cat'">
         <ng-container *clrDgHideableColumn="{hidden: false}">Ответственный(ая) за категорию на сайте</ng-container>
     </clr-dg-column>
-    <clr-dg-row *clrDgItems="let emp of staff; let i = index">
+    <clr-dg-row *clrDgItems="let emp of staff">
         <clr-dg-action-overflow>
-            <button class="action-item" (click)="editEmp(i)">Изменить</button>
+            <button class="action-item" (click)="editEmp(emp)">Изменить</button>
             <button class="action-item" (click)="showRemoveModal(emp)">Удалить</button>
         </clr-dg-action-overflow>
         <clr-dg-cell><a routerLink="/employee/{{emp.id}}">{{emp.fio}}</a></clr-dg-cell>

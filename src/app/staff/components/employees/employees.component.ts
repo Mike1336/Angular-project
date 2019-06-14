@@ -121,18 +121,18 @@ export class EmployeesComponent implements OnInit {
       this.loading = false;
     });
   }
-  public editEmp(index: number) {
-    this.itemService.getItemsByEmpId(this.staff[index].id).subscribe(data => {
+  public editEmp(emp: any) {
+    this.itemService.getItemsByEmpId(emp.id).subscribe(data => {
       this.modal.empItems = data;
     });
 
-    this.modal.oldEmpName = this.staff[index].fio;
-    this.modal.oldDep = this.staff[index].dep;
-    this.modal.oldPos = this.staff[index].pos;
-    this.modal.oldDate = this.staff[index].startWorking;
-    this.modal.oldCategory = this.staff[index].cat;
+    this.modal.oldEmpName = emp.fio;
+    this.modal.oldDep = emp.dep;
+    this.modal.oldPos = emp.pos;
+    this.modal.oldDate = emp.startWorking;
+    this.modal.oldCategory = emp.cat;
 
-    this.modal.editingEmp = this.staff[index];
+    this.modal.editingEmp = emp;
     this.modal.differentEmp = false;
     this.modal.show = true;
   }
@@ -146,7 +146,9 @@ export class EmployeesComponent implements OnInit {
     this.removeEmpFromItems(this.delEmp.id);
     this.empService.removeEmp(this.delEmp.id).subscribe(data => {
       this.getEmpsOfCurrentDep();
-      this.loading = false;
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     });
   }
   public removeEmpFromItems(id: number) {

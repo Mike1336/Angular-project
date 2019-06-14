@@ -120,20 +120,20 @@ export class ItemsComponent implements OnInit {
         this.loading = false;
     });
   }
-  public showEditModal(index: number) {
-    this.modal.checkEmps(this.items[index].category);
+  public showEditModal(item: any) {
+    this.modal.checkEmps(item.category);
     this.modal.displayCategories();
 
-    this.modal.newItem = this.items[index];
+    this.modal.newItem = item;
     this.modal.differentItem = false;
 
-    this.modal.oldItemName = this.items[index].name;
-    this.modal.oldItemNumber = this.items[index].serNumber;
-    this.modal.oldItemCategory = this.items[index].category;
-    this.modal.oldItemType = this.items[index].type;
-    this.modal.oldItemStatus = this.items[index].status;
-    this.modal.oldEmpId = this.items[index].empId;
-    this.modal.oldEmpFio = this.items[index].empFio;
+    this.modal.oldItemName = item.name;
+    this.modal.oldItemNumber = item.serNumber;
+    this.modal.oldItemCategory = item.category;
+    this.modal.oldItemType = item.type;
+    this.modal.oldItemStatus = item.status;
+    this.modal.oldEmpId = item.empId;
+    this.modal.oldEmpFio = item.empFio;
 
     this.modal.show = true;
   }
@@ -149,7 +149,9 @@ export class ItemsComponent implements OnInit {
     }
     this.itemService.removeItem(this.delItem.id).subscribe(data => {
       this.getItemsOfCurrentCategory();
-      this.loading = false;
+      setTimeout(() => {
+        this.loading = false;
+      }, 500);
     });
   }
   public deleteItemFromEmp(itemId: number) {
