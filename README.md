@@ -1,2 +1,2 @@
 # Angular-project
-My graduation project in a colladge.
+My college's graduation project.
